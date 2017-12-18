@@ -3,5 +3,6 @@
 	"MD007": { "indent": 4 },
 	"MD009": { "br_spaces": 2},
 	"MD013": false,
+	"MD033": false,
     "no-hard-tabs": false
 }
