@@ -52,40 +52,42 @@ Le jeu a plusieurs états. Les inter-actions avec les joueurs seront variables e
 
 #### a. Attente
 
-Dans cet phase, il n'y a pas de jeu en cours.
+Dans cet phase, il n'y a pas de jeu en cours. Le programme est juste en attente d'une action des joueurs. Il passe alors à l'état suivant ***b***.
 
 #### b. Choix du nombre de joueurs
 
-Ici, il faut déterminer combien de joueurs participe au jeu. Ce nombre peut être de 1 ou 2. Si 2 joueurs est choisit, il s'agit d'un match oppasant deux joueurs. Si il n'y a qu'un seul joueur, il jouera alors contre une  "Intelligence Artificielle" (IA).
+Ici, il faut déterminer combien de joueurs participe au jeu. Ce nombre peut être de 1 ou 2. Si 2 joueurs est choisit, il s'agit d'un match opposant deux joueurs. Si il n'y a qu'un seul joueur, il jouera alors contre une  "Intelligence Artificielle" (IA). Afin de tester cette IA, il est possible de choisir zéro joueur : le programme joue alors contre lui-même.
 
 #### c. Choix du joueur qui commence
 
-Il faut maintenant décider qui commence parmi les deux opposants.
+Il faut maintenant décider qui commence parmi les deux opposants. Une fois ce choix effectué, le programme passe alors à l'état ***d***.
 
 #### d. Placer un jeton
 
+Le joueur en cours doit sélectionner une colonne pour déposer son jeton. Le programme passe alors à l'état ***e***.
+
 #### e. Analyser le jeton
 
-Si la colonne est pleine, retour à l'état d.
-Si quelqu'un a gagné, à l'état correspondant.
-S'il n'est plus possible de jouer, aller à l'état .
-C'est au joueur suivant de jouer, aller à l'état d.
+Si la colonne est pleine, retour à l'état ***d***.
+Si quelqu'un a gagné, à l'état correspondant ***f*** ou ***g***.
+S'il n'est plus possible de jouer, aller à l'état ***h***.
+C'est au joueur suivant de jouer, aller à l'état ***d***.
 
 #### f. Le joueur 1 a gagné
 
-On affiche l'infrmation et on passe à l'état i.
+On affiche l'infrmation et on passe à l'état ***i***.
 
 #### g. Le joueur 2 a gagné
 
-On affiche l'infrmation et on passe à l'état i.
+On affiche l'infrmation et on passe à l'état ***i***.
 
 #### h. C'est un match nul
 
-On affiche l'infrmation et on passe à l'état i.
+On affiche l'infrmation et on passe à l'état ***i***.
 
 #### i. Animation de fin de jeu
 
-On retourne à l'état a.
+On retourne à l'état ***a***.
 
 ### **2. Matériel**
 
