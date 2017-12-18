@@ -1,6 +1,6 @@
 # Fourth-In-A-Row
 
-Le jeu des [R2-Builders](https://r2builders.fr)
+Le jeu des [R2-Builders](https://r2builders.fr) : Le jeu Puissance 4 avec la Force du Jedi !
 
 - Idée originale : [@SuTaiBot](https://twitter.com/RUGeek2)
 
@@ -9,9 +9,7 @@ Le jeu des [R2-Builders](https://r2builders.fr)
 L'objectif est de créer un jeu avec la thématique de Star Wars, par le travail des membres des R2-Builders.  
 Le jeu choisi : un dérivé de Puissance 4. Le wikipedia du jeu en français : [Puissance4](https://fr.wikipedia.org/wiki/Puissance_4). Et le wikipedia en anglais : [Connect 4 ou Four-in-a-row](https://en.wikipedia.org/wiki/Connect_Four). Le jeu sera décliné en deux versions.
 
-<p style="text-align: center;">
-<img src="https://upload.wikimedia.org/wikipedia/commons/a/ad/Connect_Four.gif" />
-</p>
+<p style="text-align: center;"><img src="https://upload.wikimedia.org/wikipedia/commons/a/ad/Connect_Four.gif" /></p>
 
 ### 1. Version dite "classique"
 
@@ -75,15 +73,15 @@ C'est au joueur suivant de jouer, aller à l'état ***d***.
 
 #### f. Le joueur 1 a gagné
 
-On affiche l'infrmation et on passe à l'état ***i***.
+On affiche l'information et on passe à l'état ***i***.
 
 #### g. Le joueur 2 a gagné
 
-On affiche l'infrmation et on passe à l'état ***i***.
+On affiche l'information et on passe à l'état ***i***.
 
 #### h. C'est un match nul
 
-On affiche l'infrmation et on passe à l'état ***i***.
+On affiche l'information et on passe à l'état ***i***.
 
 #### i. Animation de fin de jeu
 
@@ -99,7 +97,7 @@ Le cerveau de cette version électronique. On pourra utiliser divers matériels,
 - Adafruit Huzzah 32 (ESP32)
 - Teensy 3.5
 
-Il fonctionne surement sur d'autres composants, mais ça n'a pas été testé.
+Il fonctionne certainement sur d'autres composants, mais ça n'a pas été testé.
 
 #### 2. Composants additionnels
 
@@ -125,7 +123,7 @@ Possibilités :
 
 - 42 LEDs RGB
 
-##### d. OUTPUT - Ecran
+##### d. OUTPUT - Écran
 
 Avoir un écran graphique sur lequel afficher des animations amusantes pendant le jeu.
 
@@ -133,13 +131,13 @@ Note : pour debug, en plus de la console Serial, Boris utilise un écran OLED Fe
 
 ### 3. **Le programme**
 
-Vous pouvez configurer votre installation dans le fichier "MyConfig.h". Vous pouvez alors comiler et télécharger votre programme sur votre arduino.
+Vous pouvez configurer votre installation dans le fichier "MyConfig.h". Vous pouvez alors compiler et télécharger votre programme sur votre arduino.
 
 Le programme est développé en C++ "arduino".
 
 #### "FourthInARow.ino"
 
-Le point d'entrée est le fichier "FourthInARow.ino". Il s'git du chef d'orchestre du jeu, celui qui va gérer les différents états du jeu et orchestrer l'ensemble des composants en fonction de cet état.
+Le point d'entrée est le fichier "FourthInARow.ino". Il s'agit du chef d'orchestre du jeu, celui qui va gérer les différents états du jeu et orchestrer l'ensemble des composants en fonction de cet état.
 
 #### "Game.h"
 
@@ -147,7 +145,7 @@ Les fichiers Game.h et Game.cpp contiennent toute la logique d'exécution du jeu
 
 #### "GameInput.h"
 
-Les fichiers "GameInput.h" et "GameInput.cpp" contiennent toute la logique pour que les joueurs puissent agir sur le jeu. A ce titre, c'est ici que l'on définiera toutes les entrées possibles comme la gestion des boutons.
+Les fichiers "GameInput.h" et "GameInput.cpp" contiennent toute la logique pour que les joueurs puissent agir sur le jeu. A ce titre, c'est ici que l'on définit toutes les entrées possibles comme la gestion des boutons.
 C'est fichiers contiennent une implémentation à vide de ces fonctions ! L'implémentation réelle est effectuée dans d'autres fichiers. Il suffit d'indiquer dans le fichier "MyConfig.h" l'implémentation réelle que vous voulez utiliser.
 
 Voici les implémentations disponibles :
@@ -156,7 +154,7 @@ Voici les implémentations disponibles :
 
 #### "GameOutput.h"
 
-Les fichiers "GameOutput.h" et "GameOuput.cpp" contiennent toute la logique pour que le jeu puissent communiquer avec les joueurs. C'est donc ici que l'on gérera l'affichage du plateau de jeu (les LEDs), l'audio et l'affichage d'animations.
+Les fichiers "GameOutput.h" et "GameOutput.cpp" contiennent toute la logique pour que le jeu puissent communiquer avec les joueurs. C'est donc ici que l'on gérera l'affichage du plateau de jeu (les LEDs), l'audio et l'affichage d'animations.
 Ces fichiers contiennent une implémentation à vide de ces fonctions ! L'implémentation réelle est effectuée dans d'autres fichiers (par héritage de class). Mais pour vous, il suffit d'indiquer dans le fichier "MyConfig.h" l'implémentation réelle que vous voulez utiliser.
 
 Voici les implémentations disponibles concernant l'audio :
@@ -166,6 +164,8 @@ Voici les implémentations disponibles concernant l'audio :
 Voici les implémentations disponibles concernant l'affichage du plateau :
 
 - FeatherOled.h/.cpp : un rendu basique du plateau de jeu sur l'écran [Featherwing OLED 128x32](https://www.adafruit.com/product/2900).
+
+Utilise les bibliothèques Adafruit_SSD1306 et Adafruit_GFX.
 
 Voici les implémentations disponibles concernant l'écran d'animations :
 

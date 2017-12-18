@@ -130,7 +130,7 @@ bool Game::inbounds(int8_t row, int8_t column)
 
 void Game::calculateAllPossibilities()
 {
-	_debug(F("Tiles'number\n"));
+	_debug(F("Tile's number\n"));
 	for (int8_t row = COLUMN_TILES - 1; row >= 0; row--)
 	{
 		_debug("|");
@@ -343,7 +343,7 @@ bool Game::isHorizontalWin(uint8_t column1, uint8_t column2, uint8_t column3, ui
 
 bool Game::isSomeoneWinner()
 {
-	// check verticaly
+	// check vertically
 	for (uint8_t column = 0; column < BOARD_COLUMNS; column++)
 	{
 		bool win = isVerticalWin(column);
@@ -356,7 +356,7 @@ bool Game::isSomeoneWinner()
 			return true;
 		}
 	}
-	// check horizontaly
+	// check horizontally
 	for (uint8_t column = 0; column <= (BOARD_COLUMNS - 4); column++)
 	{
 		bool win = isHorizontalWin(column, column + 1, column + 2, column + 3);
