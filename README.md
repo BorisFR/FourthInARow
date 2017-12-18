@@ -4,8 +4,6 @@ Le jeu des [R2-Builders](https://r2builders.fr)
 
 - Idée originale : [@SuTaiBot](https://twitter.com/RUGeek2)
 
-**********************************************************
-
 ## ___I. Objectif___
 
 L'objectif est de créer un jeu avec la thématique de Star Wars, par le travail des membres des R2-Builders.  
@@ -23,21 +21,34 @@ La version classique sera réalisée avec des jetons que l'on dépose dans les c
 
 La version électronique viendra en complément de la version "classique" en supprimant ces jetons et en représentant les jetons par des LEDs et l'on choisira la colonne par des boutons.
 
-### 3. Regles du jeu
+### 3. Règles du jeu
 
 Pendant un match, chaque joueur, à tour de rôle, dépose un jeton dans une des sept colonnes. Le jeton tombe au plus bas de la colonne. Une colonne peut contenir 6 jetons au maximum. Un match est gagné quand un des joueurs a aligné 4 jetons à l'horizontale, à la verticale ou en diagonale. S'il n'y a plus de place pour jouer un jeton et qu'il n'y a pas de gagnant, la partie est déclarée match nul.
 
-**********************************************************
-
 ## ___II. Version classique___
 
-**********************************************************
+### 1. Le plateau de jeu
+
+Voici un rendu de ce que ça pourrait donner :  
+![plateau](Imagesgithub/Fourth-in-a-row-03.jpg)
+
+#### a. Le plateau
+
+![plateau](Imagesgithub/4thInARow-Frame.png)
+
+#### b. Les supports
+
+![plateau](Imagesgithub/4thInARow-Side.png)
+
+### 2. Les jetons
+
+![plateau](Imagesgithub/4thInARow-Token.png)
 
 ## ___III. Version électronique___
 
-### 1. Fonctionnement
+### **1. Fonctionnement**
 
-Le jeu a plusieurs états. Les inter-actions seront variables en fonction de cet état.
+Le jeu a plusieurs états. Les inter-actions avec les joueurs seront variables en fonction de cet état. Voici le détail pour chaque état.
 
 #### a. Attente
 
@@ -60,45 +71,63 @@ Si quelqu'un a gagné, à l'état correspondant.
 S'il n'est plus possible de jouer, aller à l'état .
 C'est au joueur suivant de jouer, aller à l'état d.
 
-### f. Le joueur 1 a gagné
+#### f. Le joueur 1 a gagné
 
-### g. Le joueur 2 a gagné
+#### g. Le joueur 2 a gagné
 
-### h. C'est un match nul
+#### h. C'est un match nul
 
-### i. Animation de fin de jeu
+#### i. Animation de fin de jeu
 
 On retourne à l'état a.
 
-### 2. Matériel
+### **2. Matériel**
 
 #### 1. Composant principal
 
-Le programme fonctionne sur : (testé)
+Le cerveau de cette version électronique. On pourra utiliser divers matériels, voici ce que les membres ont utilisés / testés. Le programme fonctionne sur :
 
 - Arduino Mega
 - Adafruit Huzzah 32 (ESP32)
 - Teensy 3.5
 
+Il fonctionne surement sur d'autres composants, mais ça n'a pas été testé.
+
 #### 2. Composants additionnels
 
-##### a. Audio
+L'idée est d'avoir un panel d'options pour que vous puissiez réaliser votre propre jeu. Voici l'ensemble des composants qui sont activables dans le programme.
 
-Rien pour le moment
+##### a. INPUT : Boutons
 
-##### b. Boutons
+Besoin :
 
-Rien pour le moment
+- choisir le nombres de joueurs
+- choisir qui commence
+- choisir la colonne pour déposer le jeton
 
-##### c. LED
+##### b. OUTPUT - Audio
 
-Rien pour le moment
+Avoir la possibilité de jouer du son à divers moments pendant le jeu.
 
-##### d. Ecran
+##### c. OUTPUT - LED
 
-- Featherwing Oled (pour Huzzah 32) : uniquement pour debug
+L'idée est d'avoir une LED par case, schématisant une case vide ou un jeton de joueur. Le tout représente un jeu complet.
 
-### 3. Environnement de développement
+Possibilités :
+
+- 42 LEDs RGB
+
+##### d. OUTPUT - Ecran
+
+Avoir un écran graphique sur lequel afficher des animations amusantes pendant le jeu.
+
+Note : pour debug, en plus de la console Serial, Boris utilise un écran OLED Featherwing pour Huzzah 32.
+
+### 3. **Le programme**
+
+Vous pouvez configurer votre installation dans le fichier "MyConfig.h". Vous pouvez alors comiler et télécharger votre programme sur votre arduino.
+
+### 4. **Environnement de développement**
 
 Ce projet est réalisé avec [Visual Studio Code](https://code.visualstudio.com) avec l'extension [PlatformIO](http://platformio.org).  
 Cependant, la structure du projet permet d'ouvrir ce projet avec l'environnement [Arduino IDE](https://www.arduino.cc/en/Main/Software) standard.  
