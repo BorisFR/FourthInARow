@@ -4,5 +4,6 @@
 	},
     "files.associations": {
         "type_traits": "cpp"
-    }
+	},
+	"editor.fontSize": 14
 }
