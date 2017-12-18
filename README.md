@@ -38,11 +38,11 @@ Voici un rendu de ce que ça pourrait donner :
 
 #### b. Les supports
 
-![plateau](blob/master/imagesgithub/4thInARow-Side.png)
+![plateau](https://raw.githubusercontent.com/BorisFR/FourthInARow/master/imagesgithub/4thInARow-Side.png)
 
 ### 2. Les jetons
 
-![plateau](blob/master/imagesgithub/4thInARow-Token.png)
+![plateau](https://raw.githubusercontent.com/BorisFR/FourthInARow/master/imagesgithub/4thInARow-Token.png)
 
 ## ___III. Version électronique___
 
