@@ -1,0 +1,8 @@
+{
+	"terminal.integrated.env.osx": {
+		"PATH": "/Users/sfardoux/.platformio/penv/bin:/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/share/dotnet:/Library/Frameworks/Mono.framework/Versions/Current/Commands"
+	},
+    "files.associations": {
+        "type_traits": "cpp"
+    }
+}
