@@ -30,19 +30,19 @@ Pendant un match, chaque joueur, à tour de rôle, dépose un jeton dans une des
 ### 1. Le plateau de jeu
 
 Voici un rendu de ce que ça pourrait donner :  
-![plateau](Imagesgithub/Fourth-in-a-row-03.jpg)
+![plateau](blob/master/Imagesgithub/Fourth-in-a-row-03.jpg)
 
 #### a. Le plateau
 
-![plateau](Imagesgithub/4thInARow-Frame.png)
+![plateau](blob/master/Imagesgithub/4thInARow-Frame.png)
 
 #### b. Les supports
 
-![plateau](Imagesgithub/4thInARow-Side.png)
+![plateau](blob/master/Imagesgithub/4thInARow-Side.png)
 
 ### 2. Les jetons
 
-![plateau](Imagesgithub/4thInARow-Token.png)
+![plateau](blob/master/Imagesgithub/4thInARow-Token.png)
 
 ## ___III. Version électronique___
 
