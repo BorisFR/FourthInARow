@@ -133,6 +133,46 @@ Note : pour debug, en plus de la console Serial, Boris utilise un écran OLED Fe
 
 Vous pouvez configurer votre installation dans le fichier "MyConfig.h". Vous pouvez alors comiler et télécharger votre programme sur votre arduino.
 
+Le programme est développé en C++ "arduino".
+
+#### "FourthInARow.ino"
+
+Le point d'entrée est le fichier "FourthInARow.ino". Il s'git du chef d'orchestre du jeu, celui qui va gérer les différents états du jeu et orchestrer l'ensemble des composants en fonction de cet état.
+
+#### "Game.h"
+
+Les fichiers Game.h et Game.cpp contiennent toute la logique d'exécution du jeu Puissance 4 en lui-même.
+
+#### "GameInput.h"
+
+Les fichiers "GameInput.h" et "GameInput.cpp" contiennent toute la logique pour que les joueurs puissent agir sur le jeu. A ce titre, c'est ici que l'on définiera toutes les entrées possibles comme la gestion des boutons.
+C'est fichiers contiennent une implémentation à vide de ces fonctions ! L'implémentation réelle est effectuée dans d'autres fichiers. Il suffit d'indiquer dans le fichier "MyConfig.h" l'implémentation réelle que vous voulez utiliser.
+
+Voici les implémentations disponibles :
+
+- interface Serial en mode debug.
+
+#### "GameOutput.h"
+
+Les fichiers "GameOutput.h" et "GameOuput.cpp" contiennent toute la logique pour que le jeu puissent communiquer avec les joueurs. C'est donc ici que l'on gérera l'affichage du plateau de jeu (les LEDs), l'audio et l'affichage d'animations.
+Ces fichiers contiennent une implémentation à vide de ces fonctions ! L'implémentation réelle est effectuée dans d'autres fichiers (par héritage de class). Mais pour vous, il suffit d'indiquer dans le fichier "MyConfig.h" l'implémentation réelle que vous voulez utiliser.
+
+Voici les implémentations disponibles concernant l'audio :
+
+- aucune pour le moment
+
+Voici les implémentations disponibles concernant l'affichage du plateau :
+
+- FeatherOled.h/.cpp : un rendu basique du plateau de jeu sur l'écran [Featherwing OLED 128x32](https://www.adafruit.com/product/2900).
+
+Voici les implémentations disponibles concernant l'écran d'animations :
+
+- aucune pour le moment
+
+#### Autres fichiers
+
+Global.h, CaseLocation.h, Column.h/.cpp, Tile.h/.cpp : utile pour le fonctionnement du jeu.
+
 ### 4. **Environnement de développement**
 
 Ce projet est réalisé avec [Visual Studio Code](https://code.visualstudio.com) avec l'extension [PlatformIO](http://platformio.org).  
