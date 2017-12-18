@@ -73,9 +73,15 @@ C'est au joueur suivant de jouer, aller à l'état d.
 
 #### f. Le joueur 1 a gagné
 
+On affiche l'infrmation et on passe à l'état i.
+
 #### g. Le joueur 2 a gagné
 
+On affiche l'infrmation et on passe à l'état i.
+
 #### h. C'est un match nul
+
+On affiche l'infrmation et on passe à l'état i.
 
 #### i. Animation de fin de jeu
 
