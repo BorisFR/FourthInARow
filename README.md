@@ -103,6 +103,8 @@ Il fonctionne certainement sur d'autres composants, mais ça n'a pas été test�
 
 L'idée est d'avoir un panel d'options pour que vous puissiez réaliser votre propre jeu. Voici l'ensemble des composants qui sont activables dans le programme.
 
+C'est dans le fichier ***"MyConfig.h"*** que vous indiquez votre configuration.
+
 ##### a. INPUT : Boutons pour jouer
 
 Besoin :
@@ -225,13 +227,13 @@ Aide pour la [mise en forme de ce readme](https://openclassrooms.com/courses/red
 
 C'est un premier jet, il serait étonnant que j'ai tout bon du premier coup ;)
 
-Alimentation : 5V 10A - [https://fr.aliexpress.com/item/AC-DC-Power-Supply-5V-5A-6A-8A-10A-Adapter-Charger-Transformer-25W-60W-40W-50W/32756921792.html](https://fr.aliexpress.com/item/AC-DC-Power-Supply-5V-5A-6A-8A-10A-Adapter-Charger-Transformer-25W-60W-40W-50W/32756921792.html)  
-Connecteur d'alimentation : Jack 5,5mm / 2,1mm - réf 48147 - [https://www.gotronic.fr/art-embase-alim-sc215-123.htm](https://www.gotronic.fr/art-embase-alim-sc215-123.htm)  
-Haut-parleur : 2x 3W 8 Ohms - réf 05527 - [https://www.gotronic.fr/art-haut-parleur-hp8r3w-25596.htm](https://www.gotronic.fr/art-haut-parleur-hp8r3w-25596.htm)  
-Connecteur de haut-parleur : 2x JST 2mm -  réf 48997 - [https://www.gotronic.fr/art-connecteur-jst-2-pts-coude-jst2m-22580.htm](https://www.gotronic.fr/art-connecteur-jst-2-pts-coude-jst2m-22580.htm)  
-Ampli audio : 2,8 W - réf 32946 - [https://www.gotronic.fr/art-module-ampli-audio-2-8w-ada1552-21902.htm](https://www.gotronic.fr/art-module-ampli-audio-2-8w-ada1552-21902.htm)  
-Bouton de commande audio : encodeur rotatif - ref 35409 - [https://www.gotronic.fr/art-module-encodeur-rotatif-sen0235-26820.htm](https://www.gotronic.fr/art-module-encodeur-rotatif-sen0235-26820.htm)  
-Boutons pour jouer : boutons d'arcade lumineux 30mm - [https://fr.aliexpress.com/item/10pcs-lot-30mm-Push-Button-Arcade-Button-5V-LED-Illuminated-Push-Button-LED-1P-2P-Start/32807197485.html](https://fr.aliexpress.com/item/10pcs-lot-30mm-Push-Button-Arcade-Button-5V-LED-Illuminated-Push-Button-LED-1P-2P-Start/32807197485.html)  
-Affichage du plateau par LEDs : 2x Ruban 50 LEDs RGB - [https://fr.aliexpress.com/item/50pcs-WS2813-IC-pixel-LED-Module-lighting-F9-for-sign-DC5V-IP68-Waterproof-super-bright-WS2818/32803390301.html](https://fr.aliexpress.com/item/50pcs-WS2813-IC-pixel-LED-Module-lighting-F9-for-sign-DC5V-IP68-Waterproof-super-bright-WS2818/32803390301.html)  
-Coeur : non décidé, Teensy 3.5 ou Huzzah ESP32  
-Régulateur 3,3V 1,5A : réf 42632 - [https://www.gotronic.fr/art-lm1086it3-3-14313.htm](https://www.gotronic.fr/art-lm1086it3-3-14313.htm)  
+**Alimentation :** 5V 10A - [https://fr.aliexpress.com/item/AC-DC-Power-Supply-5V-5A-6A-8A-10A-Adapter-Charger-Transformer-25W-60W-40W-50W/32756921792.html](https://fr.aliexpress.com/item/AC-DC-Power-Supply-5V-5A-6A-8A-10A-Adapter-Charger-Transformer-25W-60W-40W-50W/32756921792.html)  
+**Connecteur d'alimentation :** Jack 5,5mm / 2,1mm - réf 48147 - [https://www.gotronic.fr/art-embase-alim-sc215-123.htm](https://www.gotronic.fr/art-embase-alim-sc215-123.htm)  
+**Haut-parleur :** 2x 3W 8 Ohms - réf 05527 - [https://www.gotronic.fr/art-haut-parleur-hp8r3w-25596.htm](https://www.gotronic.fr/art-haut-parleur-hp8r3w-25596.htm)  
+**Connecteur de haut-parleur :** 2x JST 2mm -  réf 48997 - [https://www.gotronic.fr/art-connecteur-jst-2-pts-coude-jst2m-22580.htm](https://www.gotronic.fr/art-connecteur-jst-2-pts-coude-jst2m-22580.htm)  
+**Ampli audio :** 2,8 W - réf 32946 - [https://www.gotronic.fr/art-module-ampli-audio-2-8w-ada1552-21902.htm](https://www.gotronic.fr/art-module-ampli-audio-2-8w-ada1552-21902.htm)  
+**Bouton de commande audio :** encodeur rotatif - ref 35409 - [https://www.gotronic.fr/art-module-encodeur-rotatif-sen0235-26820.htm](https://www.gotronic.fr/art-module-encodeur-rotatif-sen0235-26820.htm)  
+**Boutons pour jouer :** boutons d'arcade lumineux 30mm - [https://fr.aliexpress.com/item/10pcs-lot-30mm-Push-Button-Arcade-Button-5V-LED-Illuminated-Push-Button-LED-1P-2P-Start/32807197485.html](https://fr.aliexpress.com/item/10pcs-lot-30mm-Push-Button-Arcade-Button-5V-LED-Illuminated-Push-Button-LED-1P-2P-Start/32807197485.html)  
+**Affichage du plateau par LEDs :** 2x Ruban 50 LEDs RGB - [https://fr.aliexpress.com/item/50pcs-WS2813-IC-pixel-LED-Module-lighting-F9-for-sign-DC5V-IP68-Waterproof-super-bright-WS2818/32803390301.html](https://fr.aliexpress.com/item/50pcs-WS2813-IC-pixel-LED-Module-lighting-F9-for-sign-DC5V-IP68-Waterproof-super-bright-WS2818/32803390301.html)  
+**Coeur :** non décidé - Teensy 3.5 ou Huzzah32  
+**Régulateur :** 3,3V 1,5A - réf 42632 - [https://www.gotronic.fr/art-lm1086it3-3-14313.htm](https://www.gotronic.fr/art-lm1086it3-3-14313.htm)  
