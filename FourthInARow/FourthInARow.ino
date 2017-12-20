@@ -1,4 +1,4 @@
-#include "Global.h"
+#include "Global.hpp"
 
 #if ESP32
 //#include <HardwareSerial.h>
@@ -43,11 +43,11 @@ void doInitHelper()
 // *****
 
 #if GAME_INPUT_DUMMY
-#include "GameInput.h"
+#include "GameInput.hpp"
 GameInput gameInput;
 #endif
 #if GAME_INPUT_SERIAL
-#include "GIserial.h"
+#include "GIserial.hpp"
 GIserial gameInput;
 #endif
 
@@ -55,30 +55,30 @@ GIserial gameInput;
 // ******
 
 #if GAME_OUTPUT_DUMMY
-#include "GameOutput.h"
+#include "GameOutput.hpp"
 GameOutput gameOutput;
 #endif
 #if GAME_OUTPUT_SERIAL
-#include "GOserial.h"
+#include "GOserial.hpp"
 GOserial gameOutput;
 #endif
 #if GAME_OUTPUT_FEATHER_OLED
-#include "GOFeatherOled.h"
+#include "GOFeatherOled.hpp"
 GOFeatherOled gameOutput;
 #endif
 
 // AUDIO
 // *****
 #if GAME_INPUT_AUDIO_DUMMY
-#include "GameInputAudio.h"
+#include "GameInputAudio.hpp"
 GameInputAudio gameInputAudio;
 #endif
 #if GAME_OUTPUT_AUDIO_DUMMY
-#include "GameOutputAudio.h"
+#include "GameOutputAudio.hpp"
 GameOutputAudio gameOutputAudio;
 #endif
 
-#include "Game.h"
+#include "Game.hpp"
 Game game;
 
 // only call one time, starting the program

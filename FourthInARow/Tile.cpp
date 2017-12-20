@@ -1,4 +1,4 @@
-#include "Tile.h"
+#include "Tile.hpp"
 
 uint8_t Tile::getColumn()
 {

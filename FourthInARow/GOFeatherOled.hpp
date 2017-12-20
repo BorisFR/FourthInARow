@@ -1,8 +1,8 @@
 #ifndef FeatherOled_h
 #define FeatherOled_h
 
-#include "Global.h"
-#include "GameOutput.h"
+#include "Global.hpp"
+#include "GameOutput.hpp"
 
 #include <SPI.h>
 #include <Wire.h>

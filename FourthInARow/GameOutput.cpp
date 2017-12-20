@@ -1,4 +1,4 @@
-#include "GameOutput.h"
+#include "GameOutput.hpp"
 
 #if DEBUG
 void GameOutput::doInit(void (*debug)(String))

@@ -1,7 +1,7 @@
 #ifndef GameInputAudio_h
 #define GameInputAudio_h
 
-#include "Global.h"
+#include "Global.hpp"
 
 class GameInputAudio
 {

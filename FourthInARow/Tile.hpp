@@ -1,7 +1,7 @@
 #ifndef Tile_h
 #define Tile_h
 
-#include "Global.h"
+#include "Global.hpp"
 
 class Tile {
 

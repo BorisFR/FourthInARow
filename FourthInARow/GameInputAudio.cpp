@@ -1,4 +1,4 @@
-#include "GameInputAudio.h"
+#include "GameInputAudio.hpp"
 
 
 #if DEBUG

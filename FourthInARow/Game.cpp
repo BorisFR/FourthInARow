@@ -1,4 +1,4 @@
-#include "Game.h"
+#include "Game.hpp"
 
 #if DEBUG
 void Game::doInit(void (*debug)(String))

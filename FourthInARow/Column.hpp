@@ -1,8 +1,8 @@
 #ifndef Column_h
 #define Column_h
 
-#include "Global.h"
-#include "Tile.h"
+#include "Global.hpp"
+#include "Tile.hpp"
 
 class Column {
 

@@ -1,7 +1,7 @@
 #ifndef GameInput_h
 #define GameInput_h
 
-#include "Global.h"
+#include "Global.hpp"
 #include <HardwareSerial.h>
 
 class GameInput {

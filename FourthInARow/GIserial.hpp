@@ -1,8 +1,8 @@
 #ifndef GIserial_h
 #define GIserial_h
 
-#include "Global.h"
-#include "GameInput.h"
+#include "Global.hpp"
+#include "GameInput.hpp"
 
 class GIserial : public GameInput
 {

@@ -1,4 +1,4 @@
-#include "GIserial.h"
+#include "GIserial.hpp"
 
 void GIserial::loop()
 {

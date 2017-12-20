@@ -1,9 +1,9 @@
 #ifndef GameOutput_h
 #define GameOutput_h
 
-#include "Global.h"
-#include "Column.h"
-#include "CaseLocation.h"
+#include "Global.hpp"
+#include "Column.hpp"
+#include "CaseLocation.hpp"
 
 class GameOutput
 {

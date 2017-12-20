@@ -1,4 +1,4 @@
-#include "GameOutputAudio.h"
+#include "GameOutputAudio.hpp"
 
 #if DEBUG
 void GameOutputAudio::doInit(void (*debug)(String))

@@ -1,9 +1,9 @@
 #ifndef Game_h
 #define Game_h
 
-#include "Global.h"
-#include "Column.h"
-#include "CaseLocation.h"
+#include "Global.hpp"
+#include "Column.hpp"
+#include "CaseLocation.hpp"
 
 #define WIN_VALUE 100000
 #define MAX_POSSIBILITIES 69

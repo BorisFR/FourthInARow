@@ -4,7 +4,7 @@
 #include <Arduino.h>
 #include <stdbool.h>
 #include <stdlib.h>
-#include "MyConfig.h"
+#include "MyConfig.hpp"
 
 #define COLUMN_TILES 6
 #define BOARD_COLUMNS 7

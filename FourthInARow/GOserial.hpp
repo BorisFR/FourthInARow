@@ -1,8 +1,8 @@
 #ifndef GOserial_h
 #define GOserial_h
 
-#include "Global.h"
-#include "GameOutput.h"
+#include "Global.hpp"
+#include "GameOutput.hpp"
 
 class GOserial : public GameOutput
 {

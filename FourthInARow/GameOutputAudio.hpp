@@ -1,7 +1,7 @@
 #ifndef GameOutputAudio_h
 #define GameOutputAudio_h
 
-#include "Global.h"
+#include "Global.hpp"
 
 class GameOutputAudio
 {

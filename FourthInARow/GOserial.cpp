@@ -1,4 +1,4 @@
-#include "GOserial.h"
+#include "GOserial.hpp"
 
 void GOserial::showTouchSomething()
 {
