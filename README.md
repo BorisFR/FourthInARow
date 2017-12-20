@@ -7,7 +7,7 @@ Le jeu des [R2-Builders](https://r2builders.fr) : Le jeu Puissance 4 avec la For
 ## ___I. Objectif___
 
 L'objectif est de créer un jeu avec la thématique de Star Wars, par le travail des membres des R2-Builders.  
-Le jeu choisi : un dérivé de Puissance 4. Le wikipedia du jeu en français : [Puissance4](https://fr.wikipedia.org/wiki/Puissance_4). Et le wikipedia en anglais : [Connect 4 ou Four-in-a-row](https://en.wikipedia.org/wiki/Connect_Four). Le jeu sera décliné en deux versions.
+Le jeu choisi : un dérivé de Puissance 4. Le wikipedia du jeu en français : [Puissance 4](https://fr.wikipedia.org/wiki/Puissance_4). Et le wikipedia en anglais : [Connect 4 ou Four-in-a-row](https://en.wikipedia.org/wiki/Connect_Four). Le jeu sera décliné en deux versions.
 
 <p style="text-align: center;"><img src="https://upload.wikimedia.org/wikipedia/commons/a/ad/Connect_Four.gif" /></p>
 
@@ -177,20 +177,12 @@ Voici les implémentations disponibles concernant le son :
 Les fichiers "GameOutput.h" et "GameOutput.cpp" contiennent toute la logique pour que le jeu puissent communiquer avec les joueurs. C'est donc ici que l'on gérera l'affichage du plateau de jeu (les LEDs), l'audio et l'affichage d'animations.
 Ces fichiers contiennent une implémentation à vide de ces fonctions ! L'implémentation réelle est effectuée dans d'autres fichiers (par héritage de class). Mais pour vous, il suffit d'indiquer dans le fichier "MyConfig.h" l'implémentation réelle que vous voulez utiliser.
 
-Voici les implémentations disponibles concernant l'audio :
-
-- aucune pour le moment
-
 Voici les implémentations disponibles concernant l'affichage du plateau :
 
 - GOserial.h/.cpp : rendu dans l'interface Série du PC/Mac/Linux
 - GOFeatherOled.h/.cpp : un rendu basique du plateau de jeu sur écran [Featherwing OLED 128x32](https://www.adafruit.com/product/2900).
 
 Utilise les bibliothèques Adafruit_SSD1306 et Adafruit_GFX.
-
-Voici les implémentations disponibles concernant l'écran d'animations :
-
-- aucune pour le moment
 
 #### Autres fichiers
 
