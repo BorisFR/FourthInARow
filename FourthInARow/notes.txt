@@ -1,14 +1,20 @@
+quelques réflexions sur le jeu
 
 Jeu à 1 ou 2
 
 Si jeu à 1, joue contre :
-niveau 7 : le plus fort => R2-D2 bien sûr ! (contre lui, on ne peut que faire que match nul au mieux)
+niveau 7 : le plus fort => R2-D2 bien sûr ! (contre lui, on ne peut que faire match nul au mieux)
 niveau 6 : plutôt bon => BB-8
 niveau 5 : pervers => BB-9E
 niveau 4 : avec la force => Yoda
 niveau 3 :
 niveau 2 : 
-niveau 1 : le plus faible => Jar Jar Binks (totalement aléatoire)
+niveau 1 : le plus faible => Jar Jar Binks (totalement aléatoire, voir joue pour aider l'adversaire)
+
+prévoir une aide pour le joueur => lui montrer un bon coup à jouer ou une case à jouer pour contrer
+
+en mode "économiseur d'écran", ça peut être IA contre IA.
+
 
 Si jeu à 2, chacun choisit son joueur :
 Joueur 1 : Luc
@@ -19,4 +25,4 @@ Joueur 5 :
 Joueur 6 : 
 Joueur 7 : 
 
-prévoir une aide pour le joueur ? => lui montrer un bon coup à jouer
+hum... plutôt choisir un camp genre rebel, empire, chasseur de prime, etc... avec une banque sonore correspondante... à construire...
