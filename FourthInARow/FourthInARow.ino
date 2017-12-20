@@ -30,7 +30,7 @@ void debug(String text)
 void doInitHelper()
 {
 	Serial.begin(115200);
-	debug(F("Init helper\n"));
+	debug(F("Init Debug: OK\n"));
 }
 
 #endif

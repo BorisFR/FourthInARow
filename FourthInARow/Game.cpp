@@ -4,7 +4,7 @@
 void Game::doInit(void (*debug)(String))
 {
 	_debug = debug;
-	_debug("Init Game:\n");
+	_debug("Init Game: ");
 	doRealInit();
 	_debug("OK\n");
 };
@@ -130,7 +130,8 @@ bool Game::inbounds(int8_t row, int8_t column)
 
 void Game::calculateAllPossibilities()
 {
-	_debug(F("Tile's number\n"));
+	#if DEBUG
+	/*_debug(F("\nTile's number\n"));
 	for (int8_t row = COLUMN_TILES - 1; row >= 0; row--)
 	{
 		_debug("|");
@@ -143,7 +144,8 @@ void Game::calculateAllPossibilities()
 			_debug("|");
 		}
 		_debug("\n");
-	}
+	}*/
+	#endif
 
 	uint8_t index = 0;
 	for (uint8_t row = 0; row < COLUMN_TILES; row++)
@@ -174,56 +176,48 @@ void Game::calculateAllPossibilities()
 							winPossibilities[index][TILE_VALUE] = 1;
 						}*/
 						winPossibilities[index][TILE_VALUE] = 1;
-						/*#if DEBUG
-						_debug(String(index) + "= col:" + String(column) + " row:" + String(row) + " cc:" + String(columnChange) + " rc:" + String(rowChange) + " => ");
-						for (uint8_t pos = 0; pos < 4; pos++)
-						{
-							uint8_t number = (winPossibilities[index][COLUMN] + pos * winPossibilities[index][COLUMN_CHANGE]) * 10 + (winPossibilities[index][ROW] + pos * winPossibilities[index][ROW_CHANGE]);
-							if (number < 10)
-								_debug(" ");
-							_debug(String(number) + " ");
-						}
-						_debug(F("\n"));
-						#endif*/
 						index += 1;
 					}
 				}
 			}
 		}
 	}
-	_debug("Possibilities: " + String(index) + "\n");
 	#if DEBUG
-		uint8_t val[BOARD_COLUMNS][COLUMN_TILES];
-		for (int8_t row = COLUMN_TILES - 1; row >= 0; row--)
+	//_debug("Possibilities: " + String(index) + "\n");
+	#endif
+
+	#if DEBUG
+	/*uint8_t val[BOARD_COLUMNS][COLUMN_TILES];
+	for (int8_t row = COLUMN_TILES - 1; row >= 0; row--)
+	{
+		for (uint8_t column = 0; column < BOARD_COLUMNS; column++)
 		{
-			for (uint8_t column = 0; column < BOARD_COLUMNS; column++)
-			{
-				val[column][row] = 0;
-			}
+			val[column][row] = 0;
 		}
-		for (uint8_t index = 0; index < MAX_POSSIBILITIES; index++)
+	}
+	for (uint8_t index = 0; index < MAX_POSSIBILITIES; index++)
+	{
+		for (uint8_t pos = 0; pos < 4; pos++)
 		{
-			for (uint8_t pos = 0; pos < 4; pos++)
-			{
-				val[winPossibilities[index][COLUMN] + pos * winPossibilities[index][COLUMN_CHANGE]][winPossibilities[index][ROW] + pos * winPossibilities[index][ROW_CHANGE]] += winPossibilities[index][TILE_VALUE];
-			}
+			val[winPossibilities[index][COLUMN] + pos * winPossibilities[index][COLUMN_CHANGE]][winPossibilities[index][ROW] + pos * winPossibilities[index][ROW_CHANGE]] += winPossibilities[index][TILE_VALUE];
 		}
-		_debug(F("Best places\n"));
-		for (uint8_t row = 0; row < COLUMN_TILES; row++)
+	}
+	_debug(F("\nBest places\n"));
+	for (uint8_t row = 0; row < COLUMN_TILES; row++)
+	{
+		_debug("|");
+		for (uint8_t column = 0; column < BOARD_COLUMNS; column++)
 		{
+			uint8_t v = val[column][row];
+			if (v < 10)
+				_debug(" ");
+			if (v < 100)
+				_debug(" ");
+			_debug(String(v));
 			_debug("|");
-			for (uint8_t column = 0; column < BOARD_COLUMNS; column++)
-			{
-				uint8_t v = val[column][row];
-				if (v < 10)
-					_debug(" ");
-				if (v < 100)
-					_debug(" ");
-				_debug(String(v));
-				_debug("|");
-			}
-			_debug("\n");
 		}
+		_debug("\n");
+	}*/
 	#endif
 }
 

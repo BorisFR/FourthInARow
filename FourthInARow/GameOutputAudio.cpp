@@ -4,7 +4,7 @@
 void GameOutputAudio::doInit(void (*debug)(String))
 {
 	_debug = debug;
-	_debug(F("Init dummy screen GameOutputAudio: "));
+	_debug(F("Init dummy GameOutputAudio: "));
 	doRealInit();
 	_debug(F("OK\n"));
 }

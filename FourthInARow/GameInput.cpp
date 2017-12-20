@@ -4,7 +4,7 @@
 void GameInput::doInit(void (*debug)(String))
 {
 	_debug = debug;
-	_debug("Init GameInput: ");
+	_debug("Init dummy GameInput: ");
 	doRealInit();
 	_debug("OK\n");
 };
@@ -17,12 +17,12 @@ void GameInput::doInit()
 
 void GameInput::doRealInit()
 {
-	input = ' ';
+	input = '|';
 }
 
 bool GameInput::hasInput()
 {
-	if (input == ' ')
+	if (input == '|')
 	{
 		return false;
 	}
@@ -32,7 +32,7 @@ bool GameInput::hasInput()
 char GameInput::getKey()
 {
 	char temp = input;
-	input = ' ';
+	input = '|';
 	return temp;
 }
 
