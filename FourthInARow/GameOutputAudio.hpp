@@ -1,7 +1,14 @@
-#ifndef GameOutputAudio_h
-#define GameOutputAudio_h
+#ifndef GAME_OUTPUT_AUDIO_HPP
+#define GAME_OUTPUT_AUDIO_HPP
 
 #include "Global.hpp"
+
+enum StarWarsSide : uint8_t
+{
+	noSide,
+	rebel,
+	empire,
+};
 
 class GameOutputAudio
 {
@@ -27,6 +34,18 @@ class GameOutputAudio
 		void muteOn();
 		void muteOff();
 
+		void playPowerOn();
+		void playReset();
+
+		void playQuestion(StarWarsSide side);
+		void playClick(StarWarsSide side);
+		void playStartGame();
+		void playToken(StarWarsSide side);
+		void playLooseingAlert(StarWarsSide side);
+		void playWinningTeasing(StarWarsSide side);
+		void playLoose(StarWarsSide side);
+		void playWin(StarWarsSide side);
+		void playDraw();
 };
 
 #endif
