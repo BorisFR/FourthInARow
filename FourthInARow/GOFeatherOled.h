@@ -47,7 +47,7 @@
 
 #define SQUARE_SIZE 4
 
-class FeatherOled : public GameOutput
+class GOFeatherOled : public GameOutput
 {
 	private:
 		Adafruit_SSD1306 display = Adafruit_SSD1306();

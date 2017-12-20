@@ -62,9 +62,9 @@ GameOutput gameOutput;
 #include "GOserial.h"
 GOserial gameOutput;
 #endif
-#if FEATHER_OLED
-#include "FeatherOled.h"
-FeatherOled gameOutput;
+#if GAME_OUTPUT_FEATHER_OLED
+#include "GOFeatherOled.h"
+GOFeatherOled gameOutput;
 #endif
 
 // AUDIO
@@ -150,6 +150,8 @@ void loop()
 	// get the player's input
 	// **********************
 	gameInput.loop();
+	gameInputAudio.loop();
+	gameOutputAudio.loop();
 
 	// start the game output
 	// *********************

@@ -152,6 +152,24 @@ Voici les implémentations disponibles :
 
 - GIserial.h/cpp : interface Serial (utilisable uniquement en mode debug).
 
+#### "GameInputAudio.h"
+
+Les fichiers "GameInputAudio.h" et "GameInputAudio.cpp" contiennent toute la logique pour qagir sur l'audio : gérer le volume, couper le son, ...
+
+
+Voici les implémentations disponibles concernant le son :
+
+- aucune pour le moment
+
+#### "GameOutputAudio.h"
+
+Les fichiers "GameOutputAudio.h" et "GameOutputAudio.cpp" contiennent toute la logique pour que le jeu puissent faire du bruit.
+
+
+Voici les implémentations disponibles concernant le son :
+
+- aucune pour le moment
+
 #### "GameOutput.h"
 
 Les fichiers "GameOutput.h" et "GameOutput.cpp" contiennent toute la logique pour que le jeu puissent communiquer avec les joueurs. C'est donc ici que l'on gérera l'affichage du plateau de jeu (les LEDs), l'audio et l'affichage d'animations.
@@ -164,7 +182,7 @@ Voici les implémentations disponibles concernant l'audio :
 Voici les implémentations disponibles concernant l'affichage du plateau :
 
 - GOserial.h/.cpp : rendu dans l'interface Serie du PC/Mac/Linux
-- FeatherOled.h/.cpp : un rendu basique du plateau de jeu sur l'écran [Featherwing OLED 128x32](https://www.adafruit.com/product/2900).
+- GOFeatherOled.h/.cpp : un rendu basique du plateau de jeu sur écran [Featherwing OLED 128x32](https://www.adafruit.com/product/2900).
 
 Utilise les bibliothèques Adafruit_SSD1306 et Adafruit_GFX.
 

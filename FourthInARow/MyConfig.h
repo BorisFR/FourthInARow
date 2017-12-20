@@ -83,7 +83,7 @@
 #define GAME_OUTPUT_9BUTTONS_INPUT_WHITE_LED 0
 
 // un rendu sur écran OLED Featherwing
-#define FEATHER_OLED 0
+#define GAME_OUTPUT_FEATHER_OLED 0
 
 
 // 2 - audio

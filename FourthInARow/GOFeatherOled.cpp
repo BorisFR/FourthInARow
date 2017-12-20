@@ -1,6 +1,6 @@
-#include "FeatherOled.h"
+#include "GOFeatherOled.h"
 
-void FeatherOled::setup()
+void GOFeatherOled::setup()
 {
 	// by default, we'll generate the high voltage from the 3.3v line internally! (neat!)
 	display.begin(SSD1306_SWITCHCAPVCC, 0x3C); // initialize with the I2C addr 0x3C (for the 128x32)
@@ -15,70 +15,70 @@ void FeatherOled::setup()
 	display.setCursor(0, 0);
 }
 
-void FeatherOled::startLoop()
+void GOFeatherOled::startLoop()
 {
 }
 
-void FeatherOled::endLoop()
+void GOFeatherOled::endLoop()
 {
 	display.display();
 }
 
-void FeatherOled::clearTextArea()
+void GOFeatherOled::clearTextArea()
 {
 	display.fillRect(BOARD_COLUMNS * (SQUARE_SIZE + 1) + 2, 0, 128 - (BOARD_COLUMNS * (SQUARE_SIZE + 1) + 2), 32, BLACK);
 }
 
-void FeatherOled::printText(String text)
+void GOFeatherOled::printText(String text)
 {
 	display.setCursor(BOARD_COLUMNS * (SQUARE_SIZE + 1) + 2 + 2, 10);
 	display.print(text);
 }
 
-void FeatherOled::showTouchSomething()
+void GOFeatherOled::showTouchSomething()
 {
 	clearTextArea();
 	printText("Touch to start");
 }
-void FeatherOled::showChoosePlayersNumber()
+void GOFeatherOled::showChoosePlayersNumber()
 {
 	clearTextArea();
 	printText("How many");
 	display.setCursor(BOARD_COLUMNS * (SQUARE_SIZE + 1) + 2 + 2, 20);
 	display.print("players ?");
 }
-void FeatherOled::showDecideWhoStart()
+void GOFeatherOled::showDecideWhoStart()
 {
 	clearTextArea();
 	printText("Choosing ...");
 }
-void FeatherOled::showPlayer1Turn()
+void GOFeatherOled::showPlayer1Turn()
 {
 	clearTextArea();
 	printText("Player 1");
 }
-void FeatherOled::showPlayer2Turn()
+void GOFeatherOled::showPlayer2Turn()
 {
 	clearTextArea();
 	printText("Player 2");
 }
-void FeatherOled::showMatchDraw()
+void GOFeatherOled::showMatchDraw()
 {
 	clearTextArea();
 	printText("Match draw");
 }
-void FeatherOled::showWinPlayer1()
+void GOFeatherOled::showWinPlayer1()
 {
 	clearTextArea();
 	printText("Player 1 WIN!");
 }
-void FeatherOled::showWinPlayer2()
+void GOFeatherOled::showWinPlayer2()
 {
 	clearTextArea();
 	printText("Player 2 WIN!");
 }
 
-void FeatherOled::drawGrid()
+void GOFeatherOled::drawGrid()
 {
 	display.clearDisplay();
 	for (uint8_t y = 5; y < COLUMN_TILES * (SQUARE_SIZE + 1); y += (SQUARE_SIZE + 1))
@@ -91,12 +91,12 @@ void FeatherOled::drawGrid()
 	}
 }
 
-void FeatherOled::clearTiles()
+void GOFeatherOled::clearTiles()
 {
 	drawGrid();
 }
 
-void FeatherOled::setTiles(CaseLocation location, Player token)
+void GOFeatherOled::setTiles(CaseLocation location, Player token)
 {
 	uint8_t x = location.index * (SQUARE_SIZE + 1);
 	uint8_t y = (COLUMN_TILES - location.row - 1) * (SQUARE_SIZE + 1);

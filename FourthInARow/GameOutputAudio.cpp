@@ -21,6 +21,7 @@ void GameOutputAudio::doRealInit()
 }
 
 void GameOutputAudio::setup() {}
+void GameOutputAudio::loop() {}
 void GameOutputAudio::volumeUp() {}
 void GameOutputAudio::volumeDown() {}
 void GameOutputAudio::muteOn() {}

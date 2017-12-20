@@ -20,6 +20,7 @@ class GameInputAudio
 			void doInit();
 		#endif
 		void setup();
+		void loop();
 
 };
 

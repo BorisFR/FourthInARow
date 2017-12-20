@@ -21,6 +21,7 @@ class GameOutputAudio
 			void doInit();
 		#endif
 		void setup();
+		void loop();
 		void volumeUp();
 		void volumeDown();
 		void muteOn();
