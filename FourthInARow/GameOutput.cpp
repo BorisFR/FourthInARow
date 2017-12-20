@@ -33,5 +33,6 @@ void GameOutput::startLoop(){}
 void GameOutput::endLoop(){}
 
 void GameOutput::drawGrid() {}
+void GameOutput::drawBoard(Column board[BOARD_COLUMNS]) {}
 void GameOutput::clearTiles() {}
 void GameOutput::setTiles(CaseLocation location, Player token) {}

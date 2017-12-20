@@ -2,6 +2,7 @@
 #define GameOutput_h
 
 #include "Global.h"
+#include "Column.h"
 #include "CaseLocation.h"
 
 class GameOutput
@@ -34,6 +35,7 @@ class GameOutput
 		void showWinPlayer2();
 
 		void drawGrid();
+		void drawBoard(Column board[BOARD_COLUMNS]);
 		void clearTiles();
 		void setTiles(CaseLocation location, Player token);
 };

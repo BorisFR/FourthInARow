@@ -48,9 +48,13 @@ GameInput gameInput;
 GameInput gameInput;
 #endif
 
-#if DUMMY_SCREEN
+#if GAME_OUTPUT_DUMMY
 #include "GameOutput.h"
 GameOutput gameOutput;
+#endif
+#if GAME_OUTPUT_SERIAL
+#include "GOserial.h"
+GOserial gameOutput;
 #endif
 #if FEATHER_OLED
 #include "FeatherOled.h"
@@ -88,16 +92,10 @@ void gameTurn()
 	{
 	case player1:
 		game.gameState = playingPlayer1;
-#if DEBUG
-		debug(F("Player 1 choose a column (1..7): "));
-#endif
 		gameOutput.showPlayer1Turn();
 		break;
 	case player2:
 		game.gameState = playingPlayer2;
-#if DEBUG
-		debug(F("Player 2 choose a column (1..7): "));
-#endif
 		gameOutput.showPlayer2Turn();
 		break;
 	}
@@ -144,9 +142,6 @@ void loop()
 		if (gameInput.hasInput())
 		{
 			game.gameState = choosingPlayersNumber;
-#if DEBUG
-			debug(F("Number of players ? (1/2): "));
-#endif
 			gameOutput.clearTiles();
 			gameOutput.showChoosePlayersNumber();
 		}
@@ -321,18 +316,12 @@ void loop()
 		{
 			if (game.isPlayingPossible())
 			{
-#if DEBUG
-				debug(F("No winner\n"));
-#endif
 				game.nextPlayer();
 				gameTurn();
 			}
 			else
 			{
 				game.gameState = matchDraw;
-#if DEBUG
-				debug(F("DRAW!\n"));
-#endif
 				gameOutput.showMatchDraw();
 			}
 		}
@@ -342,16 +331,10 @@ void loop()
 			{
 			case player1:
 				game.gameState = animationWinnerPlayer1;
-#if DEBUG
-				debug(F("Player 1 WIN!\n"));
-#endif
 				gameOutput.showWinPlayer1();
 				break;
 			case player2:
 				game.gameState = animationWinnerPlayer2;
-#if DEBUG
-				debug(F("Player 2 WIN!\n"));
-#endif
 				gameOutput.showWinPlayer2();
 				break;
 			}
@@ -362,9 +345,6 @@ void loop()
 		// **********
 	case matchDraw:
 		game.gameState = waitingTouch;
-#if DEBUG
-		debug(F("matchDraw\n"));
-#endif
 		break;
 
 		// Player 1 has won!

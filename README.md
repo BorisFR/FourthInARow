@@ -163,6 +163,7 @@ Voici les implémentations disponibles concernant l'audio :
 
 Voici les implémentations disponibles concernant l'affichage du plateau :
 
+- GOserial.h/.cpp : rendu dans l'interface Serie du PC/Mac/Linux
 - FeatherOled.h/.cpp : un rendu basique du plateau de jeu sur l'écran [Featherwing OLED 128x32](https://www.adafruit.com/product/2900).
 
 Utilise les bibliothèques Adafruit_SSD1306 et Adafruit_GFX.

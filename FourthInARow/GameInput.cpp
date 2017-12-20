@@ -36,12 +36,4 @@ char GameInput::getKey()
 	return temp;
 }
 
-void GameInput::loop()
-{
-/*	#if DEBUG
-	if (hwSerial->available())
-	{
-		input = hwSerial->read();
-	}
-	#endif	*/
-}
+void GameInput::loop() {}

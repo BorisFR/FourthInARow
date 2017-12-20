@@ -7,6 +7,17 @@
 
 
 ////////////////////////////////////////////////////////////////////////////////
+// Paramètres de fonctionnement du programme
+////////////////////////////////////////////////////////////////////////////////
+
+// mettre 1 pour être en mode debug, sinon mettre 0
+// En mode debug, il y a énormément d'informations qui seront envoyées
+// à votre PC/Mac/Linux sur la console série
+
+#define DEBUG 1
+
+
+////////////////////////////////////////////////////////////////////////////////
 // Définir la carte électronique que vous utilisez
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -37,15 +48,41 @@
 
 // les actions des joueurs
 // ***********************
+
+// si aucun dispositif d'actions installé
 #define GAME_INPUT_DUMMY 0
+
+// utilisation de la console Série du PC/Mac/Linux
 #define GAME_INPUT_SERIAL 1
 
+// dispositif à base de 7 boutons (1 par colonne) + 2 boutons choix du nombre de joueurs
+#define GAME_INPUT_9BUTTONS 0
+
+
+// les actions du jeu
+// ******************
+
+// si aucun dispositif n'est installé
+#define GAME_OUTPUT_DUMMY 0
+
+// utilisation de la console Série du PC/Mac/Linux
+#define GAME_OUTPUT_SERIAL 1
+
+// le plateau de jeu est visualisé par 42 LEDs RGB
+#define GAME_OUTPUT_BOARD_RGW_LED 0
+
+// les buttons d'actions ont des leds blanches
+#define GAME_OUTPUT_9BUTTONS_INPUT_WHITE_LED 0
+
 // une carte son est présente ?
-// ****************************
-#define AUDIO_CARD 0
+#define GAME_OUTPUT_AUDIO 0
+
+
+// Paramètres de démarrage
+// ***********************
 
 // réglage du volume sonore
-// niveau du volume audio au démarrage : de 0 (MUTE) à 10 (Max)
+// niveau du volume audio : de 0 (MUTE) à 10 (Max)
 #define AUDIO_STARTING_VOLUME 10
 // avec 2 boutons poussoir
 #define AUDIO_BUTTONS_VOLUME 0
@@ -60,17 +97,8 @@
 #define DISPLAY_ANIMATION 0
 
 #define DUMMY_SCREEN 0
-#define FEATHER_OLED 1
+#define FEATHER_OLED 0
 
-////////////////////////////////////////////////////////////////////////////////
-// Paramètres de fonctionnement du programme
-////////////////////////////////////////////////////////////////////////////////
-
-// mettre 1 pour être en mode debug, sinon mettre 0
-// En mode debug, il y a énormément d'informations qui seront envoyées
-// à votre PC/Mac/Linux sur la console série
-
-#define DEBUG 1
 
 
 #endif
