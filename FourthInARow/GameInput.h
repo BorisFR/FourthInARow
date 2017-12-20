@@ -9,15 +9,15 @@ class GameInput {
 	private:
 		#if DEBUG
 			void (*_debug)(String text);
-			HardwareSerial *hwSerial;
 		#endif
 		void doRealInit();
 
+	protected:
 		char input;
 
 	public:
 		#if DEBUG
-			void doInit(void (*)(String), HardwareSerial *serial);
+			void doInit(void (*)(String));
 		#else
 			void doInit();
 		#endif

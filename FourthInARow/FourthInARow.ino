@@ -23,6 +23,7 @@ bool IAplayer2;
 void debug(String text)
 {
 	Serial.print(text);
+	//Serial.print(text);
 }
 
 // only call one time, starting the program
@@ -38,8 +39,14 @@ void doInitHelper()
 	// GAME
 	////////////////////////////////////////////////////////////////////////////////
 
+#if GAME_INPUT_DUMMY
 #include "GameInput.h"
 GameInput gameInput;
+#endif
+#if GAME_INPUT_SERIAL
+#include "GIserial.h"
+GameInput gameInput;
+#endif
 
 #if DUMMY_SCREEN
 #include "GameOutput.h"
@@ -58,7 +65,7 @@ void doInitGame()
 {
 	game.gameState = waitingTouch;
 #if DEBUG
-	gameInput.doInit(debug, &Serial);
+	gameInput.doInit(debug);
 	gameOutput.doInit(debug);
 	game.doInit(debug);
 #else

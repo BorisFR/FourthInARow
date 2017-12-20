@@ -1,10 +1,9 @@
 #include "GameInput.h"
 
 #if DEBUG
-void GameInput::doInit(void (*debug)(String), HardwareSerial *serial)
+void GameInput::doInit(void (*debug)(String))
 {
 	_debug = debug;
-	hwSerial = serial;
 	_debug("Init GameInput: ");
 	doRealInit();
 	_debug("OK\n");
@@ -39,10 +38,10 @@ char GameInput::getKey()
 
 void GameInput::loop()
 {
-	#if DEBUG
+/*	#if DEBUG
 	if (hwSerial->available())
 	{
 		input = hwSerial->read();
 	}
-	#endif	
+	#endif	*/
 }

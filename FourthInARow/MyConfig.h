@@ -34,6 +34,12 @@
 
 // mettre 1 si vous avez le matériel correspondant
 
+
+// les actions des joueurs
+// ***********************
+#define GAME_INPUT_DUMMY 0
+#define GAME_INPUT_SERIAL 1
+
 // une carte son est présente ?
 // ****************************
 #define AUDIO_CARD 0

@@ -150,7 +150,7 @@ C'est fichiers contiennent une implémentation à vide de ces fonctions ! L'impl
 
 Voici les implémentations disponibles :
 
-- interface Serial en mode debug.
+- GIserial.h/cpp : interface Serial (utilisable uniquement en mode debug).
 
 #### "GameOutput.h"
 
