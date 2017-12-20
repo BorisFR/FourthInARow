@@ -33,11 +33,13 @@
 // dans le fichier platformio.ini du projet
 
 // 1 si carte ESP32, sinon mettre 0
-//#define ESP32 1
+//#define ESP32 0
 
 // 1 si carte TEENSY35, sinon mettre 0
 //#define TEENSY35 0
 
+// 1 si carte ARDUINO MEGA 2560, sinon mettre 0
+//#define MEGA2560 1
 
 ////////////////////////////////////////////////////////////////////////////////
 // Paramètres définissant votre installation

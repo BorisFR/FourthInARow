@@ -48,7 +48,7 @@ GameInput gameInput;
 #endif
 #if GAME_INPUT_SERIAL
 #include "GIserial.h"
-GameInput gameInput;
+GIserial gameInput;
 #endif
 
 // OUTPUT
@@ -135,9 +135,6 @@ void setup()
 	doInitHelper();
 #endif
 	doInitGame();
-#if DEBUG
-	debug(F("Touch something...\n"));
-#endif
 	gameOutput.showTouchSomething();
 }
 
