@@ -11,8 +11,8 @@
 uint8_t playLine;
 uint8_t playColumn;
 bool winner;
-bool IAplayer1;
-bool IAplayer2;
+bool player1IsIA;
+bool player2IsIA;
 
 ////////////////////////////////////////////////////////////////////////////////
 // HELPER
@@ -35,9 +35,12 @@ void doInitHelper()
 
 #endif
 
-	////////////////////////////////////////////////////////////////////////////////
-	// GAME
-	////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+// GAME
+////////////////////////////////////////////////////////////////////////////////
+
+// INPUT
+// *****
 
 #if GAME_INPUT_DUMMY
 #include "GameInput.h"
@@ -47,6 +50,9 @@ GameInput gameInput;
 #include "GIserial.h"
 GameInput gameInput;
 #endif
+
+// OUTPUT
+// ******
 
 #if GAME_OUTPUT_DUMMY
 #include "GameOutput.h"
@@ -61,6 +67,17 @@ GOserial gameOutput;
 FeatherOled gameOutput;
 #endif
 
+// AUDIO
+// *****
+#if GAME_INPUT_AUDIO_DUMMY
+#include "GameInputAudio.h"
+GameInputAudio gameInputAudio;
+#endif
+#if GAME_OUTPUT_AUDIO_DUMMY
+#include "GameOutputAudio.h"
+GameOutputAudio gameOutputAudio;
+#endif
+
 #include "Game.h"
 Game game;
 
@@ -71,14 +88,20 @@ void doInitGame()
 #if DEBUG
 	gameInput.doInit(debug);
 	gameOutput.doInit(debug);
+	gameInputAudio.doInit(debug);
+	gameOutputAudio.doInit(debug);
 	game.doInit(debug);
 #else
 	gameInput.doInit();
 	gameOutput.doInit();
+	gameInputAudio.doInit();
+	gameOutputAudio.doInit();
 	game.doInit();
 #endif
 	gameOutput.setup();
 	gameOutput.drawGrid();
+	gameInputAudio.setup();
+	gameOutputAudio.setup();
 }
 
 // set gamestate at who is playing now
@@ -124,8 +147,8 @@ void setup()
 
 void loop()
 {
-	// get the players'input
-	// *********************
+	// get the player's input
+	// **********************
 	gameInput.loop();
 
 	// start the game output
@@ -155,28 +178,22 @@ void loop()
 			switch (gameInput.getKey())
 			{
 			case '0':
-				IAplayer1 = true;
-				IAplayer2 = true;
+				player1IsIA = true;
+				player2IsIA = true;
 				game.gameState = startingNewGame;
-#if DEBUG
-				debug(F("0.\nIA vs. IA\n"));
-#endif
+				gameOutput.showIaVsIa();
 				break;
 			case '1':
-				IAplayer1 = false;
-				IAplayer2 = true;
+				player1IsIA = false;
+				player2IsIA = true;
 				game.gameState = startingNewGame;
-#if DEBUG
-				debug(F("1.\nPlayer vs. IA\n"));
-#endif
+				gameOutput.showPlayerVsIa();
 				break;
 			case '2':
-				IAplayer1 = false;
-				IAplayer2 = false;
+				player1IsIA = false;
+				player2IsIA = false;
 				game.gameState = startingNewGame;
-#if DEBUG
-				debug(F("2.\nPlayer vs. Player\n"));
-#endif
+				gameOutput.showPlayerVsPlayer();
 				break;
 			}
 		}
@@ -220,7 +237,7 @@ void loop()
 		// Waiting for the current player to choose a column for his token
 		// ***************************************************************
 	case choosingColumn:
-		if (game.getCurrentPlayer() == player1 && IAplayer1)
+		if (game.getCurrentPlayer() == player1 && player1IsIA)
 		{
 			playColumn = game.getIndexPlayingForPlayerIA(player1);
 #if DEBUG
@@ -228,7 +245,7 @@ void loop()
 #endif
 			game.gameState = puttingToken;
 		}
-		if (game.getCurrentPlayer() == player2 && IAplayer2)
+		if (game.getCurrentPlayer() == player2 && player2IsIA)
 		{
 			playColumn = game.getIndexPlayingForPlayerIA(player2);
 #if DEBUG

@@ -11,6 +11,21 @@ void GOserial::showChoosePlayersNumber()
 	Serial.println(F("Combien de joueurs ? (0/1/2)"));
 }
 
+void GOserial::showPlayerVsPlayer()
+{
+	Serial.println(F("Joueur contre Joueur"));
+}
+
+void GOserial::showPlayerVsIa()
+{
+	Serial.println(F("Joueur contre IA"));
+}
+
+void GOserial::showIaVsIa()
+{
+	Serial.println(F("IA contre IA"));
+}
+
 void GOserial::showDecideWhoStart()
 {
 	Serial.println(F("Décide qui commence..."));

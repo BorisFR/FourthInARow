@@ -21,6 +21,9 @@ void GameOutput::doRealInit()
 
 void GameOutput::showTouchSomething() {}
 void GameOutput::showChoosePlayersNumber() {}
+void GameOutput::showPlayerVsPlayer() {}
+void GameOutput::showPlayerVsIa() {}
+void GameOutput::showIaVsIa() {}
 void GameOutput::showDecideWhoStart() {}
 void GameOutput::showPlayer1Turn() {}
 void GameOutput::showPlayer2Turn() {}

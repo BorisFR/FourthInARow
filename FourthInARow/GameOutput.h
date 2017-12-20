@@ -8,7 +8,7 @@
 class GameOutput
 {
 	private:
-	  void doRealInit();
+		void doRealInit();
 
 	protected:
 		#if DEBUG
@@ -27,6 +27,9 @@ class GameOutput
 
 		void showTouchSomething();
 		void showChoosePlayersNumber();
+		void showPlayerVsPlayer();
+		void showPlayerVsIa();
+		void showIaVsIa();
 		void showDecideWhoStart();
 		void showPlayer1Turn();
 		void showPlayer2Turn();

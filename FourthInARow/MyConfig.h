@@ -49,23 +49,31 @@
 // les actions des joueurs
 // ***********************
 
+// 1 - les actions de jeu
+
 // si aucun dispositif d'actions installé
 #define GAME_INPUT_DUMMY 0
 
-// utilisation de la console Série du PC/Mac/Linux
+// utilisation de la console Série du PC/Mac/Linux /!\ #define DEBUG doit être à 1
 #define GAME_INPUT_SERIAL 1
 
 // dispositif à base de 7 boutons (1 par colonne) + 2 boutons choix du nombre de joueurs
 #define GAME_INPUT_9BUTTONS 0
 
+// 2 - la gestion audio
+
+// pas de gestion audio
+#define GAME_INPUT_AUDIO_DUMMY 1
 
 // les actions du jeu
 // ******************
 
+// 1 - Dispositif d'affichage
+
 // si aucun dispositif n'est installé
 #define GAME_OUTPUT_DUMMY 0
 
-// utilisation de la console Série du PC/Mac/Linux
+// utilisation de la console Série du PC/Mac/Linux /!\ #define DEBUG doit être à 1
 #define GAME_OUTPUT_SERIAL 1
 
 // le plateau de jeu est visualisé par 42 LEDs RGB
@@ -74,8 +82,14 @@
 // les buttons d'actions ont des leds blanches
 #define GAME_OUTPUT_9BUTTONS_INPUT_WHITE_LED 0
 
-// une carte son est présente ?
-#define GAME_OUTPUT_AUDIO 0
+// un rendu sur écran OLED Featherwing
+#define FEATHER_OLED 0
+
+
+// 2 - audio
+
+// une carte son n'est pas présente
+#define GAME_OUTPUT_AUDIO_DUMMY 1
 
 
 // Paramètres de démarrage
@@ -88,17 +102,6 @@
 #define AUDIO_BUTTONS_VOLUME 0
 // ou par un bouton rotatif
 #define AUDIO_ROTARY_VOLUME 0
-
-// un écran est présent ?
-// **********************
-#define DISPLAY_SCREEN 0
-
-// un écran pour afficher des animations graphique
-#define DISPLAY_ANIMATION 0
-
-#define DUMMY_SCREEN 0
-#define FEATHER_OLED 0
-
 
 
 #endif
