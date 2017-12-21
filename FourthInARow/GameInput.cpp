@@ -20,6 +20,11 @@ void GameInput::doRealInit()
 	input = '|';
 }
 
+void GameInput::setup(){}
+void GameInput::loop(){}
+void GameInput::startLoop(){}
+void GameInput::endLoop(){}
+
 bool GameInput::hasInput()
 {
 	if (input == '|')
@@ -35,5 +40,3 @@ char GameInput::getKey()
 	input = '|';
 	return temp;
 }
-
-void GameInput::loop() {}

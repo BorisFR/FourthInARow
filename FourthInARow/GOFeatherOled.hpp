@@ -56,7 +56,6 @@ class GOFeatherOled : public GameOutput
 
 	public:
 		void setup();
-		void startLoop();
 		void endLoop();
 
 		void showTouchSomething();

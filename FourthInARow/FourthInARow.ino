@@ -148,11 +148,15 @@ void loop()
 	// **********************
 	gameInput.loop();
 	gameInputAudio.loop();
+	gameOutput.loop();
 	gameOutputAudio.loop();
 
-	// start the game output
+	// start the loop
 	// *********************
+	gameInput.startLoop();
+	gameInputAudio.startLoop();
 	gameOutput.startLoop();
+	gameOutputAudio.startLoop();
 
 	// actions are possible against gamestate
 	// **************************************
@@ -383,8 +387,11 @@ void loop()
 
 	} // switch (game.gameState)
 
-	// end the game output
-	// *******************
+	// end the loop
+	// ************
 	gameOutput.endLoop();
+	gameOutputAudio.endLoop();
+	gameInput.endLoop();
+	gameInputAudio.endLoop();
 
 }

@@ -15,10 +15,6 @@ void GOFeatherOled::setup()
 	display.setCursor(0, 0);
 }
 
-void GOFeatherOled::startLoop()
-{
-}
-
 void GOFeatherOled::endLoop()
 {
 	display.display();

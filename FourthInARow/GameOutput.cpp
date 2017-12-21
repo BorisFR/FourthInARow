@@ -19,6 +19,11 @@ void GameOutput::doRealInit()
 {
 }
 
+void GameOutput::setup(){}
+void GameOutput::loop(){}
+void GameOutput::startLoop(){}
+void GameOutput::endLoop(){}
+
 void GameOutput::showTouchSomething() {}
 void GameOutput::showChoosePlayersNumber() {}
 void GameOutput::showPlayerVsPlayer() {}
@@ -30,10 +35,6 @@ void GameOutput::showPlayer2Turn() {}
 void GameOutput::showMatchDraw() {}
 void GameOutput::showWinPlayer1() {}
 void GameOutput::showWinPlayer2() {}
-
-void GameOutput::setup(){}
-void GameOutput::startLoop(){}
-void GameOutput::endLoop(){}
 
 void GameOutput::drawGrid() {}
 void GameOutput::drawBoard(Column board[BOARD_COLUMNS]) {}

@@ -29,8 +29,13 @@ class GameOutputAudio
 		#endif
 		void setup();
 		void loop();
+		void startLoop();
+		void endLoop();
+
 		void volumeUp();
 		void volumeDown();
+		void setVolume(uint8_t value);
+		uint8_t getVolume();
 		void muteOn();
 		void muteOff();
 

@@ -21,7 +21,11 @@ class GameInput {
 		#else
 			void doInit();
 		#endif
+		void setup();
 		void loop();
+		void startLoop();
+		void endLoop();
+		
 		bool hasInput();
 		char getKey();
 };

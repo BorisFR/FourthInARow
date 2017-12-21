@@ -21,6 +21,8 @@ class GameInputAudio
 		#endif
 		void setup();
 		void loop();
+		void startLoop();
+		void endLoop();
 
 };
 

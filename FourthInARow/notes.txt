@@ -26,3 +26,43 @@ Joueur 6 :
 Joueur 7 : 
 
 hum... plutôt choisir un camp genre rebel, empire, chasseur de prime, etc... avec une banque sonore correspondante... à construire...
+
+
+** DEV
+
+Comment implémenter un composant hardware
+Créer la class C++ correspondante, qui hérite des call standard mise à disposition :
+Pour gérer des entrées utilisateurs : GameInput
+Pour gérer une sorties visuelles du jeu : GameOutput
+Pour gérer du son : GameOutputAudio
+Ces class contiennent le fonctionnement "à vide", sans composant hardware.
+
+Pour intégrer votre hardware, il faut surcharger les fonctions qui vous sont utiles pour votre hardware.
+
+Il y a la fonction "setup()" qui sert à initialiser votre composant. C'est appeler une seule fois.
+Puis il y a la fonction classique "loop()" qui est exécutée en permanence. Si nécessaire, à la place, vous pouvez utiliser "startLoop()" qui est appelé au début de la boucle loop() et "endLoop()" qui est appelé à la fin de la boucle "loop()".
+
+Détail de GameInput
+Cela sert à prendre en compte les actions de l'utilisateur.
+L'action qui est attendue est de renseigner la variable "input" de type char avec un caractère. Voici la liste des caractères gérés:
+0 à 7 pour le choix de la colonne à jouer.
+0 à 2 pour le choix du nombre de joueurs.
+1 ou 2 pour le choix de qui commence le jeu.
+
+Détail pour GameOutput
+Cette class sert à montrer des choses aux joueurs.
+Si avec votre hardware vous devez dessinez le plateau de jeu, il faut implémenter la fonction "drawGrid()".
+Pour effacer les cases (vider les pions), il faut implémenter "clearTiles()".
+Pour dessiner un pion, il faut implémenter "setTiles(CaseLocation location, Player token)" : location contient la ligne et la colonne, player correspond à joueur.
+Ou alors, vous pouvez simplement implémenter la fonction "drawBoard(Column board[BOARD_COLUMNS]" et vous redessinez l'ensemble du plateau de jeu à chaque fois. 1 colonne comprenant les 6 cases correspondantes.
+
+Détail pour GameOutputAudio
+Cette class à pour but de gérer la carte son et de jouer du bruitage/son.
+Pour la gestion, vous avez les fonctions :
+volumeUp()
+volumeDown()
+setVolume(uint8_t value)
+getVolume()
+muteOn()
+muteOff()
++ de nombreuses fonctions pour jouer du son à divers moment du jeu. (voir le fichier GameOutputAudio.hpp pour le détail)

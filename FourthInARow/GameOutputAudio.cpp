@@ -22,8 +22,13 @@ void GameOutputAudio::doRealInit()
 
 void GameOutputAudio::setup() {}
 void GameOutputAudio::loop() {}
-void GameOutputAudio::volumeUp() {}
-void GameOutputAudio::volumeDown() {}
+void GameOutputAudio::startLoop(){}
+void GameOutputAudio::endLoop(){}
+
+void GameOutputAudio::volumeUp() { if(volume < VOLUME_MAX) volume++; }
+void GameOutputAudio::volumeDown() { if(volume > VOLUME_MIN) volume--; }
+void GameOutputAudio::setVolume(uint8_t value) { if((volume >= VOLUME_MIN) && (volume = VOLUME_MAX)) volume = value; }
+uint8_t GameOutputAudio::getVolume() { return volume; }
 void GameOutputAudio::muteOn() {}
 void GameOutputAudio::muteOff() {}
 

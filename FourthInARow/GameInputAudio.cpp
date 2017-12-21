@@ -22,3 +22,5 @@ void GameInputAudio::doRealInit()
 
 void GameInputAudio::setup() {}
 void GameInputAudio::loop() {}
+void GameInputAudio::startLoop(){}
+void GameInputAudio::endLoop(){}
