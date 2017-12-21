@@ -162,7 +162,7 @@ Les fichiers "GameInputAudio.h" et "GameInputAudio.cpp" contiennent toute la log
 
 Voici les implémentations disponibles concernant le son :
 
-- GIAec11.hpp/cpp : encodeur rotatif EC11
+- GIAec11.hpp/cpp : encodeur rotatif EC11, pour la gestion du son (volume +/- et mute).
 
 #### "GameOutputAudio.hpp"
 
@@ -180,13 +180,13 @@ Ces fichiers contiennent une implémentation à vide de ces fonctions ! L'implé
 Voici les implémentations disponibles concernant l'affichage du plateau :
 
 - GOserial.hpp/.cpp : rendu dans l'interface Série du PC/Mac/Linux
-- GOFeatherOled.hpp/.cpp : un rendu basique du plateau de jeu sur écran [Featherwing OLED 128x32](https://www.adafruit.com/product/2900).
-
-Utilise les bibliothèques Adafruit_SSD1306 et Adafruit_GFX.
+- GOFeatherOled.hpp/.cpp : un rendu basique du plateau de jeu sur écran [Featherwing OLED 128x32](https://www.adafruit.com/product/2900). Utilise les bibliothèques Adafruit_SSD1306 et Adafruit_GFX.
 
 #### Autres fichiers
 
 Global.hpp, CaseLocation.hpp, Column.hpp/.cpp, Tile.hpp/.cpp : utile pour le fonctionnement du moteur de jeu.
+
+OneSwitch.hpp/.cpp : bibliothèque que vous pouvez utilisez pour implémenter un bouton avec gestion du debounce.
 
 ### 4. **Environnement de développement**
 
