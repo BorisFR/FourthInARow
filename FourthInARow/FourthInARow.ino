@@ -73,6 +73,10 @@ GOFeatherOled gameOutput;
 #include "GameInputAudio.hpp"
 GameInputAudio gameInputAudio;
 #endif
+#if GAME_INPUT_AUDIO_EC11
+#include "GIAec11.hpp"
+GIAec11 gameInputAudio;
+#endif
 #if GAME_OUTPUT_AUDIO_DUMMY
 #include "GameOutputAudio.hpp"
 GameOutputAudio gameOutputAudio;
@@ -394,4 +398,18 @@ void loop()
 	gameInput.endLoop();
 	gameInputAudio.endLoop();
 
+	if (gameInputAudio.hasInput()) {
+		switch (gameInputAudio.getKey())
+		{
+			case 'M':
+				gameOutputAudio.muteOnOff();
+				break;
+			case '+':
+				gameOutputAudio.volumeUp();
+				break;
+			case '-':
+				gameOutputAudio.volumeDown();
+				break;
+			}
+	}
 }

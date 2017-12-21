@@ -52,6 +52,7 @@
 // ***********************
 
 // 1 - les actions de jeu
+/////////////////////////
 
 // si aucun dispositif d'actions installé
 #define GAME_INPUT_DUMMY 0
@@ -63,14 +64,24 @@
 #define GAME_INPUT_9BUTTONS 0
 
 // 2 - la gestion audio
+///////////////////////
 
 // pas de gestion audio
-#define GAME_INPUT_AUDIO_DUMMY 1
+#define GAME_INPUT_AUDIO_DUMMY 0
+
+// gestion du volume par un encodeur type ec11
+#define GAME_INPUT_AUDIO_EC11 1
+// comment est connecté cet encodeur
+// PIN_A et PIN_B doivent être sur une pin avec interruption
+#define EC11_ENCODER_PIN_A 2
+#define EC11_ENCODER_PIN_B 3
+#define EC11_BUTTON_PIN 4
 
 // les actions du jeu
 // ******************
 
 // 1 - Dispositif d'affichage
+/////////////////////////////
 
 // si aucun dispositif n'est installé
 #define GAME_OUTPUT_DUMMY 0
@@ -87,8 +98,8 @@
 // un rendu sur écran OLED Featherwing
 #define GAME_OUTPUT_FEATHER_OLED 0
 
-
 // 2 - audio
+////////////
 
 // une carte son n'est pas présente
 #define GAME_OUTPUT_AUDIO_DUMMY 1

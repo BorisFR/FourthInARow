@@ -12,8 +12,9 @@ class GameInputAudio
 		#if DEBUG
 			void (*_debug)(String text);
 		#endif
+		char input;
 
-	public:
+		  public:
 		#if DEBUG
 			void doInit(void (*)(String));
 		#else
@@ -23,6 +24,9 @@ class GameInputAudio
 		void loop();
 		void startLoop();
 		void endLoop();
+
+		bool hasInput();
+		char getKey();
 
 };
 

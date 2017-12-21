@@ -7,8 +7,6 @@
 class GIserial : public GameInput
 {
 
-	private:
-
 	public:
 		void loop();
 

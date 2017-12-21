@@ -20,6 +20,7 @@ class GameOutputAudio
 			void (*_debug)(String text);
 		#endif
 		uint8_t volume;
+		bool mute;
 
 	public:
 		#if DEBUG
@@ -38,6 +39,8 @@ class GameOutputAudio
 		uint8_t getVolume();
 		void muteOn();
 		void muteOff();
+		bool isMute();
+		void muteOnOff();
 
 		void playPowerOn();
 		void playReset();

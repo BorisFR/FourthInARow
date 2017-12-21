@@ -18,6 +18,7 @@ void GameOutputAudio::doInit()
 void GameOutputAudio::doRealInit()
 {
 	volume = AUDIO_STARTING_VOLUME;
+	mute = false;
 }
 
 void GameOutputAudio::setup() {}
@@ -29,8 +30,10 @@ void GameOutputAudio::volumeUp() { if(volume < VOLUME_MAX) volume++; }
 void GameOutputAudio::volumeDown() { if(volume > VOLUME_MIN) volume--; }
 void GameOutputAudio::setVolume(uint8_t value) { if((volume >= VOLUME_MIN) && (volume = VOLUME_MAX)) volume = value; }
 uint8_t GameOutputAudio::getVolume() { return volume; }
-void GameOutputAudio::muteOn() {}
-void GameOutputAudio::muteOff() {}
+void GameOutputAudio::muteOn() { mute = true; }
+void GameOutputAudio::muteOff() { mute = false; }
+bool GameOutputAudio::isMute() { return mute; }
+void GameOutputAudio::muteOnOff() { mute = !mute; }
 
 void GameOutputAudio::playPowerOn() {}
 void GameOutputAudio::playReset() {}

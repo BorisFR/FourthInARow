@@ -103,7 +103,7 @@ Il fonctionne certainement sur d'autres composants, mais ça n'a pas été test�
 
 L'idée est d'avoir un panel d'options pour que vous puissiez réaliser votre propre jeu. Voici l'ensemble des composants qui sont activables dans le programme.
 
-C'est dans le fichier ***"MyConfig.h"*** que vous indiquez votre configuration.
+C'est dans le fichier ***"MyConfig.hpp"*** que vous indiquez votre configuration.
 
 ##### a. INPUT : Boutons pour jouer
 
@@ -135,7 +135,7 @@ Avoir un écran graphique sur lequel afficher des animations amusantes pendant l
 
 ### 3. **Le programme**
 
-Vous pouvez configurer votre installation dans le fichier "MyConfig.h". Vous pouvez alors compiler et télécharger votre programme sur votre arduino.
+Vous pouvez configurer votre installation dans le fichier "MyConfig.hpp". Vous pouvez alors compiler et télécharger votre programme sur votre arduino.
 
 Le programme est développé en C++ "arduino".
 
@@ -143,28 +143,28 @@ Le programme est développé en C++ "arduino".
 
 Le point d'entrée est le fichier "FourthInARow.ino". Il s'agit du chef d'orchestre du jeu, celui qui va gérer les différents états du jeu et orchestrer l'ensemble des composants en fonction de cet état.
 
-#### "Game.h"
+#### "Game.hpp"
 
 Les fichiers Game.h et Game.cpp contiennent toute la logique d'exécution du jeu Puissance 4 en lui-même.
 
-#### "GameInput.h"
+#### "GameInput.hpp"
 
 Les fichiers "GameInput.h" et "GameInput.cpp" contiennent toute la logique pour que les joueurs puissent agir sur le jeu. A ce titre, c'est ici que l'on définit toutes les entrées possibles comme la gestion des boutons.
 C'est fichiers contiennent une implémentation à vide de ces fonctions ! L'implémentation réelle est effectuée dans d'autres fichiers. Il suffit d'indiquer dans le fichier "MyConfig.h" l'implémentation réelle que vous voulez utiliser.
 
 Voici les implémentations disponibles :
 
-- GIserial.h/cpp : interface Serial (utilisable uniquement en mode debug).
+- GIserial.hpp/cpp : interface Serial (utilisable uniquement en mode debug).
 
-#### "GameInputAudio.h"
+#### "GameInputAudio.hpp"
 
 Les fichiers "GameInputAudio.h" et "GameInputAudio.cpp" contiennent toute la logique pour agir sur l'audio : gérer le volume, couper le son, ...
 
 Voici les implémentations disponibles concernant le son :
 
-- aucune pour le moment
+- GIAec11.hpp/cpp : encodeur rotatif EC11
 
-#### "GameOutputAudio.h"
+#### "GameOutputAudio.hpp"
 
 Les fichiers "GameOutputAudio.h" et "GameOutputAudio.cpp" contiennent toute la logique pour que le jeu puissent faire du bruit.
 
@@ -172,21 +172,21 @@ Voici les implémentations disponibles concernant le son :
 
 - aucune pour le moment
 
-#### "GameOutput.h"
+#### "GameOutput.hpp"
 
 Les fichiers "GameOutput.h" et "GameOutput.cpp" contiennent toute la logique pour que le jeu puissent communiquer avec les joueurs. C'est donc ici que l'on gérera l'affichage du plateau de jeu (les LEDs), l'audio et l'affichage d'animations.
 Ces fichiers contiennent une implémentation à vide de ces fonctions ! L'implémentation réelle est effectuée dans d'autres fichiers (par héritage de class). Mais pour vous, il suffit d'indiquer dans le fichier "MyConfig.h" l'implémentation réelle que vous voulez utiliser.
 
 Voici les implémentations disponibles concernant l'affichage du plateau :
 
-- GOserial.h/.cpp : rendu dans l'interface Série du PC/Mac/Linux
-- GOFeatherOled.h/.cpp : un rendu basique du plateau de jeu sur écran [Featherwing OLED 128x32](https://www.adafruit.com/product/2900).
+- GOserial.hpp/.cpp : rendu dans l'interface Série du PC/Mac/Linux
+- GOFeatherOled.hpp/.cpp : un rendu basique du plateau de jeu sur écran [Featherwing OLED 128x32](https://www.adafruit.com/product/2900).
 
 Utilise les bibliothèques Adafruit_SSD1306 et Adafruit_GFX.
 
 #### Autres fichiers
 
-Global.h, CaseLocation.h, Column.h/.cpp, Tile.h/.cpp : utile pour le fonctionnement du moteur de jeu.
+Global.hpp, CaseLocation.hpp, Column.hpp/.cpp, Tile.hpp/.cpp : utile pour le fonctionnement du moteur de jeu.
 
 ### 4. **Environnement de développement**
 
