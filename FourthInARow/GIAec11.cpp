@@ -42,35 +42,19 @@ void GIAec11::loop()
 	if (button.isChange)
 	{
 		if (button.isPressed)
-			input = 'M';
+			input = actionVolumeMute;
 	}
 	else
 	{
 		if (ec11Plus)
 		{
-			input = '+';
+			input = actionVolumeUp;
 			ec11Plus = false;
 		}
 		else
 		{
-			input = '-';
+			input = actionVolumeDown;
 			ec11Minus = false;
 		}
 	}
-}
-
-bool GIAec11::hasInput()
-{
-	if (input == '|')
-	{
-		return false;
-	}
-	return true;
-}
-
-char GIAec11::getKey()
-{
-	char temp = input;
-	input = '|';
-	return temp;
 }

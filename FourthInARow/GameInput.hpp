@@ -13,7 +13,7 @@ class GameInput {
 		void doRealInit();
 
 	protected:
-		char input;
+	  InputAction input;
 
 	public:
 		#if DEBUG
@@ -27,7 +27,7 @@ class GameInput {
 		void endLoop();
 		
 		bool hasInput();
-		char getKey();
+		InputAction getAction();
 };
 
 #endif

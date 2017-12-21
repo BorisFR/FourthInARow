@@ -18,7 +18,7 @@ void GameInputAudio::doInit()
 
 void GameInputAudio::doRealInit()
 {
-	input = '|';
+	input = actionNone;
 }
 
 void GameInputAudio::setup() {}
@@ -28,16 +28,16 @@ void GameInputAudio::endLoop(){}
 
 bool GameInputAudio::hasInput()
 {
-	if (input == '|')
+	if (input == actionNone)
 	{
 		return false;
 	}
 	return true;
 }
 
-char GameInputAudio::getKey()
+InputAction GameInputAudio::getAction()
 {
-	char temp = input;
-	input = '|';
+	InputAction temp = input;
+	input = actionNone;
 	return temp;
 }

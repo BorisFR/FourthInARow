@@ -19,4 +19,23 @@ enum Player : uint8_t
 	player2
 };
 
+enum InputAction : uint8_t
+{
+	actionNone,
+	actionReset,
+	actionColumn1,
+	actionColumn2,
+	actionColumn3,
+	actionColumn4,
+	actionColumn5,
+	actionColumn6,
+	actionColumn7,
+	actionPlayer0,
+	actionPlayer1,
+	actionPlayer2,
+	actionVolumeUp,
+	actionVolumeDown,
+	actionVolumeMute,
+};
+
 #endif

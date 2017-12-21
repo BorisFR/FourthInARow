@@ -10,16 +10,11 @@ class GIAec11 : public GameInputAudio
 
 	private:
 		long lastEncoderValue = 0;
-
 		OneSwitch button;
 
-	public : 
+	public :
 		void setup();
 		void loop();
-
-		bool hasInput();
-		char getKey();
-
 };
 
 #endif

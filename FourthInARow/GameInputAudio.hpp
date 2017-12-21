@@ -12,7 +12,7 @@ class GameInputAudio
 		#if DEBUG
 			void (*_debug)(String text);
 		#endif
-		char input;
+			InputAction input;
 
 		  public:
 		#if DEBUG
@@ -26,8 +26,7 @@ class GameInputAudio
 		void endLoop();
 
 		bool hasInput();
-		char getKey();
-
+		InputAction getAction();
 };
 
 #endif

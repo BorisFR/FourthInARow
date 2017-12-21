@@ -62,15 +62,24 @@
 
 // dispositif à base de 7 boutons (1 par colonne) + 2 boutons choix du nombre de joueurs
 #define GAME_INPUT_9BUTTONS 0
+#define BUTTON_COLUMN_1 5
+#define BUTTON_COLUMN_2 6
+#define BUTTON_COLUMN_3 7
+#define BUTTON_COLUMN_4 8
+#define BUTTON_COLUMN_5 9
+#define BUTTON_COLUMN_6 10
+#define BUTTON_COLUMN_7 11
+#define BUTTON_COLUMN_PLAYER_1 12
+#define BUTTON_COLUMN_PLAYER_2 13
 
 // 2 - la gestion audio
 ///////////////////////
 
 // pas de gestion audio
-#define GAME_INPUT_AUDIO_DUMMY 0
+#define GAME_INPUT_AUDIO_DUMMY 1
 
 // gestion du volume par un encodeur type ec11
-#define GAME_INPUT_AUDIO_EC11 1
+#define GAME_INPUT_AUDIO_EC11 0
 // comment est connecté cet encodeur
 // PIN_A et PIN_B doivent être sur une pin avec interruption
 #define EC11_ENCODER_PIN_A 2

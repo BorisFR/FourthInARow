@@ -14,6 +14,7 @@ bool winner;
 bool player1IsIA;
 bool player2IsIA;
 
+
 ////////////////////////////////////////////////////////////////////////////////
 // HELPER
 ////////////////////////////////////////////////////////////////////////////////
@@ -35,6 +36,7 @@ void doInitHelper()
 
 #endif
 
+
 ////////////////////////////////////////////////////////////////////////////////
 // GAME
 ////////////////////////////////////////////////////////////////////////////////
@@ -49,6 +51,10 @@ GameInput gameInput;
 #if GAME_INPUT_SERIAL
 #include "GIserial.hpp"
 GIserial gameInput;
+#endif
+#if GAME_INPUT_9BUTTONS
+#include "GI9buttons.hpp"
+GI9buttons gameInput;
 #endif
 
 // OUTPUT
@@ -182,21 +188,23 @@ void loop()
 	case choosingPlayersNumber:
 		if (gameInput.hasInput())
 		{
-			switch (gameInput.getKey())
+			switch (gameInput.getAction())
 			{
-			case '0':
+			case actionReset:
 				player1IsIA = true;
 				player2IsIA = true;
 				game.gameState = startingNewGame;
 				gameOutput.showIaVsIa();
 				break;
-			case '1':
+			case actionPlayer1:
+			case actionColumn1:
 				player1IsIA = false;
 				player2IsIA = true;
 				game.gameState = startingNewGame;
 				gameOutput.showPlayerVsIa();
 				break;
-			case '2':
+			case actionPlayer2:
+			case actionColumn2:
 				player1IsIA = false;
 				player2IsIA = false;
 				game.gameState = startingNewGame;
@@ -262,33 +270,33 @@ void loop()
 		}
 		if (gameInput.hasInput())
 		{
-			switch (gameInput.getKey())
+			switch (gameInput.getAction())
 			{
-			case '1':
+			case actionColumn1:
 				playColumn = 0;
 				game.gameState = puttingToken;
 				break;
-			case '2':
+			case actionColumn2:
 				playColumn = 1;
 				game.gameState = puttingToken;
 				break;
-			case '3':
+			case actionColumn3:
 				playColumn = 2;
 				game.gameState = puttingToken;
 				break;
-			case '4':
+			case actionColumn4:
 				playColumn = 3;
 				game.gameState = puttingToken;
 				break;
-			case '5':
+			case actionColumn5:
 				playColumn = 4;
 				game.gameState = puttingToken;
 				break;
-			case '6':
+			case actionColumn6:
 				playColumn = 5;
 				game.gameState = puttingToken;
 				break;
-			case '7':
+			case actionColumn7:
 				playColumn = 6;
 				game.gameState = puttingToken;
 				break;
@@ -399,15 +407,15 @@ void loop()
 	gameInputAudio.endLoop();
 
 	if (gameInputAudio.hasInput()) {
-		switch (gameInputAudio.getKey())
+		switch (gameInputAudio.getAction())
 		{
-			case 'M':
+			case actionVolumeMute:
 				gameOutputAudio.muteOnOff();
 				break;
-			case '+':
+			case actionVolumeUp:
 				gameOutputAudio.volumeUp();
 				break;
-			case '-':
+			case actionVolumeDown:
 				gameOutputAudio.volumeDown();
 				break;
 			}

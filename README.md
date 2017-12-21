@@ -155,6 +155,7 @@ C'est fichiers contiennent une implémentation à vide de ces fonctions ! L'impl
 Voici les implémentations disponibles :
 
 - GIserial.hpp/cpp : interface Serial (utilisable uniquement en mode debug).
+- GI9buttons.hpp/.cpp : 7 boutons pour le choix de la colonne et 2 boutons pour le choix du nombre de joueurs.
 
 #### "GameInputAudio.hpp"
 

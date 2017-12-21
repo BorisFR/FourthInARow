@@ -44,10 +44,7 @@ Puis il y a la fonction classique "loop()" qui est exécutée en permanence. Si 
 
 Détail de GameInput
 Cela sert à prendre en compte les actions de l'utilisateur.
-L'action qui est attendue est de renseigner la variable "input" de type char avec un caractère. Voici la liste des caractères gérés:
-0 à 7 pour le choix de la colonne à jouer.
-0 à 2 pour le choix du nombre de joueurs.
-1 ou 2 pour le choix de qui commence le jeu.
+L'action qui est attendue est de renseigner la variable "input" de type inputAction (voirGlobal.h).
 
 Détail pour GameOutput
 Cette class sert à montrer des choses aux joueurs.

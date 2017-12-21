@@ -17,7 +17,7 @@ void GameInput::doInit()
 
 void GameInput::doRealInit()
 {
-	input = '|';
+	input = actionNone;
 }
 
 void GameInput::setup(){}
@@ -27,16 +27,16 @@ void GameInput::endLoop(){}
 
 bool GameInput::hasInput()
 {
-	if (input == '|')
+	if (input == actionNone)
 	{
 		return false;
 	}
 	return true;
 }
 
-char GameInput::getKey()
+InputAction GameInput::getAction()
 {
-	char temp = input;
-	input = '|';
+	InputAction temp = input;
+	input = actionNone;
 	return temp;
 }
