@@ -1,5 +1,5 @@
-#ifndef MyConfig_h
-#define MyConfig_h
+#ifndef MYCONFIG_HPP
+#define MYCONFIG_HPP
 
 // Il s'agit du seule fichier à modifier.
 // Vous définissez le matériel que vous avez
@@ -111,8 +111,11 @@
 ////////////
 
 // une carte son n'est pas présente
-#define GAME_OUTPUT_AUDIO_DUMMY 1
+#define GAME_OUTPUT_AUDIO_DUMMY 0
 
+#define GAME_OUTPUT_AUDIO_DFPLAYER_MINI 1
+#define DFPLAYER_MINI_BUSY 4
+#define DFPLAYER_MINI_SERIAL Serial1
 
 // Paramètres de démarrage
 // ***********************

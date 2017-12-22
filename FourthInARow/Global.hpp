@@ -9,7 +9,7 @@
 #define COLUMN_TILES 6
 #define BOARD_COLUMNS 7
 
-#define VOLUME_MAX 10
+#define VOLUME_MAX 100
 #define VOLUME_MIN 0
 
 enum Player : uint8_t

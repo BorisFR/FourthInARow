@@ -87,6 +87,10 @@ GIAec11 gameInputAudio;
 #include "GameOutputAudio.hpp"
 GameOutputAudio gameOutputAudio;
 #endif
+#if GAME_OUTPUT_AUDIO_DFPLAYER_MINI
+#include "GOA_DFPlayerMini.hpp"
+GOA_DFPlayerMini gameOutputAudio;
+#endif
 
 #include "Game.hpp"
 Game game;
@@ -420,15 +424,9 @@ void loop()
 				gameOutputAudio.muteOnOff();
 				break;
 			case actionVolumeUp:
-#if DEBUG
-				debug("Turn volume + :" + String(gameInputAudio.getValue()) + "\n");
-#endif
 				gameOutputAudio.volumeUp();
 				break;
 			case actionVolumeDown:
-#if DEBUG
-				debug("Turn volume - :" + String(gameInputAudio.getValue()) + "\n");
-#endif
 				gameOutputAudio.volumeDown();
 				break;
 			default: break;
