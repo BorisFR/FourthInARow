@@ -131,6 +131,7 @@ void gameTurn()
 		game.gameState = playingPlayer2;
 		gameOutput.showPlayer2Turn();
 		break;
+	default: break;
 	}
 }
 
@@ -210,6 +211,7 @@ void loop()
 				game.gameState = startingNewGame;
 				gameOutput.showPlayerVsPlayer();
 				break;
+			default: break;
 			}
 		}
 		break;
@@ -272,34 +274,35 @@ void loop()
 		{
 			switch (gameInput.getAction())
 			{
-			case actionColumn1:
-				playColumn = 0;
-				game.gameState = puttingToken;
-				break;
-			case actionColumn2:
-				playColumn = 1;
-				game.gameState = puttingToken;
-				break;
-			case actionColumn3:
-				playColumn = 2;
-				game.gameState = puttingToken;
-				break;
-			case actionColumn4:
-				playColumn = 3;
-				game.gameState = puttingToken;
-				break;
-			case actionColumn5:
-				playColumn = 4;
-				game.gameState = puttingToken;
-				break;
-			case actionColumn6:
-				playColumn = 5;
-				game.gameState = puttingToken;
-				break;
-			case actionColumn7:
-				playColumn = 6;
-				game.gameState = puttingToken;
-				break;
+				case actionColumn1:
+					playColumn = 0;
+					game.gameState = puttingToken;
+					break;
+				case actionColumn2:
+					playColumn = 1;
+					game.gameState = puttingToken;
+					break;
+				case actionColumn3:
+					playColumn = 2;
+					game.gameState = puttingToken;
+					break;
+				case actionColumn4:
+					playColumn = 3;
+					game.gameState = puttingToken;
+					break;
+				case actionColumn5:
+					playColumn = 4;
+					game.gameState = puttingToken;
+					break;
+				case actionColumn6:
+					playColumn = 5;
+					game.gameState = puttingToken;
+					break;
+				case actionColumn7:
+					playColumn = 6;
+					game.gameState = puttingToken;
+					break;
+				default: break;
 			}
 		}
 		break;
@@ -361,14 +364,15 @@ void loop()
 		{
 			switch (game.getWhoWin())
 			{
-			case player1:
-				game.gameState = animationWinnerPlayer1;
-				gameOutput.showWinPlayer1();
-				break;
-			case player2:
-				game.gameState = animationWinnerPlayer2;
-				gameOutput.showWinPlayer2();
-				break;
+				case player1:
+					game.gameState = animationWinnerPlayer1;
+					gameOutput.showWinPlayer1();
+					break;
+				case player2:
+					game.gameState = animationWinnerPlayer2;
+					gameOutput.showWinPlayer2();
+					break;
+				default: break;
 			}
 		}
 		break;
@@ -418,6 +422,7 @@ void loop()
 			case actionVolumeDown:
 				gameOutputAudio.volumeDown();
 				break;
-			}
+			default: break;
+		}
 	}
 }
