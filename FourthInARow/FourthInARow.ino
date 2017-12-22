@@ -413,13 +413,22 @@ void loop()
 	if (gameInputAudio.hasInput()) {
 		switch (gameInputAudio.getAction())
 		{
-			case actionVolumeMute:
+			case actionVolumeMuteOnOff:
+#if DEBUG
+				debug(F("Push MUTE ON/OFF\n"));
+#endif			
 				gameOutputAudio.muteOnOff();
 				break;
 			case actionVolumeUp:
+#if DEBUG
+				debug("Turn volume + :" + String(gameInputAudio.getValue()) + "\n");
+#endif
 				gameOutputAudio.volumeUp();
 				break;
 			case actionVolumeDown:
+#if DEBUG
+				debug("Turn volume - :" + String(gameInputAudio.getValue()) + "\n");
+#endif
 				gameOutputAudio.volumeDown();
 				break;
 			default: break;

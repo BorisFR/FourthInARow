@@ -76,15 +76,15 @@
 ///////////////////////
 
 // pas de gestion audio
-#define GAME_INPUT_AUDIO_DUMMY 1
+#define GAME_INPUT_AUDIO_DUMMY 0
 
 // gestion du volume par un encodeur type ec11
-#define GAME_INPUT_AUDIO_EC11 0
+#define GAME_INPUT_AUDIO_EC11 1
 // comment est connecté cet encodeur
-// PIN_A et PIN_B doivent être sur une pin avec interruption
-#define EC11_ENCODER_PIN_A 2
-#define EC11_ENCODER_PIN_B 3
-#define EC11_BUTTON_PIN 4
+// PIN_A doit être sur une pin avec interruption
+#define EC11_ENCODER_PIN_A 34
+#define EC11_ENCODER_PIN_B 39
+#define EC11_BUTTON_PIN 36
 
 // les actions du jeu
 // ******************
@@ -118,8 +118,8 @@
 // ***********************
 
 // réglage du volume sonore
-// niveau du volume audio : de 0 (MUTE) à 10 (Max)
-#define AUDIO_STARTING_VOLUME 10
+// niveau du volume audio : de 0 (MUTE) à 100 (Max)
+#define AUDIO_STARTING_VOLUME 50
 // avec 2 boutons poussoir
 #define AUDIO_BUTTONS_VOLUME 0
 // ou par un bouton rotatif

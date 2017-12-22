@@ -12,9 +12,10 @@ class GameInputAudio
 		#if DEBUG
 			void (*_debug)(String text);
 		#endif
-			InputAction input;
+		InputAction input;
+		uint8_t value;
 
-		  public:
+	public:
 		#if DEBUG
 			void doInit(void (*)(String));
 		#else
@@ -27,6 +28,7 @@ class GameInputAudio
 
 		bool hasInput();
 		InputAction getAction();
+		uint8_t getValue();
 };
 
 #endif

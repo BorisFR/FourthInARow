@@ -19,6 +19,7 @@ void GameInputAudio::doInit()
 void GameInputAudio::doRealInit()
 {
 	input = actionNone;
+	value = AUDIO_STARTING_VOLUME;
 }
 
 void GameInputAudio::setup() {}
@@ -41,3 +42,5 @@ InputAction GameInputAudio::getAction()
 	input = actionNone;
 	return temp;
 }
+
+uint8_t GameInputAudio::getValue() { return value; }

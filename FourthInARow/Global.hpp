@@ -35,7 +35,7 @@ enum InputAction : uint8_t
 	actionPlayer2,
 	actionVolumeUp,
 	actionVolumeDown,
-	actionVolumeMute,
+	actionVolumeMuteOnOff,
 };
 
 #endif

@@ -63,3 +63,16 @@ getVolume()
 muteOn()
 muteOff()
 + de nombreuses fonctions pour jouer du son à divers moment du jeu. (voir le fichier GameOutputAudio.hpp pour le détail)
+
+
+HUZZAH32
+seulement en input
+A2/I34, A3/I39, A4/36 (A13/I35 mais n'est pas exposé)
+seulement en output
+A11/I12
+input et output
+A0/I26, A1/I25, A5/I4, I21
+A12/I13 (+red led), A11/I12, A10/I27, A9/I33, A8/I15, A7/I32, A6/I14
+
+
+
