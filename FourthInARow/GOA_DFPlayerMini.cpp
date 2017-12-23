@@ -49,6 +49,67 @@ void GOA_DFPlayerMini::doReceiveData()
 	}
 }
 
+void GOA_DFPlayerMini::playSongInFolder(uint8_t file, uint8_t folder)
+{
+	if(playing)
+	{
+		sendCommand(0x16, 0x00, 0x00); // [DH]=X, [DL]=X, Stop playing current track
+#if DEBUG
+		_debug(F("Stop audio\n"));
+#endif
+		delay(30);
+	}
+	else
+	{
+		playing = true;
+	}
+	sendCommand(0x0F, folder, file); // play (0x0F) file "005.mp3" or "005.wav" from folder "01"
+									 // [DH]=Folder, [DL]=File - Specify folder and file to playback
+#if DEBUG
+	_debug("Play: " + String(folder) + "/" + String(file) + ".mp3\n");
+#endif
+}
+
+void GOA_DFPlayerMini::playRandomSongInFolder(uint8_t folder)
+{
+	uint8_t number = 1;
+	switch(folder)
+	{
+		case 1:
+			number = 2;
+			break;
+		case 2:
+			number = 4;
+			break;
+		case 3:
+			number = 7;
+			break;
+		case 4:
+			number = 4;
+			break;
+		case 5:
+			number = 10;
+			break;
+		case 6:
+			number = 9;
+			break;
+		case 7:
+			number = 12;
+			break;
+		case 8:
+			number = 9;
+			break;
+		case 9:
+			number = 7;
+			break;
+		case 10:
+			number = 5;
+			break;
+	}
+	uint8_t file = random(1, number + 1);
+	playSongInFolder(file, folder);
+}
+
 void GOA_DFPlayerMini::setup()
 {
 	pinMode(DFPLAYER_MINI_BUSY, INPUT);
@@ -61,11 +122,20 @@ void GOA_DFPlayerMini::setup()
 	delay(30);
 	sendCommand(0x07, 0x00, 0x00); // [DH]=X, [DL]= EQ(0/1/2/3/4/5) [Normal/Pop/Rock/Jazz/Classic/Base]
 	delay(30);
+	playing = false;
 }
 
 void GOA_DFPlayerMini::loop()
 {
 	doReceiveData();
+	if (playing)
+	{
+		if(digitalRead(DFPLAYER_MINI_BUSY) == HIGH)
+		{
+			// no playing file
+			playing = false;
+		}
+	}
 }
 
 void GOA_DFPlayerMini::volumeUp()
@@ -95,3 +165,18 @@ void GOA_DFPlayerMini::setVolume(uint8_t value)
 	_debug("Volume: " + String(res) + "\n");
 	#endif
 }
+
+void GOA_DFPlayerMini::playPowerOn() { playRandomSongInFolder(1); }
+void GOA_DFPlayerMini::playReset() {}
+
+void GOA_DFPlayerMini::playQuestion() {}
+void GOA_DFPlayerMini::playBadChoice() { playRandomSongInFolder(2); }
+void GOA_DFPlayerMini::playGoodChoice() { playRandomSongInFolder(3); }
+void GOA_DFPlayerMini::playStartGame() { playRandomSongInFolder(4); }
+void GOA_DFPlayerMini::playToken() {}
+void GOA_DFPlayerMini::playIAThinking() { playRandomSongInFolder(5); }
+void GOA_DFPlayerMini::playLoosingAlert() { playRandomSongInFolder(6); }
+void GOA_DFPlayerMini::playWinningTeasing() { playRandomSongInFolder(7); }
+void GOA_DFPlayerMini::playLoose() { playRandomSongInFolder(9); }
+void GOA_DFPlayerMini::playWin() { playRandomSongInFolder(10); }
+void GOA_DFPlayerMini::playDraw() {}

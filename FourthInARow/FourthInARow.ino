@@ -49,11 +49,11 @@ void doInitHelper()
 GameInput gameInput;
 #endif
 #if GAME_INPUT_SERIAL
-#include "GIserial.hpp"
+#include "GI_serial.hpp"
 GIserial gameInput;
 #endif
 #if GAME_INPUT_9BUTTONS
-#include "GI9buttons.hpp"
+#include "GI_9buttons.hpp"
 GI9buttons gameInput;
 #endif
 
@@ -65,11 +65,11 @@ GI9buttons gameInput;
 GameOutput gameOutput;
 #endif
 #if GAME_OUTPUT_SERIAL
-#include "GOserial.hpp"
+#include "GO_serial.hpp"
 GOserial gameOutput;
 #endif
 #if GAME_OUTPUT_FEATHER_OLED
-#include "GOFeatherOled.hpp"
+#include "GO_FeatherOled.hpp"
 GOFeatherOled gameOutput;
 #endif
 
@@ -80,7 +80,7 @@ GOFeatherOled gameOutput;
 GameInputAudio gameInputAudio;
 #endif
 #if GAME_INPUT_AUDIO_EC11
-#include "GIAec11.hpp"
+#include "GIA_ec11.hpp"
 GIAec11 gameInputAudio;
 #endif
 #if GAME_OUTPUT_AUDIO_DUMMY
@@ -146,10 +146,12 @@ void gameTurn()
 
 void setup()
 {
+	randomSeed(analogRead(0));
 #if DEBUG
 	doInitHelper();
 #endif
 	doInitGame();
+	gameOutputAudio.playPowerOn();
 	gameOutput.showTouchSomething();
 }
 
@@ -196,6 +198,7 @@ void loop()
 			switch (gameInput.getAction())
 			{
 			case actionReset:
+				gameOutputAudio.playGoodChoice();
 				player1IsIA = true;
 				player2IsIA = true;
 				game.gameState = startingNewGame;
@@ -203,6 +206,7 @@ void loop()
 				break;
 			case actionPlayer1:
 			case actionColumn1:
+				gameOutputAudio.playGoodChoice();
 				player1IsIA = false;
 				player2IsIA = true;
 				game.gameState = startingNewGame;
@@ -210,12 +214,15 @@ void loop()
 				break;
 			case actionPlayer2:
 			case actionColumn2:
+				gameOutputAudio.playGoodChoice();
 				player1IsIA = false;
 				player2IsIA = false;
 				game.gameState = startingNewGame;
 				gameOutput.showPlayerVsPlayer();
 				break;
-			default: break;
+			default: 
+				gameOutputAudio.playBadChoice();
+				break;
 			}
 		}
 		break;
@@ -241,6 +248,7 @@ void loop()
 #endif
 		game.setCurrentPlayer(player1);
 		gameTurn();
+		gameOutputAudio.playStartGame();
 		break;
 
 		// Player 1 must choose where he put his token
@@ -260,6 +268,7 @@ void loop()
 	case choosingColumn:
 		if (game.getCurrentPlayer() == player1 && player1IsIA)
 		{
+			gameOutputAudio.playIAThinking();
 			playColumn = game.getIndexPlayingForPlayerIA(player1);
 #if DEBUG
 			debug(F("(IA)"));
@@ -268,6 +277,7 @@ void loop()
 		}
 		if (game.getCurrentPlayer() == player2 && player2IsIA)
 		{
+			gameOutputAudio.playIAThinking();
 			playColumn = game.getIndexPlayingForPlayerIA(player2);
 #if DEBUG
 			debug(F("(IA)"));
@@ -306,7 +316,9 @@ void loop()
 					playColumn = 6;
 					game.gameState = puttingToken;
 					break;
-				default: break;
+				default:
+					gameOutputAudio.playBadChoice();
+					break;
 			}
 		}
 		break;
@@ -317,6 +329,7 @@ void loop()
 		playLine = game.getRowPlayingColumn(playColumn);
 		if (playLine == 255)
 		{
+			gameOutputAudio.playBadChoice();
 			game.gameState = badColumn;
 #if DEBUG
 			debug(String(playColumn).c_str());
@@ -325,6 +338,7 @@ void loop()
 		}
 		else
 		{
+			gameOutputAudio.playGoodChoice();
 #if DEBUG
 			debug(String(playColumn).c_str());
 			debug(F("\n"));
@@ -336,6 +350,20 @@ void loop()
 			gameOutput.setTiles(location, game.getCurrentPlayer());
 		}
 		game.calculateHints();
+		switch(game.getHints())
+		{
+			case hintCanWin:
+				gameOutputAudio.playWinningTeasing();
+				break;
+			case hintCanLoose:
+				gameOutputAudio.playLoosingAlert();
+				break;
+			case hintSureToLoose:
+				gameOutputAudio.playLoosingAlert();
+				break;
+			default:
+				break;
+		}
 #if DEBUG
 		game.dumpGame();
 #endif
@@ -369,10 +397,12 @@ void loop()
 			switch (game.getWhoWin())
 			{
 				case player1:
+					gameOutputAudio.playWin();
 					game.gameState = animationWinnerPlayer1;
 					gameOutput.showWinPlayer1();
 					break;
 				case player2:
+					gameOutputAudio.playLoose();
 					game.gameState = animationWinnerPlayer2;
 					gameOutput.showWinPlayer2();
 					break;

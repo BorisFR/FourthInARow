@@ -67,12 +67,25 @@ muteOff()
 
 HUZZAH32
 seulement en input
-A2/I34, A3/I39, A4/36 (A13/I35 mais n'est pas exposé)
+X A2/I34, X A3/I39, X A4/36 (A13/I35 mais n'est pas exposé)
 seulement en output
 A11/I12
 input et output
-A0/I26, A1/I25, A5/I4, I21
-A12/I13 (+red led), A11/I12, A10/I27, A9/I33, A8/I15, A7/I32, A6/I14
+X A0/I26, X A1/I25, X A5/I4, XI21
+A12/I13 (+red led), X A11/I12, X A10/I27, X A9/I33, X A8/I15, X A7/I32, X A6/I14
 
 
+Dossier sons carte SD pour DFPlayer Mini
+folder					#files
+01 : power on			2
+02 : push button bad	4
+03 : push button good	7
+04 : start game			4
+05 : IA thinking		10
+06 : player could loose 9
+07 : player could win	12
+08 : player will loose	9
+09 : game loose			7
+10 : game win			5
 
+sur Mac, ne pas oublier de nettoyer la carte SD avec : dot_clean /Volumes/<SDVolumeName>

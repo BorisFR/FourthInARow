@@ -38,12 +38,14 @@ void GameOutputAudio::muteOnOff() { mute = !mute; }
 void GameOutputAudio::playPowerOn() {}
 void GameOutputAudio::playReset() {}
 
-void GameOutputAudio::playQuestion(StarWarsSide side) {}
-void GameOutputAudio::playClick(StarWarsSide side) {}
+void GameOutputAudio::playQuestion() {}
+void GameOutputAudio::playBadChoice() {}
+void GameOutputAudio::playGoodChoice() {}
 void GameOutputAudio::playStartGame() {}
-void GameOutputAudio::playToken(StarWarsSide side) {}
-void GameOutputAudio::playLooseingAlert(StarWarsSide side) {}
-void GameOutputAudio::playWinningTeasing(StarWarsSide side) {}
-void GameOutputAudio::playLoose(StarWarsSide side) {}
-void GameOutputAudio::playWin(StarWarsSide side) {}
+void GameOutputAudio::playToken() {}
+void GameOutputAudio::playIAThinking() {}
+void GameOutputAudio::playLoosingAlert() {}
+void GameOutputAudio::playWinningTeasing() {}
+void GameOutputAudio::playLoose() {}
+void GameOutputAudio::playWin() {}
 void GameOutputAudio::playDraw() {}

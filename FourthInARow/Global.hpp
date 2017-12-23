@@ -38,4 +38,12 @@ enum InputAction : uint8_t
 	actionVolumeMuteOnOff,
 };
 
+enum HintStatus : uint8_t
+{
+	hintNothing,
+	hintCanWin,
+	hintCanLoose,
+	hintSureToLoose,
+};
+
 #endif

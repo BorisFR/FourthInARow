@@ -54,8 +54,9 @@ class Game {
 		int32_t getMaximalMove(Player player, uint8_t deepness, int32_t ParentMin);
 		uint8_t bestColumnToPlay;
 		uint8_t playPossibilities[BOARD_COLUMNS];
-		
-	public :
+		HintStatus hintsState;
+
+			public :
 		#if DEBUG
 			void
 			doInit(void (*)(String));
@@ -77,6 +78,7 @@ class Game {
 		bool willWin[BOARD_COLUMNS];
 		bool willLoose[BOARD_COLUMNS];
 		void calculateHints();
+		HintStatus getHints();
 };
 
 #endif

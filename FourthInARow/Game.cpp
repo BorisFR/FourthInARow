@@ -378,25 +378,34 @@ Player Game::getWhoWin()
 
 void Game::calculateHints()
 {
+	// clean all
 	for (uint8_t column = 0; column < BOARD_COLUMNS; column++)
 	{
 		willWin[column] = false;
 		willLoose[column] = false;
 	}
+	uint8_t canWinNexttime = 0;
+	uint8_t canLooseNextTime = 0;
+	// check who is playing
 	Player otherPlayer;
 	if(currentPlayer == player1)
 		otherPlayer = player2;
 	else
 		otherPlayer = player1;
+	
+	// for each column, check the state
 	for (uint8_t column = 0; column < BOARD_COLUMNS; column++)
 	{
 		uint8_t row = board[column].getFreeRow();
+		// if we can play on this column
 		if(row < BOARD_COLUMNS)
 		{
+			// check all possibilities
 			for (uint8_t index = 0; index < MAX_POSSIBILITIES; index++)
 			{
 				uint8_t meInLine = 0;
 				uint8_t otherInLine = 0;
+				// for each possibility, we have 4 tokens
 				for (uint8_t pos = 0; pos < 4; pos++)
 				{
 					Player possible = board[winPossibilities[index][COLUMN] + pos * winPossibilities[index][COLUMN_CHANGE]].getToken(winPossibilities[index][ROW] + pos * winPossibilities[index][ROW_CHANGE]);
@@ -417,6 +426,7 @@ void Game::calculateHints()
 						}
 					}
 				}
+				// already have 4 tokens, we win :)
 				if (meInLine == 4)
 				{
 					_debug(String(index) + " => " + String(column) + "/" + String(row) + " ******* END, we have a winner! => ");
@@ -426,6 +436,7 @@ void Game::calculateHints()
 					}
 					_debug("\n");
 				}
+				// other player have already 4 tokens, we loose :()
 				if (otherInLine == 4)
 				{
 					_debug(String(index) + " => " + String(column) + "/" + String(row) + " ******* END, we have a looser! => ");
@@ -435,42 +446,53 @@ void Game::calculateHints()
 					}
 					_debug("\n");
 				}
+				// we have 3 tokens!
 				if (meInLine == 3)
 				{
 					_debug(String(index) + " => " + String(column) + "/" + String(row) + " = WIN: ");
 					for (uint8_t pos = 0; pos < 4; pos++)
 					{
-						_debug(String(winPossibilities[index][COLUMN] + pos * winPossibilities[index][COLUMN_CHANGE]) + "/" + String(winPossibilities[index][ROW] + pos * winPossibilities[index][ROW_CHANGE]) + " ");
-						Player possible = board[winPossibilities[index][COLUMN] + pos * winPossibilities[index][COLUMN_CHANGE]].getToken(winPossibilities[index][ROW] + pos * winPossibilities[index][ROW_CHANGE]);
+						uint8_t rowTotest = winPossibilities[index][ROW] + pos * winPossibilities[index][ROW_CHANGE];
+						_debug(String(winPossibilities[index][COLUMN] + pos * winPossibilities[index][COLUMN_CHANGE]) + "/" + String(rowTotest) + " ");
+						Player possible = board[winPossibilities[index][COLUMN] + pos * winPossibilities[index][COLUMN_CHANGE]].getToken(rowTotest);
 						if (possible == player1)
 							_debug("=>P1 ");
 						if (possible == player2)
 							_debug("=>P2 ");
 						if (possible == noPlayer)
 							_debug("=>?? ");
+						// we can win by playing here!
 						if (possible == noPlayer)
 						{
 							willWin[winPossibilities[index][COLUMN] + pos * winPossibilities[index][COLUMN_CHANGE]] = true;
+							if (rowTotest == row)
+							{
+								canWinNexttime++;
+							}
 						}
 					}
 					_debug("\n");
 				}
+				// other player have already 3 tokens!
 				if (otherInLine == 3)
 				{
 					_debug(String(index) + " = LOOSE: ");
 					for (uint8_t pos = 0; pos < 4; pos++)
 					{
-						_debug(String(winPossibilities[index][COLUMN] + pos * winPossibilities[index][COLUMN_CHANGE]) + "/" + String(winPossibilities[index][ROW] + pos * winPossibilities[index][ROW_CHANGE]) + " ");
-						Player possible = board[winPossibilities[index][COLUMN] + pos * winPossibilities[index][COLUMN_CHANGE]].getToken(winPossibilities[index][ROW] + pos * winPossibilities[index][ROW_CHANGE]);
+						uint8_t rowTotest = winPossibilities[index][ROW] + pos * winPossibilities[index][ROW_CHANGE];
+						_debug(String(winPossibilities[index][COLUMN] + pos * winPossibilities[index][COLUMN_CHANGE]) + "/" + String(rowTotest) + " ");
+						Player possible = board[winPossibilities[index][COLUMN] + pos * winPossibilities[index][COLUMN_CHANGE]].getToken(rowTotest);
 						if (possible == player1)
 							_debug("=>P1 ");
 						if (possible == player2)
 							_debug("=>P2 ");
 						if (possible == noPlayer)
 							_debug("=>?? ");
+						// he can win by playing here!
 						if (possible == noPlayer)
 						{
 							willLoose[winPossibilities[index][COLUMN] + pos * winPossibilities[index][COLUMN_CHANGE]] = true;
+							canLooseNextTime++;
 						}
 					}
 					_debug("\n");
@@ -478,8 +500,19 @@ void Game::calculateHints()
 			}
 		}
 	}
+	hintsState = hintNothing;
+	if (canWinNexttime > 0)
+		hintsState = hintCanWin;
+	if(canLooseNextTime == 1)
+		hintsState = hintCanLoose;
+	if (canLooseNextTime > 1)
+		hintsState = hintSureToLoose;
 }
 
+HintStatus Game::getHints()
+{
+	return hintsState;
+}
 
 ////////////////////////////////////////////////////////////////////////////////
 // IA: simple Min/Max

@@ -1,7 +1,7 @@
 #ifndef MYCONFIG_HPP
 #define MYCONFIG_HPP
 
-// Il s'agit du seule fichier à modifier.
+// Il s'agit du seul fichier à modifier.
 // Vous définissez le matériel que vous avez
 // et la configuration que vous avez construite.
 
@@ -62,15 +62,52 @@
 
 // dispositif à base de 7 boutons (1 par colonne) + 2 boutons choix du nombre de joueurs
 #define GAME_INPUT_9BUTTONS 0
-#define BUTTON_COLUMN_1 5
-#define BUTTON_COLUMN_2 6
-#define BUTTON_COLUMN_3 7
-#define BUTTON_COLUMN_4 8
-#define BUTTON_COLUMN_5 9
-#define BUTTON_COLUMN_6 10
-#define BUTTON_COLUMN_7 11
-#define BUTTON_COLUMN_PLAYER_1 12
-#define BUTTON_COLUMN_PLAYER_2 13
+#if !GAME_INPUT_9BUTTONS
+	#define BUTTON_COLUMN_1 0
+	#define BUTTON_COLUMN_2 0
+	#define BUTTON_COLUMN_3 0
+	#define BUTTON_COLUMN_4 0
+	#define BUTTON_COLUMN_5 0
+	#define BUTTON_COLUMN_6 0
+	#define BUTTON_COLUMN_7 0
+	#define BUTTON_COLUMN_PLAYER_1 0
+	#define BUTTON_COLUMN_PLAYER_2 0
+#else
+	#if ESP32
+		#define BUTTON_COLUMN_1 21
+		#define BUTTON_COLUMN_2 25
+		#define BUTTON_COLUMN_3 26
+		#define BUTTON_COLUMN_4 14
+		#define BUTTON_COLUMN_5 32
+		#define BUTTON_COLUMN_6 15
+		#define BUTTON_COLUMN_7 33
+		#define BUTTON_COLUMN_PLAYER_1 27
+		#define BUTTON_COLUMN_PLAYER_2 12
+	#endif
+	#if TEENSY35
+		#define BUTTON_COLUMN_1 0
+		#define BUTTON_COLUMN_2 0
+		#define BUTTON_COLUMN_3 0
+		#define BUTTON_COLUMN_4 0
+		#define BUTTON_COLUMN_5 0
+		#define BUTTON_COLUMN_6 0
+		#define BUTTON_COLUMN_7 0
+		#define BUTTON_COLUMN_PLAYER_1 0
+		#define BUTTON_COLUMN_PLAYER_2 0
+	#endif
+	#if MEGA2560
+		#define BUTTON_COLUMN_1 0
+		#define BUTTON_COLUMN_2 0
+		#define BUTTON_COLUMN_3 0
+		#define BUTTON_COLUMN_4 0
+		#define BUTTON_COLUMN_5 0
+		#define BUTTON_COLUMN_6 0
+		#define BUTTON_COLUMN_7 0
+		#define BUTTON_COLUMN_PLAYER_1 0
+		#define BUTTON_COLUMN_PLAYER_2 0
+	#endif
+#endif
+
 
 // 2 - la gestion audio
 ///////////////////////
@@ -82,9 +119,27 @@
 #define GAME_INPUT_AUDIO_EC11 1
 // comment est connecté cet encodeur
 // PIN_A doit être sur une pin avec interruption
-#define EC11_ENCODER_PIN_A 34
-#define EC11_ENCODER_PIN_B 39
-#define EC11_BUTTON_PIN 36
+#if !GAME_INPUT_AUDIO_EC11
+	#define EC11_ENCODER_PIN_A 0
+	#define EC11_ENCODER_PIN_B 0
+	#define EC11_BUTTON_PIN 0
+#else
+	#if ESP32
+		#define EC11_ENCODER_PIN_A 34
+		#define EC11_ENCODER_PIN_B 39
+		#define EC11_BUTTON_PIN 36
+	#endif
+	#if TEENSY35
+		#define EC11_ENCODER_PIN_A 0
+		#define EC11_ENCODER_PIN_B 0
+		#define EC11_BUTTON_PIN 0
+	#endif
+	#if MEGA2560
+		#define EC11_ENCODER_PIN_A 0
+		#define EC11_ENCODER_PIN_B 0
+		#define EC11_BUTTON_PIN 0
+	#endif
+#endif
 
 // les actions du jeu
 // ******************
@@ -114,8 +169,23 @@
 #define GAME_OUTPUT_AUDIO_DUMMY 0
 
 #define GAME_OUTPUT_AUDIO_DFPLAYER_MINI 1
-#define DFPLAYER_MINI_BUSY 4
-#define DFPLAYER_MINI_SERIAL Serial1
+#if !GAME_OUTPUT_AUDIO_DFPLAYER_MINI
+	#define DFPLAYER_MINI_BUSY 0
+	#define DFPLAYER_MINI_SERIAL Serial
+#else
+	#if ESP32
+		#define DFPLAYER_MINI_BUSY 4
+		#define DFPLAYER_MINI_SERIAL Serial1
+	#endif
+	#if TEENSY35
+		#define DFPLAYER_MINI_BUSY 0
+		#define DFPLAYER_MINI_SERIAL Serial
+	#endif
+	#if MEGA2560
+		#define DFPLAYER_MINI_BUSY 0
+		#define DFPLAYER_MINI_SERIAL Serial
+	#endif
+#endif
 
 // Paramètres de démarrage
 // ***********************
@@ -123,10 +193,5 @@
 // réglage du volume sonore
 // niveau du volume audio : de 0 (MUTE) à 100 (Max)
 #define AUDIO_STARTING_VOLUME 50
-// avec 2 boutons poussoir
-#define AUDIO_BUTTONS_VOLUME 0
-// ou par un bouton rotatif
-#define AUDIO_ROTARY_VOLUME 0
-
 
 #endif

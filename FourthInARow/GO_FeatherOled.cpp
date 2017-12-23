@@ -1,4 +1,4 @@
-#include "GOFeatherOled.hpp"
+#include "GO_FeatherOled.hpp"
 
 void GOFeatherOled::setup()
 {

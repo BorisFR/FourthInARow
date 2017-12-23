@@ -1,4 +1,4 @@
-#include "GIAec11.hpp"
+#include "GIA_ec11.hpp"
 
 volatile bool ec11Fired;
 volatile bool ec11State;

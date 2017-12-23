@@ -45,14 +45,16 @@ class GameOutputAudio
 		void playPowerOn();
 		void playReset();
 
-		void playQuestion(StarWarsSide side);
-		void playClick(StarWarsSide side);
+		void playQuestion();
+		void playBadChoice();
+		void playGoodChoice();
 		void playStartGame();
-		void playToken(StarWarsSide side);
-		void playLooseingAlert(StarWarsSide side);
-		void playWinningTeasing(StarWarsSide side);
-		void playLoose(StarWarsSide side);
-		void playWin(StarWarsSide side);
+		void playToken();
+		void playIAThinking();
+		void playLoosingAlert();
+		void playWinningTeasing();
+		void playLoose();
+		void playWin();
 		void playDraw();
 };
 
