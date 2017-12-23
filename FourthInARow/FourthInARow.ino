@@ -45,51 +45,51 @@ void doInitHelper()
 // *****
 
 #if GAME_INPUT_DUMMY
-#include "GameInput.hpp"
-GameInput gameInput;
+	#include "GameInput.hpp"
+	GameInput gameInput;
 #endif
 #if GAME_INPUT_SERIAL
-#include "GI_serial.hpp"
-GIserial gameInput;
+	#include "GI_serial.hpp"
+	GIserial gameInput;
 #endif
 #if GAME_INPUT_9BUTTONS
-#include "GI_9buttons.hpp"
-GI9buttons gameInput;
+	#include "GI_9buttons.hpp"
+	GI9buttons gameInput;
 #endif
 
 // OUTPUT
 // ******
 
 #if GAME_OUTPUT_DUMMY
-#include "GameOutput.hpp"
-GameOutput gameOutput;
+	#include "GameOutput.hpp"
+	GameOutput gameOutput;
 #endif
 #if GAME_OUTPUT_SERIAL
-#include "GO_serial.hpp"
-GOserial gameOutput;
+	#include "GO_serial.hpp"
+	GOserial gameOutput;
 #endif
 #if GAME_OUTPUT_FEATHER_OLED
-#include "GO_FeatherOled.hpp"
-GOFeatherOled gameOutput;
+	#include "GO_FeatherOled.hpp"
+	GOFeatherOled gameOutput;
 #endif
 
 // AUDIO
 // *****
 #if GAME_INPUT_AUDIO_DUMMY
-#include "GameInputAudio.hpp"
-GameInputAudio gameInputAudio;
+	#include "GameInputAudio.hpp"
+	GameInputAudio gameInputAudio;
 #endif
 #if GAME_INPUT_AUDIO_EC11
-#include "GIA_ec11.hpp"
-GIAec11 gameInputAudio;
+	#include "GIA_ec11.hpp"
+	GIAec11 gameInputAudio;
 #endif
 #if GAME_OUTPUT_AUDIO_DUMMY
-#include "GameOutputAudio.hpp"
-GameOutputAudio gameOutputAudio;
+	#include "GameOutputAudio.hpp"
+	GameOutputAudio gameOutputAudio;
 #endif
 #if GAME_OUTPUT_AUDIO_DFPLAYER_MINI
-#include "GOA_DFPlayerMini.hpp"
-GOA_DFPlayerMini gameOutputAudio;
+	#include "GOA_DFPlayerMini.hpp"
+	GOA_DFPlayerMini gameOutputAudio;
 #endif
 
 #include "Game.hpp"
@@ -156,7 +156,7 @@ void setup()
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-// BOUCLE SANS FIN
+// Endless loop
 ////////////////////////////////////////////////////////////////////////////////
 
 void loop()
