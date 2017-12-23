@@ -17,16 +17,16 @@ void GOA_DFPlayerMini::sendCommand(uint8_t command, uint8_t parameter1, uint8_t 
 	// Calculate the checksum (2 bytes)
 	uint16_t checksum = -(VERSION_BYTE + COMMAND_LENGTH + command + ACKNOWLEDGE + parameter1 + parameter2);
 	// Send the command to DFPlayer
-	Serial1.write(START_BYTE);
-	Serial1.write(VERSION_BYTE);
-	Serial1.write(COMMAND_LENGTH);
-	Serial1.write(command);
-	Serial1.write(ACKNOWLEDGE);
-	Serial1.write(parameter1);
-	Serial1.write(parameter2);
-	Serial1.write(highByte(checksum));
-	Serial1.write(lowByte(checksum));
-	Serial1.write(END_BYTE);
+	DFPLAYER_MINI_SERIAL.write(START_BYTE);
+	DFPLAYER_MINI_SERIAL.write(VERSION_BYTE);
+	DFPLAYER_MINI_SERIAL.write(COMMAND_LENGTH);
+	DFPLAYER_MINI_SERIAL.write(command);
+	DFPLAYER_MINI_SERIAL.write(ACKNOWLEDGE);
+	DFPLAYER_MINI_SERIAL.write(parameter1);
+	DFPLAYER_MINI_SERIAL.write(parameter2);
+	DFPLAYER_MINI_SERIAL.write(highByte(checksum));
+	DFPLAYER_MINI_SERIAL.write(lowByte(checksum));
+	DFPLAYER_MINI_SERIAL.write(END_BYTE);
 }
 
 void GOA_DFPlayerMini::doReceiveData()

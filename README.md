@@ -210,12 +210,6 @@ git config --global credential.helper osxkeychain
 
 **********************************************************
 
-## Des liens
-
-Aide pour la [mise en forme de ce readme](https://openclassrooms.com/courses/redigez-en-markdown).
-
-**********************************************************
-
 ## Liste des composants par Boris
 
 C'est un premier jet, il serait étonnant que j'ai tout bon du premier coup ;) J'indique "*OK!*" quand le composant est en place.
@@ -239,3 +233,9 @@ C'est un premier jet, il serait étonnant que j'ai tout bon du premier coup ;) J
 **Boutons pour jouer :** boutons d'arcade lumineux 30mm - [https://fr.aliexpress.com/item/10pcs-lot-30mm-Push-Button-Arcade-Button-5V-LED-Illuminated-Push-Button-LED-1P-2P-Start/32807197485.html](https://fr.aliexpress.com/item/10pcs-lot-30mm-Push-Button-Arcade-Button-5V-LED-Illuminated-Push-Button-LED-1P-2P-Start/32807197485.html)  
 
 **Affichage du plateau par LEDs :** 2x Ruban 50 LEDs RGB - [https://fr.aliexpress.com/item/50pcs-WS2813-IC-pixel-LED-Module-lighting-F9-for-sign-DC5V-IP68-Waterproof-super-bright-WS2818/32803390301.html](https://fr.aliexpress.com/item/50pcs-WS2813-IC-pixel-LED-Module-lighting-F9-for-sign-DC5V-IP68-Waterproof-super-bright-WS2818/32803390301.html)  
+
+**********************************************************
+
+## Des liens
+
+Aide pour la [mise en forme de ce readme](https://openclassrooms.com/courses/redigez-en-markdown).

@@ -39,7 +39,10 @@
 //#define TEENSY35 0
 
 // 1 si carte ARDUINO MEGA 2560, sinon mettre 0
-//#define MEGA2560 1
+//#define MEGA2560 0
+
+// 1 si carte ARDUINO UNO, sinon mettre 0
+//#define UNO 1
 
 ////////////////////////////////////////////////////////////////////////////////
 // Paramètres définissant votre installation
@@ -106,6 +109,17 @@
 		#define BUTTON_COLUMN_PLAYER_1 0
 		#define BUTTON_COLUMN_PLAYER_2 0
 	#endif
+	#if UNO
+		#define BUTTON_COLUMN_1 0
+		#define BUTTON_COLUMN_2 0
+		#define BUTTON_COLUMN_3 0
+		#define BUTTON_COLUMN_4 0
+		#define BUTTON_COLUMN_5 0
+		#define BUTTON_COLUMN_6 0
+		#define BUTTON_COLUMN_7 0
+		#define BUTTON_COLUMN_PLAYER_1 0
+		#define BUTTON_COLUMN_PLAYER_2 0
+	#endif
 #endif
 
 
@@ -135,6 +149,11 @@
 		#define EC11_BUTTON_PIN 0
 	#endif
 	#if MEGA2560
+		#define EC11_ENCODER_PIN_A 0
+		#define EC11_ENCODER_PIN_B 0
+		#define EC11_BUTTON_PIN 0
+	#endif
+	#if UNO
 		#define EC11_ENCODER_PIN_A 0
 		#define EC11_ENCODER_PIN_B 0
 		#define EC11_BUTTON_PIN 0
@@ -182,6 +201,10 @@
 		#define DFPLAYER_MINI_SERIAL Serial
 	#endif
 	#if MEGA2560
+		#define DFPLAYER_MINI_BUSY 0
+		#define DFPLAYER_MINI_SERIAL Serial
+	#endif
+	#if UNO
 		#define DFPLAYER_MINI_BUSY 0
 		#define DFPLAYER_MINI_SERIAL Serial
 	#endif
