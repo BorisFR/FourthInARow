@@ -353,13 +353,22 @@ void loop()
 		switch(game.getHints())
 		{
 			case hintCanWin:
-				gameOutputAudio.playWinningTeasing();
+				if (game.getCurrentPlayer() == player2)
+					gameOutputAudio.playWinningTeasing();
+				else
+					gameOutputAudio.playLoosingAlert();
 				break;
 			case hintCanLoose:
-				gameOutputAudio.playLoosingAlert();
+				if (game.getCurrentPlayer() == player2)
+					gameOutputAudio.playLoosingAlert();
+				else
+					gameOutputAudio.playWinningTeasing();
 				break;
 			case hintSureToLoose:
-				gameOutputAudio.playLoosingAlert();
+				if (game.getCurrentPlayer() == player2)
+					gameOutputAudio.playLoosingAlert();
+				else
+					gameOutputAudio.playWinningTeasing();
 				break;
 			default:
 				break;
