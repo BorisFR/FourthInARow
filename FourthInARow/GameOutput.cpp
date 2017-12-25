@@ -35,8 +35,10 @@ void GameOutput::showPlayer2Turn() {}
 void GameOutput::showMatchDraw() {}
 void GameOutput::showWinPlayer1() {}
 void GameOutput::showWinPlayer2() {}
+void GameOutput::showHints(LocationAlert winAlert, LocationAlert looseAlert) {}
+void GameOutput::showWinningCases(WinningPositions winningCases) {}
 
 void GameOutput::drawGrid() {}
-void GameOutput::drawBoard(Column board[BOARD_COLUMNS]) {}
+void GameOutput::drawBoard(Board board) {}
 void GameOutput::clearTiles() {}
 void GameOutput::setTiles(CaseLocation location, Player token) {}

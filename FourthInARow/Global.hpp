@@ -8,6 +8,7 @@
 
 #define COLUMN_TILES 6
 #define BOARD_COLUMNS 7
+#define NO_VALUE 255
 
 #define VOLUME_MAX 100
 #define VOLUME_MIN 0

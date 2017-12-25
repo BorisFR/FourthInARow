@@ -38,12 +38,18 @@ class Game {
 			void traceLine();
 		#endif
 		void doRealInit();
+		void clearWinningCases();
+		void clearTurn();
 		Column board[BOARD_COLUMNS];
 		Player currentPlayer;
+		void addWinningCase(uint8_t c1, uint8_t c2, uint8_t c3, uint8_t c4, uint8_t r1, uint8_t r2, uint8_t r3, uint8_t r4);
 		bool isVerticalWin(uint8_t index);
 		bool isHorizontalWin(uint8_t column1, uint8_t column2, uint8_t column3, uint8_t column4);
 		Player theWinner;
-		CaseLocation winPosition[4];
+		LocationAlert winAlert;
+		LocationAlert looseAlert;
+		uint8_t countWinningCases;
+		WinningPositions winningCases;
 		int8_t winPossibilities[MAX_POSSIBILITIES][5];
 		bool inbounds(int8_t row, int8_t column);
 		void calculateAllPossibilities();
@@ -56,7 +62,7 @@ class Game {
 		uint8_t playPossibilities[BOARD_COLUMNS];
 		HintStatus hintsState;
 
-			public :
+	public :
 		#if DEBUG
 			void
 			doInit(void (*)(String));
@@ -66,6 +72,7 @@ class Game {
 			doInit();
 		#endif
 		GameState gameState;
+		Board getBoard();
 		void startNewGame();
 		void setCurrentPlayer(Player player);
 		Player getCurrentPlayer();
@@ -78,7 +85,10 @@ class Game {
 		bool willWin[BOARD_COLUMNS];
 		bool willLoose[BOARD_COLUMNS];
 		void calculateHints();
+		WinningPositions getWinningCases();
 		HintStatus getHints();
+		LocationAlert getWinHints();
+		LocationAlert getLooseHints();
 };
 
 #endif

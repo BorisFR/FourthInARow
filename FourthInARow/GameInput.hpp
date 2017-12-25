@@ -7,13 +7,13 @@
 class GameInput {
 
 	private:
-		#if DEBUG
-			void (*_debug)(String text);
-		#endif
 		void doRealInit();
 
 	protected:
-	  InputAction input;
+		#if DEBUG
+			void (*_debug)(String text);
+		#endif
+		InputAction input;
 
 	public:
 		#if DEBUG

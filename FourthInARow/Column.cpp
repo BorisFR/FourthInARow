@@ -51,7 +51,7 @@ uint8_t Column::getFreeRow()
 uint8_t Column::addToken(Player player)
 {
 	if(isFull()) {
-		return 255;
+		return NO_VALUE;
 	}
 	for(uint8_t row = 0; row < COLUMN_TILES; row++) {
 		if(tiles[row].getToken() == noPlayer) {
@@ -59,7 +59,7 @@ uint8_t Column::addToken(Player player)
 			return row;
 		}
 	}
-	return 255;
+	return NO_VALUE;
 }
 
 Player Column::getToken(uint8_t row)

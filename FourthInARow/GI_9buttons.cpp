@@ -2,6 +2,9 @@
 
 void GI9buttons::setup()
 {
+#if DEBUG
+	_debug(F("9 Buttons: "));
+#endif
 	button[0].setup(BUTTON_COLUMN_1);
 	button[1].setup(BUTTON_COLUMN_2);
 	button[2].setup(BUTTON_COLUMN_3);
@@ -11,6 +14,9 @@ void GI9buttons::setup()
 	button[6].setup(BUTTON_COLUMN_7);
 	button[7].setup(BUTTON_COLUMN_PLAYER_1);
 	button[8].setup(BUTTON_COLUMN_PLAYER_2);
+#if DEBUG
+	_debug(F("ready\n"));
+#endif
 }
 
 void GI9buttons::loop()

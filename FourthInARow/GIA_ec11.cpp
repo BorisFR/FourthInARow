@@ -14,11 +14,17 @@ void ec11Interrupt()
 
 void GIAec11::setup()
 {
+#if DEBUG
+	_debug(F("WS2801: "));
+#endif
 	pinMode(EC11_ENCODER_PIN_A, INPUT_PULLUP);
 	pinMode(EC11_ENCODER_PIN_B, INPUT_PULLUP);
 	attachInterrupt(digitalPinToInterrupt(EC11_ENCODER_PIN_A), ec11Interrupt, CHANGE);
 	pinMode(EC11_BUTTON_PIN, INPUT);
 	button.setup(EC11_BUTTON_PIN);
+#if DEBUG
+	_debug(F("ready\n"));
+#endif
 }
 
 void GIAec11::loop()

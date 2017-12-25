@@ -22,4 +22,9 @@ class Column {
 		void setToken(Player player, uint8_t row);
 };
 
+struct Board
+{
+	Column column[BOARD_COLUMNS];
+};
+
 #endif

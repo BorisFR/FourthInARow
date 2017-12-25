@@ -68,6 +68,10 @@ void doInitHelper()
 	#include "GO_serial.hpp"
 	GOserial gameOutput;
 #endif
+#if GAME_OUPUT_WS2801
+	#include "GO_ws2801.hpp"
+	GO_ws2801 gameOutput;
+#endif
 #if GAME_OUTPUT_FEATHER_OLED
 	#include "GO_FeatherOled.hpp"
 	GOFeatherOled gameOutput;
@@ -231,6 +235,7 @@ void loop()
 		// **********************************
 	case startingNewGame:
 		game.startNewGame();
+		gameOutput.drawBoard(game.getBoard());
 		game.gameState = choosingWhoStart;
 #if DEBUG
 		debug(F("new game\n"));
@@ -327,7 +332,7 @@ void loop()
 		// *******************************************
 	case puttingToken:
 		playLine = game.getRowPlayingColumn(playColumn);
-		if (playLine == 255)
+		if (playLine == NO_VALUE)
 		{
 			gameOutputAudio.playBadChoice();
 			game.gameState = badColumn;
@@ -387,11 +392,13 @@ void loop()
 		// It's a valid column, so play it!
 		// ********************************
 	case tokenAnimation:
+		gameOutput.drawBoard(game.getBoard());
 		winner = game.isSomeoneWinner();
 		if (!winner)
 		{
 			if (game.isPlayingPossible())
 			{
+				gameOutput.showHints(game.getWinHints(), game.getLooseHints());
 				game.nextPlayer();
 				gameTurn();
 			}
@@ -415,8 +422,10 @@ void loop()
 					game.gameState = animationWinnerPlayer2;
 					gameOutput.showWinPlayer2();
 					break;
-				default: break;
+				default:
+				break;
 			}
+			gameOutput.showWinningCases(game.getWinningCases());
 		}
 		break;
 

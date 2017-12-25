@@ -218,8 +218,6 @@ C'est un premier jet, il serait étonnant que j'ai tout bon du premier coup ;) J
 
 **Connecteur d'alimentation :** Jack 5,5mm / 2,1mm - réf 48147 - [https://www.gotronic.fr/art-embase-alim-sc215-123.htm](https://www.gotronic.fr/art-embase-alim-sc215-123.htm)  
 
-**Régulateur :** 5V vers 3,3V 1,5A - réf 42632 - [https://www.gotronic.fr/art-lm1086it3-3-14313.htm](https://www.gotronic.fr/art-lm1086it3-3-14313.htm)  
-
 **Electronique :** Huzzah32 - [https://www.adafruit.com/product/3405](https://www.adafruit.com/product/3405) *<= OK!*  
 
 **Haut-parleur :** 2x 3W 8 Ohms - réf 05527 - [https://www.gotronic.fr/art-haut-parleur-hp8r3w-25596.htm](https://www.gotronic.fr/art-haut-parleur-hp8r3w-25596.htm) *<= OK!*  

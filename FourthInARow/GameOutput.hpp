@@ -14,12 +14,13 @@ class GameOutput
 		#if DEBUG
 			void (*_debug)(String text);
 		#endif
+			uint8_t leds_positions[42] = { LED_POSITIONS };
 
-	public:
+		  public:
 		#if DEBUG
-			void doInit(void (*)(String));
+					void doInit(void (*)(String));
 		#else
-			void doInit();
+			  void doInit();
 		#endif
 		void setup();
 		void loop();
@@ -37,9 +38,11 @@ class GameOutput
 		void showMatchDraw();
 		void showWinPlayer1();
 		void showWinPlayer2();
+		void showHints(LocationAlert winAlert, LocationAlert looseAlert);
+		void showWinningCases(WinningPositions winningCases);
 
 		void drawGrid();
-		void drawBoard(Column board[BOARD_COLUMNS]);
+		void drawBoard(Board board);
 		void clearTiles();
 		void setTiles(CaseLocation location, Player token);
 };

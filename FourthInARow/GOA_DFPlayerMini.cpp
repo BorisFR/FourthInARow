@@ -38,13 +38,7 @@ void GOA_DFPlayerMini::doReceiveData()
 		for (byte k = 0; k < 10; k++)
 			returned[k] = DFPLAYER_MINI_SERIAL.read();
 		#if DEBUG
-		_debug("Returned: ");
-		_debug(String(returned[3]));
-		_debug("; Parameter: ");
-		_debug(String(returned[5]));
-		_debug(", ");
-		_debug(String(returned[6]));
-		_debug("\n");
+		_debug("DFPlayer Mini - command: " + String(returned[3]) + "; parameters: " + String(returned[5]) + ", " + String(returned[6]) + "\n");
 		#endif
 	}
 }
@@ -112,6 +106,9 @@ void GOA_DFPlayerMini::playRandomSongInFolder(uint8_t folder)
 
 void GOA_DFPlayerMini::setup()
 {
+#if DEBUG
+	_debug("DFPlayer mini: ");
+#endif
 	pinMode(DFPLAYER_MINI_BUSY, INPUT);
 	DFPLAYER_MINI_SERIAL.begin(9600);
 	sendCommand(0x3F, 0x00, 0x00); // [DH]=0, [DL]= 0 ~ 0x0F Initialization parameters
@@ -123,6 +120,9 @@ void GOA_DFPlayerMini::setup()
 	sendCommand(0x07, 0x00, 0x00); // [DH]=X, [DL]= EQ(0/1/2/3/4/5) [Normal/Pop/Rock/Jazz/Classic/Base]
 	delay(30);
 	playing = false;
+#if DEBUG
+	_debug("ready\n");
+#endif
 }
 
 void GOA_DFPlayerMini::loop()

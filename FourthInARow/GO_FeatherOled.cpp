@@ -2,6 +2,9 @@
 
 void GOFeatherOled::setup()
 {
+#if DEBUG
+	_debug(F("Feather Oled: "));
+#endif
 	// by default, we'll generate the high voltage from the 3.3v line internally! (neat!)
 	display.begin(SSD1306_SWITCHCAPVCC, 0x3C); // initialize with the I2C addr 0x3C (for the 128x32)
 	display.display();
@@ -13,6 +16,9 @@ void GOFeatherOled::setup()
 	display.setTextSize(1);
 	display.setTextColor(WHITE);
 	display.setCursor(0, 0);
+#if DEBUG
+	_debug("ready\n");
+#endif
 }
 
 void GOFeatherOled::endLoop()

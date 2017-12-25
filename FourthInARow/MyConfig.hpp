@@ -77,15 +77,16 @@
 	#define BUTTON_COLUMN_PLAYER_2 0
 #else
 	#if ESP32
-		#define BUTTON_COLUMN_1 21
-		#define BUTTON_COLUMN_2 25
-		#define BUTTON_COLUMN_3 26
-		#define BUTTON_COLUMN_4 14
-		#define BUTTON_COLUMN_5 32
-		#define BUTTON_COLUMN_6 15
-		#define BUTTON_COLUMN_7 33
-		#define BUTTON_COLUMN_PLAYER_1 27
-		#define BUTTON_COLUMN_PLAYER_2 12
+		// SDA/SCL/A6/A7/A8/A9/A10/A12/21
+		#define BUTTON_COLUMN_1 23
+		#define BUTTON_COLUMN_2 22
+		#define BUTTON_COLUMN_3 14
+		#define BUTTON_COLUMN_4 32
+		#define BUTTON_COLUMN_5 15
+		#define BUTTON_COLUMN_6 33
+		#define BUTTON_COLUMN_7 27
+		#define BUTTON_COLUMN_PLAYER_1 13
+		#define BUTTON_COLUMN_PLAYER_2 21
 	#endif
 	#if TEENSY35
 		#define BUTTON_COLUMN_1 0
@@ -139,6 +140,7 @@
 	#define EC11_BUTTON_PIN 0
 #else
 	#if ESP32
+		// A2 / A3 / A4
 		#define EC11_ENCODER_PIN_A 34
 		#define EC11_ENCODER_PIN_B 39
 		#define EC11_BUTTON_PIN 36
@@ -170,10 +172,19 @@
 #define GAME_OUTPUT_DUMMY 0
 
 // utilisation de la console Série du PC/Mac/Linux /!\ #define DEBUG doit être à 1
-#define GAME_OUTPUT_SERIAL 1
+#define GAME_OUTPUT_SERIAL 0
 
-// le plateau de jeu est visualisé par 42 LEDs RGB
-#define GAME_OUTPUT_BOARD_RGW_LED 0
+// la localisation des 42 leds
+// pour le programme, ça va de bas en haut et de gauche à droite
+//				      colonne 1				 colonne 2				 colonne 3				 colonne 4				 colonne 5				 colonne 6				 colonne 7
+//					  bas ...			haut/bas ...			haut/bas ...			haut/bas ...			haut/bas ...			haut/bas ...		haut/bas ...
+#define LED_POSITIONS 36, 37, 38, 39, 40, 41, 35, 34, 33, 32, 31, 30, 24, 25, 26, 27, 28, 29, 23, 22, 21, 20, 19, 18, 12, 13, 14, 15, 16, 17, 11, 10, 9, 8, 7, 6, 0, 1, 2, 3, 4, 5
+
+// le plateau de jeu est visualisé par 42 LEDs RGB type WS2801
+#define GAME_OUPUT_WS2801 1
+#define WS2801_DATA_PIN 18
+#define WS2801_CLOCK_PIN 5
+#define WS2801_NUMBER_LEDS 56
 
 // les buttons d'actions ont des leds blanches
 #define GAME_OUTPUT_9BUTTONS_INPUT_WHITE_LED 0
@@ -193,6 +204,7 @@
 	#define DFPLAYER_MINI_SERIAL Serial
 #else
 	#if ESP32
+		// A5 + Serial1
 		#define DFPLAYER_MINI_BUSY 4
 		#define DFPLAYER_MINI_SERIAL Serial1
 	#endif

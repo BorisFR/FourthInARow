@@ -183,7 +183,7 @@ void Game::calculateAllPossibilities()
 		}
 	}
 	#if DEBUG
-	//_debug("Possibilities: " + String(index) + "\n");
+	//_debug("Win Possibilities: " + String(index) + "\n");
 	#endif
 
 	#if DEBUG
@@ -221,15 +221,51 @@ void Game::calculateAllPossibilities()
 	#endif
 }
 
+Board Game::getBoard()
+{
+	Board result;
+	for (uint8_t column = 0; column < BOARD_COLUMNS; column++)
+	{
+		result.column[column] = board[column];
+	}
+	return result;
+}
+
+void Game::clearWinningCases()
+{
+	countWinningCases = 0;
+	for (uint8_t index = 0; index < 4; index++)
+	{
+		winningCases.winning[index].possibilityIndex = NO_VALUE;
+		for (uint8_t pos = 0; pos < 4; pos++)
+		{
+			winningCases.winning[index].location[pos] = CaseLocation();
+		}
+	}
+}
+
+void Game::clearTurn()
+{
+	for (uint8_t column = 0; column < BOARD_COLUMNS; column++)
+	{
+		willWin[column] = false;
+		willLoose[column] = false;
+		winAlert.row[column] = NO_VALUE;
+		looseAlert.row[column] = NO_VALUE;
+	}
+	clearWinningCases();
+}
+
 void Game::startNewGame()
 {
+	currentPlayer = noPlayer;
+	theWinner = noPlayer;
+	numberMoves = 0;
 	for (uint8_t column = 0; column < BOARD_COLUMNS; column++)
 	{
 		board[column].clear();
 	}
-	currentPlayer = noPlayer;
-	theWinner = noPlayer;
-	numberMoves = 0;
+	clearTurn();
 }
 
 void Game::setCurrentPlayer(Player player)
@@ -255,7 +291,7 @@ void Game::nextPlayer()
 uint8_t Game::getRowPlayingColumn(uint8_t index)
 {
 	uint8_t row = board[index].addToken(currentPlayer);
-	if(row < COLUMN_TILES)
+	if (row != NO_VALUE)
 		numberMoves++;
 	return row;
 }
@@ -272,6 +308,16 @@ bool Game::isPlayingPossible()
 	return false;
 }
 
+void Game::addWinningCase(uint8_t c1, uint8_t c2, uint8_t c3, uint8_t c4, uint8_t r1, uint8_t r2, uint8_t r3, uint8_t r4)
+{
+	winningCases.winning[countWinningCases].possibilityIndex = 0;
+	winningCases.winning[countWinningCases].location[0] = CaseLocation(c1, r1);
+	winningCases.winning[countWinningCases].location[1] = CaseLocation(c2, r2);
+	winningCases.winning[countWinningCases].location[2] = CaseLocation(c3, r3);
+	winningCases.winning[countWinningCases].location[3] = CaseLocation(c4, r4);
+	countWinningCases++;
+}
+
 bool Game::isVerticalWin(uint8_t index)
 {
 	Column column = board[index];
@@ -280,10 +326,7 @@ bool Game::isVerticalWin(uint8_t index)
 		Player token = column.getToken(line);
 		if ((token != noPlayer) && (token == column.getToken(line + 1)) && (token == column.getToken(line + 2)) && (token == column.getToken(line + 3)))
 		{
-			winPosition[0].row = line;
-			winPosition[1].row = line + 1;
-			winPosition[2].row = line + 2;
-			winPosition[3].row = line + 3;
+			addWinningCase(index, index, index, index, line, line + 1, line + 2, line + 3);
 			theWinner = token;
 			return true;
 		}
@@ -298,10 +341,7 @@ bool Game::isHorizontalWin(uint8_t column1, uint8_t column2, uint8_t column3, ui
 		Player token = board[column1].getToken(line);
 		if ((token != noPlayer) && (token == board[column2].getToken(line)) && (token == board[column3].getToken(line)) && (token == board[column4].getToken(line)))
 		{
-			winPosition[0].row = line;
-			winPosition[1].row = line;
-			winPosition[2].row = line;
-			winPosition[3].row = line;
+			addWinningCase(column1, column2, column3, column4, line, line, line, line);
 			theWinner = token;
 			return true;
 		}
@@ -311,10 +351,7 @@ bool Game::isHorizontalWin(uint8_t column1, uint8_t column2, uint8_t column3, ui
 		Player token = board[column1].getToken(line);
 		if ((token != noPlayer) && (token == board[column2].getToken(line + 1)) && (token == board[column3].getToken(line + 2)) && (token == board[column4].getToken(line + 3)))
 		{
-			winPosition[0].row = line;
-			winPosition[1].row = line + 1;
-			winPosition[2].row = line + 2;
-			winPosition[3].row = line + 3;
+			addWinningCase(column1, column2, column3, column4, line, line + 1, line + 2, line + 3);
 			theWinner = token;
 			return true;
 		}
@@ -324,10 +361,7 @@ bool Game::isHorizontalWin(uint8_t column1, uint8_t column2, uint8_t column3, ui
 		Player token = board[column1].getToken(line);
 		if ((token != noPlayer) && (token == board[column2].getToken(line - 1)) && (token == board[column3].getToken(line - 2)) && (token == board[column4].getToken(line - 3)))
 		{
-			winPosition[0].row = line;
-			winPosition[1].row = line - 1;
-			winPosition[2].row = line - 2;
-			winPosition[3].row = line - 3;
+			addWinningCase(column1, column2, column3, column4, line, line - 1, line - 2, line - 3);
 			theWinner = token;
 			return true;
 		}
@@ -337,31 +371,20 @@ bool Game::isHorizontalWin(uint8_t column1, uint8_t column2, uint8_t column3, ui
 
 bool Game::isSomeoneWinner()
 {
+	clearWinningCases();
 	// check vertically
 	for (uint8_t column = 0; column < BOARD_COLUMNS; column++)
 	{
 		bool win = isVerticalWin(column);
 		if (win)
-		{
-			winPosition[0].index = column;
-			winPosition[1].index = column;
-			winPosition[2].index = column;
-			winPosition[3].index = column;
 			return true;
-		}
 	}
 	// check horizontally
 	for (uint8_t column = 0; column <= (BOARD_COLUMNS - 4); column++)
 	{
 		bool win = isHorizontalWin(column, column + 1, column + 2, column + 3);
 		if (win)
-		{
-			winPosition[0].index = column;
-			winPosition[1].index = column + 1;
-			winPosition[2].index = column + 2;
-			winPosition[3].index = column + 3;
 			return true;
-		}
 	}
 	return false;
 }
@@ -378,13 +401,8 @@ Player Game::getWhoWin()
 
 void Game::calculateHints()
 {
-	// clean all
-	for (uint8_t column = 0; column < BOARD_COLUMNS; column++)
-	{
-		willWin[column] = false;
-		willLoose[column] = false;
-	}
-	uint8_t canWinNexttime = 0;
+	clearTurn();
+	uint8_t canWinNextTime = 0;
 	uint8_t canLooseNextTime = 0;
 	// check who is playing
 	Player otherPlayer;
@@ -398,7 +416,7 @@ void Game::calculateHints()
 	{
 		uint8_t row = board[column].getFreeRow();
 		// if we can play on this column
-		if(row < BOARD_COLUMNS)
+		if (row != NO_VALUE)
 		{
 			// check all possibilities
 			for (uint8_t index = 0; index < MAX_POSSIBILITIES; index++)
@@ -429,22 +447,45 @@ void Game::calculateHints()
 				// already have 4 tokens, we win :)
 				if (meInLine == 4)
 				{
-					_debug(String(index) + " => " + String(column) + "/" + String(row) + " ******* END, we have a winner! => ");
+					bool found = false;
 					for (uint8_t pos = 0; pos < 4; pos++)
 					{
-						_debug(String(winPossibilities[index][COLUMN] + pos * winPossibilities[index][COLUMN_CHANGE]) + "/" + String(winPossibilities[index][ROW] + pos * winPossibilities[index][ROW_CHANGE]) + " ");
+						if (winningCases.winning[pos].possibilityIndex == index)
+							found = true;
 					}
-					_debug("\n");
+					if(!found) {
+						winningCases.winning[countWinningCases].possibilityIndex = index;
+						_debug(String(index) + " => " + String(column) + "/" + String(row) + " ******* END, we have a winner! => ");
+						for (uint8_t pos = 0; pos < 4; pos++)
+						{
+							winningCases.winning[countWinningCases].location[pos] = CaseLocation(winPossibilities[index][COLUMN] + pos * winPossibilities[index][COLUMN_CHANGE], winPossibilities[index][ROW] + pos * winPossibilities[index][ROW_CHANGE]);
+							_debug(String(winPossibilities[index][COLUMN] + pos * winPossibilities[index][COLUMN_CHANGE]) + "/" + String(winPossibilities[index][ROW] + pos * winPossibilities[index][ROW_CHANGE]) + " ");
+						}
+						_debug("\n");
+						countWinningCases++;
+					}
 				}
 				// other player have already 4 tokens, we loose :()
 				if (otherInLine == 4)
 				{
-					_debug(String(index) + " => " + String(column) + "/" + String(row) + " ******* END, we have a looser! => ");
+					bool found = false;
 					for (uint8_t pos = 0; pos < 4; pos++)
 					{
-						_debug(String(winPossibilities[index][COLUMN] + pos * winPossibilities[index][COLUMN_CHANGE]) + "/" + String(winPossibilities[index][ROW] + pos * winPossibilities[index][ROW_CHANGE]) + " ");
+						if (winningCases.winning[pos].possibilityIndex == index)
+							found = true;
 					}
-					_debug("\n");
+					if (!found)
+					{
+						winningCases.winning[countWinningCases].possibilityIndex = index;
+						_debug(String(index) + " => " + String(column) + "/" + String(row) + " ******* END, we have a looser! => ");
+						for (uint8_t pos = 0; pos < 4; pos++)
+						{
+							winningCases.winning[countWinningCases].location[pos] = CaseLocation(column, row);
+							_debug(String(winPossibilities[index][COLUMN] + pos * winPossibilities[index][COLUMN_CHANGE]) + "/" + String(winPossibilities[index][ROW] + pos * winPossibilities[index][ROW_CHANGE]) + " ");
+						}
+						_debug("\n");
+						countWinningCases++;
+					}
 				}
 				// we have 3 tokens!
 				if (meInLine == 3)
@@ -467,7 +508,8 @@ void Game::calculateHints()
 							willWin[winPossibilities[index][COLUMN] + pos * winPossibilities[index][COLUMN_CHANGE]] = true;
 							if (rowTotest == row)
 							{
-								canWinNexttime++;
+								winAlert.row[winPossibilities[index][COLUMN] + pos * winPossibilities[index][COLUMN_CHANGE]] = row;
+								canWinNextTime++;
 							}
 						}
 					}
@@ -492,6 +534,7 @@ void Game::calculateHints()
 						if (possible == noPlayer)
 						{
 							willLoose[winPossibilities[index][COLUMN] + pos * winPossibilities[index][COLUMN_CHANGE]] = true;
+							looseAlert.row[winPossibilities[index][COLUMN] + pos * winPossibilities[index][COLUMN_CHANGE]] = row;
 							canLooseNextTime++;
 						}
 					}
@@ -501,7 +544,7 @@ void Game::calculateHints()
 		}
 	}
 	hintsState = hintNothing;
-	if (canWinNexttime > 0)
+	if (canWinNextTime > 0)
 		hintsState = hintCanWin;
 	if(canLooseNextTime == 1)
 		hintsState = hintCanLoose;
@@ -509,9 +552,24 @@ void Game::calculateHints()
 		hintsState = hintSureToLoose;
 }
 
+WinningPositions Game::getWinningCases()
+{
+	return winningCases;
+}
+
 HintStatus Game::getHints()
 {
 	return hintsState;
+}
+
+LocationAlert Game::getWinHints()
+{
+	return winAlert;
+}
+
+LocationAlert Game::getLooseHints()
+{
+	return looseAlert;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -608,7 +666,7 @@ int32_t Game::getMinimalMove(Player player, uint8_t deepness, int32_t actualMaxi
 	{
 		//_debug("-- MIN " + String(deepness) + " TESTING COLUMN: " + String(column) + "\n");
 		uint8_t row = board[column].getFreeRow();
-		if (row < COLUMN_TILES)
+		if (row != NO_VALUE)
 		{
 			//_debug("-- MIN " + String(deepness) + " TESTING ROW: " + String(row) + "\n");
 			// play the tile with OPPOSITE currentPlayer
@@ -665,7 +723,7 @@ int32_t Game::getMaximalMove(Player player, uint8_t deepness, int32_t actualMini
 	{
 		//_debug("** MAX " + String(deepness) + " TESTING COLUMN: " + String(column) + "\n");
 		uint8_t row = board[column].getFreeRow();
-		if (row < COLUMN_TILES)
+		if (row != NO_VALUE)
 		{
 			//_debug("** MAX " + String(deepness) + " TESTING ROW: " + String(row) + "\n");
 			// play the tile
@@ -688,18 +746,18 @@ int32_t Game::getMaximalMove(Player player, uint8_t deepness, int32_t actualMini
 				//_debug("** MAX " + String(deepness) + " FOUND BETTER VALUES\n");
 				maximalValue = guessValue;
 				bestColumnToPlay = column;
-				for (uint8_t index = 0; index < BOARD_COLUMNS; index++)
+				for (uint8_t index = 1; index < BOARD_COLUMNS; index++)
 				{
-					playPossibilities[index] = 255;
+					playPossibilities[index] = NO_VALUE;
 				}
 				playPossibilities[0] = column;
-				//_debug(" *" + String(column) + "/" + String(row) + " " + String(column) + "=" + String(guessValue));
+				_debug(" ***" + String(column) + "/" + String(row) + " " + String(column) + "=" + String(guessValue) + "\n");
 				//dumpGame();
 			} else {
 				if(guessValue == maximalValue) {
-					//_debug(" =" + String(column) + "=" + String(guessValue));
+					_debug(" ===" + String(column) + "=" + String(guessValue) + "\n");
 					uint8_t index = 0;
-					while (playPossibilities[index] == 255)
+					while (playPossibilities[index] == NO_VALUE)
 						index++;
 					playPossibilities[index] = column;
 				} else {
@@ -720,51 +778,72 @@ uint8_t Game::getIndexPlayingForPlayerIA(Player player)
 		bestColumnToPlay = 3;
 		return bestColumnToPlay;
 	}
-	bestColumnToPlay = 255;
+	bestColumnToPlay = NO_VALUE;
+	uint8_t deepThinking = 2;
+	// on devient idiot à partir du tour n°#
+	uint8_t turnToStartBeingStupid = 10;
+	// avec une probability d'être mauvais de #%
+	uint8_t probabilityToBeStupid = 20;
 	/*
-	Difficulty = document.formo.difficulty.value;
-	switch (Difficulty)
-	{
 	case "Too Easy":
-		Levels = 2;
-		StartStupid = 2;
-		StupidProb = 0.9;
-		break;
-
+		deepThinking = 2;
+		turnToStartBeingStupid = 2;
+		probabilityToBeStupid = 90;
 	case "Easy":
-		Levels = 2;
-		StartStupid = 4;
-		StupidProb = 0.7;
-		break;
-
-	case "Medium":
-		Levels = 2;
-		StartStupid = 10;
-		StupidProb = 0.2;
-		break;
-
-	case "Hard":
-		Levels = 2;
-		StartStupid = 1000;
-		StupidProb = 0.0;
-		break;
-
-	case "Impossible":
-		Levels = 4;
-		StartStupid = 1000;
-		StupidProb = 0.0;
-		break;
-
+		deepThinking = 2;
+		turnToStartBeingStupid = 4;
+		probabilityToBeStupid = 70;
 	default:
-		Levels = 2;
-		StartStupid = 6;
-		StupidProb = 0.7;
-	}
-	//debug("Levels=" + Levels + "," + StupidProb + "," + Difficulty );
+		deepThinking = 2;
+		turnToStartBeingStupid = 6;
+		probabilityToBeStupid = 70;
+	case "Medium":
+		deepThinking = 2;
+		turnToStartBeingStupid = 10;
+		probabilityToBeStupid = 20;
+	case "Hard":
+		deepThinking = 2;
+		turnToStartBeingStupid = 43;
+		probabilityToBeStupid = 0;
+	case "Impossible":
+		deepThinking = 4;
+		turnToStartBeingStupid = 43;
+		probabilityToBeStupid = 0;
 */
 	// MaxMove(player, Levels, Number.MAX_VALUE, "Col");
-	int8_t dummy = getMaximalMove(player, 2, WIN_VALUE * 10);
+	// on calcule le meilleur coup
+	int8_t dummy = getMaximalMove(player, deepThinking, WIN_VALUE * 10);
 
+	// est-on stupide ?
+	if (numberMoves >= turnToStartBeingStupid)
+	{
+		// bingo ?
+		if (random(100) < probabilityToBeStupid)
+		{
+			// on regarde ce qu'il est possible de jouer en dehors du meilleur coup
+			uint8_t which[BOARD_COLUMNS];
+			uint8_t countWhich = 0;
+			for(uint8_t column = 0; column < BOARD_COLUMNS; column++)
+			{
+				if (!board[column].isFull() && bestColumnToPlay != column)
+				{
+					which[countWhich] = column;
+					countWhich++;
+				}
+			}
+			// et on le joue
+			if (countWhich > 0)
+			{
+#if DEBUG
+				_debug(">>>>> Must play: " + String(bestColumnToPlay) + ", but play: ");
+#endif
+				bestColumnToPlay = which[random(countWhich)];
+#if DEBUG
+				_debug(String(bestColumnToPlay) + "\n");
+#endif
+			}
+		}
+	}
 	// make it easier by randomly being stupid
 	/*	moves += 1;
 	if (moves > StartStupid)
@@ -781,16 +860,10 @@ uint8_t Game::getIndexPlayingForPlayerIA(Player player)
 	}
 */
 	uint8_t index = 0;
-	while (playPossibilities[index] == 255)
+	while (playPossibilities[index] == NO_VALUE)
 	{
 		_debug("Possible to play: " + String(playPossibilities[index]) + "\n");
 		index++;
 	}
-	/*if((rand() % 10) > 5) 
-					{
-						maximalValue = guessValue;
-						MaxCol = column;
-					}*/
-
 	return bestColumnToPlay;
 }
