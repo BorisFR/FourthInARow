@@ -60,6 +60,7 @@ void GO_ws2801::showWinningCases(WinningPositions winningCases)
 {
 	for(int win = 0; win < 4; win ++)
 	{
+		//if (winningCases.winning[win].possibilityIndex != NO_VALUE)
 		if (winningCases.winning[win].location[0].index < BOARD_COLUMNS)
 		{
 #if DEBUG

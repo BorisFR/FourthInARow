@@ -19,6 +19,7 @@ class GOA_DFPlayerMini : public GameOutputAudio
 	  void volumeUp();
 	  void volumeDown();
 	  void setVolume(uint8_t value);
+	  void muteOnOff();
 
 	  void playPowerOn();
 	  void playReset();

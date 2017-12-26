@@ -43,6 +43,15 @@ void GOA_DFPlayerMini::doReceiveData()
 	}
 }
 
+void GOA_DFPlayerMini::muteOnOff()
+{ 
+	mute = !mute;
+	if(mute)
+		setVolume(0);
+	else
+		setVolume(volume);
+}
+
 void GOA_DFPlayerMini::playSongInFolder(uint8_t file, uint8_t folder)
 {
 	if(playing)
@@ -143,7 +152,8 @@ void GOA_DFPlayerMini::volumeUp()
 	if (volume < VOLUME_MAX)
 	{
 		volume++;
-		setVolume(volume);
+		if(!mute)
+			setVolume(volume);
 	}
 }
 
@@ -152,7 +162,8 @@ void GOA_DFPlayerMini::volumeDown()
 	if (volume > VOLUME_MIN)
 	{
 		volume--;
-		setVolume(volume);
+		if (!mute)
+			setVolume(volume);
 	}
 }
 

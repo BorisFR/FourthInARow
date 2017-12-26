@@ -22,11 +22,11 @@ void Game::tab(uint8_t space)
 
 void Game::doRealInit()
 {
-	calculateAllPossibilities();
 	for (uint8_t column = 0; column < BOARD_COLUMNS; column++)
 	{
 		board[column].setNumber(column);
 	}
+	calculateAllPossibilities();
 }
 
 #if DEBUG
@@ -42,35 +42,9 @@ void Game::traceLine()
 
 void Game::dumpGame()
 {
-
-	int32_t val[BOARD_COLUMNS][COLUMN_TILES];
-	for (int8_t row = COLUMN_TILES - 1; row >= 0; row--)
-	{
-		for (uint8_t column = 0; column < BOARD_COLUMNS; column++)
-		{
-			val[column][row] = 0;
-		}
-	}
-	for (uint8_t index = 0; index < MAX_POSSIBILITIES; index++)
-	{
-		for (uint8_t pos = 0; pos < 4; pos++)
-		{
-			val[winPossibilities[index][COLUMN] + pos * winPossibilities[index][COLUMN_CHANGE]][winPossibilities[index][ROW] + pos * winPossibilities[index][ROW_CHANGE]] += winPossibilities[index][TILE_VALUE];
-		}
-	}
-/*
-	for (uint8_t index = 0; index < MAX_POSSIBILITIES; index++)
-	{
-		//_debug(String(index) + "= ");
-		int32_t strength = getStrength(currentPlayer, winPossibilities[index][COLUMN], winPossibilities[index][ROW], winPossibilities[index][COLUMN_CHANGE], winPossibilities[index][ROW_CHANGE]) * winPossibilities[index][TILE_VALUE];
-		for (uint8_t pos = 0; pos < 4; pos++)
-		{
-			//_debug(String(winPossibilities[index][COLUMN] + pos * winPossibilities[index][COLUMN_CHANGE]) + "/" + String(winPossibilities[index][ROW] + pos * winPossibilities[index][ROW_CHANGE]) + " ");
-			val[winPossibilities[index][COLUMN] + pos * winPossibilities[index][COLUMN_CHANGE]][winPossibilities[index][ROW] + pos * winPossibilities[index][ROW_CHANGE]] += strength;
-		}
-		//_debug("\n");
-	}
-*/
+	Player other = player1;
+	if(currentPlayer == player1)
+		other = player2;
 	traceLine();
 	for (int8_t row = (COLUMN_TILES - 1); row >= 0; row--)
 	{
@@ -96,21 +70,22 @@ void Game::dumpGame()
 				}
 				else
 				{
-					if (val[column][row] >= 0)
+					int32_t value = getTileValue(currentPlayer, other, column, row);
+					if (value >= 0)
 						_debug(" ");
-					if (val[column][row] < 10)
+					if (value < 10)
 						_debug(" ");
-					if (val[column][row] < 100)
+					if (value < 100)
 						_debug(" ");
-					if (val[column][row] < 1000)
+					if (value < 1000)
 						_debug(" ");
-					if (val[column][row] < 10000)
+					if (value < 10000)
 						_debug(" ");
-					if (val[column][row] < 100000)
+					if (value < 100000)
 						_debug(" ");
-					if (val[column][row] < 1000000)
+					if (value < 1000000)
 						_debug(" ");
-					_debug(String(val[column][row]));
+					_debug(String(value));
 				}
 				break;
 			case player1:
@@ -192,19 +167,18 @@ void Game::calculateAllPossibilities()
 	#endif
 
 	#if DEBUG
-	/*uint8_t val[BOARD_COLUMNS][COLUMN_TILES];
 	for (int8_t row = COLUMN_TILES - 1; row >= 0; row--)
 	{
 		for (uint8_t column = 0; column < BOARD_COLUMNS; column++)
 		{
-			val[column][row] = 0;
+			tileInterest[column][row] = 0;
 		}
 	}
 	for (uint8_t index = 0; index < MAX_POSSIBILITIES; index++)
 	{
 		for (uint8_t pos = 0; pos < 4; pos++)
 		{
-			val[winPossibilities[index][COLUMN] + pos * winPossibilities[index][COLUMN_CHANGE]][winPossibilities[index][ROW] + pos * winPossibilities[index][ROW_CHANGE]] += winPossibilities[index][TILE_VALUE];
+			tileInterest[winPossibilities[index][COLUMN] + pos * winPossibilities[index][COLUMN_CHANGE]][winPossibilities[index][ROW] + pos * winPossibilities[index][ROW_CHANGE]] += winPossibilities[index][TILE_VALUE];
 		}
 	}
 	_debug(F("\nBest places\n"));
@@ -213,7 +187,7 @@ void Game::calculateAllPossibilities()
 		_debug("|");
 		for (uint8_t column = 0; column < BOARD_COLUMNS; column++)
 		{
-			uint8_t v = val[column][row];
+			uint8_t v = tileInterest[column][row];
 			if (v < 10)
 				_debug(" ");
 			if (v < 100)
@@ -222,7 +196,7 @@ void Game::calculateAllPossibilities()
 			_debug("|");
 		}
 		_debug("\n");
-	}*/
+	}
 	#endif
 }
 
@@ -377,21 +351,22 @@ bool Game::isHorizontalWin(uint8_t column1, uint8_t column2, uint8_t column3, ui
 bool Game::isSomeoneWinner()
 {
 	clearWinningCases();
+	bool oneWin = false;
 	// check vertically
 	for (uint8_t column = 0; column < BOARD_COLUMNS; column++)
 	{
 		bool win = isVerticalWin(column);
 		if (win)
-			return true;
+			oneWin = true;
 	}
 	// check horizontally
 	for (uint8_t column = 0; column <= (BOARD_COLUMNS - 4); column++)
 	{
 		bool win = isHorizontalWin(column, column + 1, column + 2, column + 3);
 		if (win)
-			return true;
+			oneWin = true;
 	}
-	return false;
+	return oneWin;
 }
 
 Player Game::getWhoWin()
@@ -639,81 +614,101 @@ int32_t Game::getBoardValue(Player player)
 	return sum;
 }*/
 
+int32_t Game::computeValue(int32_t me, int32_t other)
+{
+	int32_t value = 0;
+	if (me == 4)
+		value += 1000;
+	if (me == 3)
+	{
+		if (other == 0)
+			value += 100;
+	}
+	if (me == 2)
+	{
+		if (other == 0)
+			value += 60;
+	}
+	if (me == 1)
+	{
+		if (other == 0)
+			value += 20;
+	}
+	if (other == 4)
+		value += 1000;
+	if (other == 3)
+	{
+		if (me == 0)
+			value += 90;
+	}
+	if (other == 2)
+	{
+		if (me == 0)
+			value += 60;
+	}
+	if (other == 1)
+	{
+		if (me == 0)
+			value += 20;
+	}
+	return value;
+}
+
+int32_t Game::getTileValue(Player player, Player other, uint8_t column, uint8_t row)
+{
+	int32_t strength = tileInterest[column][row];
+	for (uint8_t index = 0; index < MAX_POSSIBILITIES; index++)
+	{
+		bool found = false;
+		uint8_t meInLine = 0;
+		uint8_t otherInLine = 0;
+		// for each possibility, we have 4 tokens
+		for (uint8_t pos = 0; pos < 4; pos++)
+		{
+			uint8_t c = winPossibilities[index][COLUMN] + pos * winPossibilities[index][COLUMN_CHANGE];
+			uint8_t r = winPossibilities[index][ROW] + pos * winPossibilities[index][ROW_CHANGE];
+			if(column == c && row == r)
+				found = true;
+			Player possible = board[c].getToken(r);
+			if (possible == player)
+				meInLine++;
+			if (possible == other)
+				otherInLine++;
+			if (possible == noPlayer)
+				strength += winPossibilities[index][TILE_VALUE];
+		}
+		if(found)
+			strength += 2 * computeValue(meInLine, otherInLine);
+		else
+			strength += computeValue(meInLine, otherInLine);
+	}
+	return strength;
+}
+
 int32_t Game::getBoardValue(Player player)
 {
 	uint8_t canWinNextTime = 0;
 	uint8_t canLooseNextTime = 0;
 	int32_t strength = 0;
-	Player otherPlayer;
-	if (currentPlayer == player1)
-		otherPlayer = player2;
-	else
-		otherPlayer = player1;
-	for (uint8_t column = 0; column < BOARD_COLUMNS; column++)
+	Player other = player1;
+	if (player == player1)
+		other= player2;
+	for (uint8_t index = 0; index < MAX_POSSIBILITIES; index++)
 	{
-		uint8_t row = board[column].getFreeRow();
-		if (row != NO_VALUE)
+		uint8_t meInLine = 0;
+		uint8_t otherInLine = 0;
+		// for each possibility, we have 4 tokens
+		for (uint8_t pos = 0; pos < 4; pos++)
 		{
-			// check all possibilities
-			for (uint8_t index = 0; index < MAX_POSSIBILITIES; index++)
-			{
-				uint8_t meInLine = 0;
-				uint8_t otherInLine = 0;
-				// for each possibility, we have 4 tokens
-				for (uint8_t pos = 0; pos < 4; pos++)
-				{
-					Player possible = board[winPossibilities[index][COLUMN] + pos * winPossibilities[index][COLUMN_CHANGE]].getToken(winPossibilities[index][ROW] + pos * winPossibilities[index][ROW_CHANGE]);
-					if (possible == currentPlayer)
-						meInLine++;
-					if (possible == otherPlayer)
-						otherInLine++;
-					if (possible == noPlayer)
-						strength += winPossibilities[index][TILE_VALUE];
-				}
-				if (meInLine == 4) {
-						strength += 1000;
-						_debug("!");
-				}
-				if (meInLine == 3)
-				{
-					if(otherInLine == 0)
-						strength += 100;
-				}
-				if (meInLine == 2)
-				{
-					if (otherInLine == 0) {
-						strength += 50;
-						_debug("@");
-					}
-				}
-				if (meInLine == 1)
-				{
-					if (otherInLine == 0)
-						strength += 10;
-				}
-				if (otherInLine == 4) {
-					strength += 1000;
-					_debug("&");
-				}
-				if (otherInLine == 3)
-				{
-					if (meInLine == 0)
-						strength += 90;
-				}
-				if (otherInLine == 2)
-				{
-					if (meInLine == 0) {
-						strength += 60;
-						_debug("$");
-					}
-				}
-				if (otherInLine == 1)
-				{
-					if (meInLine == 0)
-						strength += 20;
-				}
-			}
+			Player possible = board[winPossibilities[index][COLUMN] + pos * winPossibilities[index][COLUMN_CHANGE]].getToken(winPossibilities[index][ROW] + pos * winPossibilities[index][ROW_CHANGE]);
+			if (possible == player)
+				meInLine++;
+			if (possible == other)
+				otherInLine++;
+			if (possible == noPlayer)
+				strength += winPossibilities[index][TILE_VALUE];
 		}
+		strength += computeValue(meInLine, otherInLine);
 	}
 	return strength;
 }
