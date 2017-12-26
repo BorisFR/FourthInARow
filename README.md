@@ -149,13 +149,13 @@ Les fichiers Game.h et Game.cpp contiennent toute la logique d'exécution du jeu
 
 #### "GameInput.hpp"
 
-Les fichiers "GameInput.h" et "GameInput.cpp" contiennent toute la logique pour que les joueurs puissent agir sur le jeu. A ce titre, c'est ici que l'on définit toutes les entrées possibles comme la gestion des boutons.
-C'est fichiers contiennent une implémentation à vide de ces fonctions ! L'implémentation réelle est effectuée dans d'autres fichiers. Il suffit d'indiquer dans le fichier "MyConfig.h" l'implémentation réelle que vous voulez utiliser.
+Les fichiers "GameInput.hpp" et "GameInput.cpp" contiennent toute la logique pour que les joueurs puissent agir sur le jeu. A ce titre, c'est ici que l'on définit toutes les entrées possibles comme la gestion des boutons.
+C'est fichiers contiennent une implémentation à vide de ces fonctions ! L'implémentation réelle est effectuée dans d'autres fichiers. Il suffit d'indiquer dans le fichier "MyConfig.hpp" l'implémentation réelle que vous voulez utiliser.
 
 Voici les implémentations disponibles :
 
-- GIserial.hpp/cpp : interface Serial (utilisable uniquement en mode debug).
-- GI9buttons.hpp/.cpp : 7 boutons pour le choix de la colonne et 2 boutons pour le choix du nombre de joueurs.
+- GI_serial.hpp/cpp : interface Serial (utilisable uniquement en mode debug).
+- GI_9buttons.hpp/.cpp : 7 boutons pour le choix de la colonne et 2 boutons pour le choix du nombre de joueurs.
 
 #### "GameInputAudio.hpp"
 
@@ -163,7 +163,7 @@ Les fichiers "GameInputAudio.h" et "GameInputAudio.cpp" contiennent toute la log
 
 Voici les implémentations disponibles concernant le son :
 
-- GIAec11.hpp/cpp : encodeur rotatif EC11, pour la gestion du son (volume +/- et mute).
+- GIA_ec11.hpp/cpp : encodeur rotatif EC11, pour la gestion du son (volume +/- et mute).
 
 #### "GameOutputAudio.hpp"
 
@@ -171,17 +171,18 @@ Les fichiers "GameOutputAudio.h" et "GameOutputAudio.cpp" contiennent toute la l
 
 Voici les implémentations disponibles concernant le son :
 
-- aucune pour le moment
+- GOA_DFPlayerMini.hpp/.cpp : mini carte son mp3/wav sur micro SD.
 
 #### "GameOutput.hpp"
 
 Les fichiers "GameOutput.h" et "GameOutput.cpp" contiennent toute la logique pour que le jeu puissent communiquer avec les joueurs. C'est donc ici que l'on gérera l'affichage du plateau de jeu (les LEDs), l'audio et l'affichage d'animations.
-Ces fichiers contiennent une implémentation à vide de ces fonctions ! L'implémentation réelle est effectuée dans d'autres fichiers (par héritage de class). Mais pour vous, il suffit d'indiquer dans le fichier "MyConfig.h" l'implémentation réelle que vous voulez utiliser.
+Ces fichiers contiennent une implémentation à vide de ces fonctions ! L'implémentation réelle est effectuée dans d'autres fichiers (par héritage de class). Mais pour vous, il suffit d'indiquer dans le fichier "MyConfig.hpp" l'implémentation réelle que vous voulez utiliser.
 
 Voici les implémentations disponibles concernant l'affichage du plateau :
 
-- GOserial.hpp/.cpp : rendu dans l'interface Série du PC/Mac/Linux
-- GOFeatherOled.hpp/.cpp : un rendu basique du plateau de jeu sur écran [Featherwing OLED 128x32](https://www.adafruit.com/product/2900). Utilise les bibliothèques Adafruit_SSD1306 et Adafruit_GFX.
+- GO_serial.hpp/.cpp : rendu dans l'interface Série du PC/Mac/Linux
+- GO_ws2801.hpp/.cpp : affichage via ruban led type ws2801. utilise la bibliothèque Adafruit_WS2801.
+- pour debug lors du dév : GO_FeatherOled.hpp/.cpp : un rendu basique du plateau de jeu sur écran [Featherwing OLED 128x32](https://www.adafruit.com/product/2900). Utilise les bibliothèques Adafruit_SSD1306 et Adafruit_GFX.
 
 #### Autres fichiers
 
@@ -216,7 +217,7 @@ C'est un premier jet, il serait étonnant que j'ai tout bon du premier coup ;) J
 
 **Alimentation :** 5V 10A - [https://fr.aliexpress.com/item/AC-DC-Power-Supply-5V-5A-6A-8A-10A-Adapter-Charger-Transformer-25W-60W-40W-50W/32756921792.html](https://fr.aliexpress.com/item/AC-DC-Power-Supply-5V-5A-6A-8A-10A-Adapter-Charger-Transformer-25W-60W-40W-50W/32756921792.html)  
 
-**Connecteur d'alimentation :** Jack 5,5mm / 2,1mm - réf 48147 - [https://www.gotronic.fr/art-embase-alim-sc215-123.htm](https://www.gotronic.fr/art-embase-alim-sc215-123.htm)  
+**Connecteur d'alimentation :** Jack 5,5mm / 2,1mm - réf 48138 - [https://www.gotronic.fr/art-embase-alim-sa21a-14961.htm](https://www.gotronic.fr/art-embase-alim-sa21a-14961.htm) *<= OK!*  
 
 **Electronique :** Huzzah32 - [https://www.adafruit.com/product/3405](https://www.adafruit.com/product/3405) *<= OK!*  
 
