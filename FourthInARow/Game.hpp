@@ -36,6 +36,7 @@ class Game {
 		#if DEBUG
 			void (*_debug)(String text);
 			void traceLine();
+			void tab(uint8_t space);
 		#endif
 		void doRealInit();
 		void clearWinningCases();
@@ -54,10 +55,10 @@ class Game {
 		bool inbounds(int8_t row, int8_t column);
 		void calculateAllPossibilities();
 		uint8_t numberMoves;
-		int32_t getStrength(Player player, uint8_t column, uint8_t row, int8_t columnChange, int8_t rowChange);
+		//int32_t getStrength(Player player, uint8_t column, uint8_t row, int8_t columnChange, int8_t rowChange);
 		int32_t getBoardValue(Player player);
-		int32_t getMinimalMove(Player player, uint8_t deepness, int32_t actualMaximal);
-		int32_t getMaximalMove(Player player, uint8_t deepness, int32_t ParentMin);
+		int32_t getMinimalMove(Player player, uint8_t deepness, int32_t alpha);
+		int32_t getMaximalMove(Player player, uint8_t deepness, int32_t beta);
 		uint8_t bestColumnToPlay;
 		uint8_t playPossibilities[BOARD_COLUMNS];
 		HintStatus hintsState;

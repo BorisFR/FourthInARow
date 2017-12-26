@@ -8,8 +8,13 @@ void Game::doInit(void (*debug)(String))
 	doRealInit();
 	_debug("OK\n");
 };
+void Game::tab(uint8_t space)
+{
+	for(uint8_t index = 6; index > space; index--)
+		_debug(".");
+}
 #else
-void Game::doInit()
+‡void Game::doInit()
 {
 	doRealInit();
 };
@@ -53,7 +58,7 @@ void Game::dumpGame()
 			val[winPossibilities[index][COLUMN] + pos * winPossibilities[index][COLUMN_CHANGE]][winPossibilities[index][ROW] + pos * winPossibilities[index][ROW_CHANGE]] += winPossibilities[index][TILE_VALUE];
 		}
 	}
-
+/*
 	for (uint8_t index = 0; index < MAX_POSSIBILITIES; index++)
 	{
 		//_debug(String(index) + "= ");
@@ -65,7 +70,7 @@ void Game::dumpGame()
 		}
 		//_debug("\n");
 	}
-
+*/
 	traceLine();
 	for (int8_t row = (COLUMN_TILES - 1); row >= 0; row--)
 	{
@@ -576,7 +581,7 @@ LocationAlert Game::getLooseHints()
 // IA: simple Min/Max
 ////////////////////////////////////////////////////////////////////////////////
 
-int32_t Game::getStrength(Player player, uint8_t column, uint8_t row, int8_t columnChange, int8_t rowChange)
+/*int32_t Game::getStrength(Player player, uint8_t column, uint8_t row, int8_t columnChange, int8_t rowChange)
 {
 	Player otherPlayer;
 	if (player == player1)
@@ -588,9 +593,7 @@ int32_t Game::getStrength(Player player, uint8_t column, uint8_t row, int8_t col
 		otherPlayer = player1;
 	}
 	uint8_t meInLine = 0;
-	uint8_t meMaxLine = 0;
 	uint8_t otherInLine = 0;
-	uint8_t otherMaxLine = 0;
 	for (uint8_t pos = 0; pos < 4; pos++)
 	{
 		Player possible = board[column + pos * columnChange].getToken(row + pos * rowChange);
@@ -598,46 +601,31 @@ int32_t Game::getStrength(Player player, uint8_t column, uint8_t row, int8_t col
 		if (possible == player)
 		{
 			meInLine += 1;
-			if (meInLine > meMaxLine)
-				meMaxLine = meInLine;
 		}
-		else
-		{
-			meInLine = 0;
-		}
-
 		if (possible == otherPlayer)
 		{
 			otherInLine += 1;
-			if (otherInLine > otherMaxLine)
-				otherMaxLine = otherInLine;
-		}
-		else
-		{
-			otherInLine = 0;
 		}
 	}
 	int32_t strength = 0;
-	if (meMaxLine == 1)
+	if (meInLine == 1)
 		strength += 1;
-	if (meMaxLine == 2)
-		strength += 4;
-	if (meMaxLine == 3)
-		strength += (64 - (otherMaxLine * 16));
-	if (meMaxLine == 4)
-		strength = WIN_VALUE;
+	if (meInLine == 2)
+		strength += 2;
+	if (meInLine == 3)
+		strength += 8; //(64 - (otherMaxLine * 16));
+	if (meInLine == 4)
+		return WIN_VALUE;
 
-	if (otherMaxLine == 1)
-		strength -= 1;
-	if (otherMaxLine == 2)
-		strength -= 4;
-	if (otherMaxLine == 3)
-		strength -= (64 - (meMaxLine * 16));
-	if (otherMaxLine == 4)
-		strength = -WIN_VALUE;
-
-	//_debug("Strength: " + String(strength) + "\n");
-	//dumpGame();
+	if (otherInLine == 1)
+		strength -= 10;
+	if (otherInLine == 2)
+		strength -= 12;
+	if (otherInLine == 3)
+		strength -= 22; // (64 - (meMaxLine * 16));
+	if (otherInLine == 4)
+		return -WIN_VALUE;
+	strength += (4 - meInLine - otherInLine) * 4;
 	return strength;
 }
 
@@ -648,27 +636,107 @@ int32_t Game::getBoardValue(Player player)
 	{
 		sum += getStrength(player, winPossibilities[index][COLUMN], winPossibilities[index][ROW], winPossibilities[index][COLUMN_CHANGE], winPossibilities[index][ROW_CHANGE]) * winPossibilities[index][TILE_VALUE];
 	}
-	//_debug("xx VALUE: " + String(sum) + "\n");
 	return sum;
-}
+}*/
 
-int32_t Game::getMinimalMove(Player player, uint8_t deepness, int32_t actualMaximal)
+int32_t Game::getBoardValue(Player player)
 {
-	if (deepness <= 0)
-	{
-		//_debug("-- MIN " + String(deepness) + " DEEPNESS END\n");
-		return getBoardValue(player);
-	}
-	//_debug("-- MIN " + String(deepness) + " DEEPNESS: " + String(deepness) + "\n");
-	//int32_t MinCol = 0;
-	int32_t minimalValue = WIN_VALUE * 10;
+	uint8_t canWinNextTime = 0;
+	uint8_t canLooseNextTime = 0;
+	int32_t strength = 0;
+	Player otherPlayer;
+	if (currentPlayer == player1)
+		otherPlayer = player2;
+	else
+		otherPlayer = player1;
 	for (uint8_t column = 0; column < BOARD_COLUMNS; column++)
 	{
-		//_debug("-- MIN " + String(deepness) + " TESTING COLUMN: " + String(column) + "\n");
 		uint8_t row = board[column].getFreeRow();
 		if (row != NO_VALUE)
 		{
-			//_debug("-- MIN " + String(deepness) + " TESTING ROW: " + String(row) + "\n");
+			// check all possibilities
+			for (uint8_t index = 0; index < MAX_POSSIBILITIES; index++)
+			{
+				uint8_t meInLine = 0;
+				uint8_t otherInLine = 0;
+				// for each possibility, we have 4 tokens
+				for (uint8_t pos = 0; pos < 4; pos++)
+				{
+					Player possible = board[winPossibilities[index][COLUMN] + pos * winPossibilities[index][COLUMN_CHANGE]].getToken(winPossibilities[index][ROW] + pos * winPossibilities[index][ROW_CHANGE]);
+					if (possible == currentPlayer)
+						meInLine++;
+					if (possible == otherPlayer)
+						otherInLine++;
+					if (possible == noPlayer)
+						strength += winPossibilities[index][TILE_VALUE];
+				}
+				if (meInLine == 4) {
+						strength += 1000;
+						_debug("!");
+				}
+				if (meInLine == 3)
+				{
+					if(otherInLine == 0)
+						strength += 100;
+				}
+				if (meInLine == 2)
+				{
+					if (otherInLine == 0) {
+						strength += 50;
+						_debug("@");
+					}
+				}
+				if (meInLine == 1)
+				{
+					if (otherInLine == 0)
+						strength += 10;
+				}
+				if (otherInLine == 4) {
+					strength += 1000;
+					_debug("&");
+				}
+				if (otherInLine == 3)
+				{
+					if (meInLine == 0)
+						strength += 90;
+				}
+				if (otherInLine == 2)
+				{
+					if (meInLine == 0) {
+						strength += 60;
+						_debug("$");
+					}
+				}
+				if (otherInLine == 1)
+				{
+					if (meInLine == 0)
+						strength += 20;
+				}
+			}
+		}
+	}
+	return strength;
+}
+
+int32_t Game::getMinimalMove(Player player, uint8_t deepness, int32_t alpha)
+{
+	if (deepness <= 0)
+	{
+		int32_t res = getBoardValue(player);
+		//_debug("=" + String(res) + "\n");
+		return res;
+	}
+	int32_t beta = WIN_VALUE * 10; //maxi;
+	_debug("\n");
+	//tab(deepness);
+	//_debug("-- MIN " + String(deepness) + " DEEPNESS: " + String(deepness) + " ALPHA: " + String(alpha) + "\n");
+	for (uint8_t column = 0; column < BOARD_COLUMNS; column++)
+	{
+		uint8_t row = board[column].getFreeRow();
+		if (row != NO_VALUE)
+		{
+			tab(deepness);
+			_debug(String(column) + "/" + String(row));
 			// play the tile with OPPOSITE currentPlayer
 			if (player == player1)
 			{
@@ -679,83 +747,77 @@ int32_t Game::getMinimalMove(Player player, uint8_t deepness, int32_t actualMaxi
 				board[column].setToken(player1, row);
 			}
 			// calculate the resulting board value
-			int32_t guessValue = getMaximalMove(player, deepness - 1, minimalValue);
+			int32_t guessValue = getMaximalMove(player, deepness - 1, beta);
+			_debug("=" + String(guessValue));
 			// undo move
 			board[column].setToken(noPlayer, row);
 			if (guessValue == -WIN_VALUE) {
-				//_debug(F("-- MIN " + String(deepness) + " WE LOOSE IF PLAY HERE!\n"));
+				_debug(" WE LOOSE IF PLAY HERE!\n");
 				return -WIN_VALUE;
 			}
-			if (guessValue < actualMaximal)
-			{ // no need to go further, because the min will be less than the max already found
-				//_debug("-- MIN " + String(deepness) + " NO NEED TO SEARCH DEEPER\n");
-				//_debug(" q:" + String(column) + "/" + String(row) + " " + String(guessValue) + "<" + String(actualMaximal));
-				//dumpGame();
-				return guessValue;
-			}
-			if (guessValue < minimalValue)
+			if (guessValue < beta)
 			{ // less than
-				//_debug("-- MIN " + String(deepness) + " FOUND BETTER VALUES\n");
-				minimalValue = guessValue;
+				_debug("***");
+				beta = guessValue;
 				//MinCol = column;
 			}
+			if (beta < alpha)
+			{
+				_debug("exit\n");
+				return guessValue;
+			}
+			_debug("\n");
 		}
 	}
-	//debug( "Min -> minimalValue=" + minimalValue + ", MinCol=" + MinCol + "\n" );
-	//_debug("---------------- MIN " + String(deepness) + " -> minimalValue=" + String(minimalValue) + ", MinCol=" + String(MinCol) + "\n");
-	return minimalValue;
+	return beta;
 }
 
-int32_t Game::getMaximalMove(Player player, uint8_t deepness, int32_t actualMinimal)
+int32_t Game::getMaximalMove(Player player, uint8_t deepness, int32_t beta)
 {
-
 	if (deepness <= 0)
 	{
-		//_debug("** MAX " + String(deepness) + " DEEPNESS END\n");
-		//dumpGame();
 		int32_t res = getBoardValue(player);
-		//_debug(String(res) + "\n");
-		return res;
+		//_debug("=" + String(res) + "\n");
+		return -res;
 	}
-	//_debug("** MAX " + String(deepness) + " DEEPNESS: " + String(deepness) + "\n");
-	int32_t maximalValue = -WIN_VALUE * 10;
+	int32_t alpha = -WIN_VALUE * 10;
+	_debug("\n");
+	//tab(deepness);
+	//_debug("** MAX " + String(deepness) + " DEEPNESS: " + String(deepness) + " BETA: " + String(beta) + "\n");
 	for (uint8_t column = 0; column < BOARD_COLUMNS; column++)
 	{
-		//_debug("** MAX " + String(deepness) + " TESTING COLUMN: " + String(column) + "\n");
 		uint8_t row = board[column].getFreeRow();
 		if (row != NO_VALUE)
 		{
-			//_debug("** MAX " + String(deepness) + " TESTING ROW: " + String(row) + "\n");
+			if (bestColumnToPlay == NO_VALUE)
+				bestColumnToPlay = column;
+			tab(deepness);
+			_debug(String(column) + "/" + String(row));
 			// play the tile
 			board[column].setToken(player, row);
-			int32_t guessValue = getMinimalMove(player, deepness - 1, maximalValue);
+			int32_t guessValue = getMinimalMove(player, deepness - 1, alpha);
+			_debug("=" + String(guessValue));
 			// undo move
 			board[column].setToken(noPlayer, row);
 			if (guessValue == WIN_VALUE) {
-				//_debug("** MAX " + String(deepness) + " WE WIN PLAYING HERE!\n");
+				_debug(" WE WIN PLAYING HERE!\n");
 				return WIN_VALUE; // game won
 			}
-			if (guessValue > actualMinimal)
+			if (guessValue > alpha)
 			{
-				//_debug("** MAX " + String(deepness) + " NO NEED TO SEARCH DEEPER\n");
-				//_debug(" q:" + String(guessValue) + ">" + String(actualMinimal));
-				return guessValue;
-			}
-			if (guessValue > maximalValue)
-			{
-				//_debug("** MAX " + String(deepness) + " FOUND BETTER VALUES\n");
-				maximalValue = guessValue;
+				_debug("****");
+				alpha = guessValue;
 				bestColumnToPlay = column;
 				for (uint8_t index = 1; index < BOARD_COLUMNS; index++)
 				{
 					playPossibilities[index] = NO_VALUE;
 				}
 				playPossibilities[0] = column;
-				_debug(" ***" + String(column) + "/" + String(row) + " " + String(column) + "=" + String(guessValue) + "\n");
+				//_debug(" ***" + String(column) + "/" + String(row) + " " + String(column) + "=" + String(guessValue) + "\n");
 				//dumpGame();
 			} else {
-				if(guessValue == maximalValue) {
-					_debug(" ===" + String(column) + "=" + String(guessValue) + "\n");
+				if(guessValue == alpha) {
+					//_debug(" ===" + String(column) + "=" + String(guessValue) + "\n");
 					uint8_t index = 0;
 					while (playPossibilities[index] == NO_VALUE)
 						index++;
@@ -764,11 +826,15 @@ int32_t Game::getMaximalMove(Player player, uint8_t deepness, int32_t actualMini
 					//_debug(" <" + String(column) + "=" + String(guessValue));
 				}
 			}
+			if(beta < alpha)
+			{
+				_debug("exit\n");
+				return guessValue;
+			}
+			_debug("\n");
 		}
 	}
-	//debug( "Max -> maximalValue=" + maximalValue + ", MaxCol=" + MaxCol + "\n" );
-	//_debug(">>>>>>>>>>>>>>>> MAX " + String(deepness) + " -> maximalValue=" + String(maximalValue) + ", MaxCol=" + String(MaxCol) + "\n");
-	return maximalValue;
+	return alpha;
 }
 
 uint8_t Game::getIndexPlayingForPlayerIA(Player player)
@@ -781,9 +847,9 @@ uint8_t Game::getIndexPlayingForPlayerIA(Player player)
 	bestColumnToPlay = NO_VALUE;
 	uint8_t deepThinking = 2;
 	// on devient idiot à partir du tour n°#
-	uint8_t turnToStartBeingStupid = 10;
+	uint8_t turnToStartBeingStupid = 50;// 10; max 42 tours
 	// avec une probability d'être mauvais de #%
-	uint8_t probabilityToBeStupid = 20;
+	uint8_t probabilityToBeStupid = 70;
 	/*
 	case "Too Easy":
 		deepThinking = 2;

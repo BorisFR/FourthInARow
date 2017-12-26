@@ -37,9 +37,9 @@ void GOA_DFPlayerMini::doReceiveData()
 		byte returned[10];
 		for (byte k = 0; k < 10; k++)
 			returned[k] = DFPLAYER_MINI_SERIAL.read();
-		#if DEBUG
+		/*#if DEBUG
 		_debug("DFPlayer Mini - command: " + String(returned[3]) + "; parameters: " + String(returned[5]) + ", " + String(returned[6]) + "\n");
-		#endif
+		#endif*/
 	}
 }
 
@@ -48,9 +48,9 @@ void GOA_DFPlayerMini::playSongInFolder(uint8_t file, uint8_t folder)
 	if(playing)
 	{
 		sendCommand(0x16, 0x00, 0x00); // [DH]=X, [DL]=X, Stop playing current track
-#if DEBUG
+/*#if DEBUG
 		_debug(F("Stop audio\n"));
-#endif
+#endif*/
 		delay(30);
 	}
 	else
@@ -59,9 +59,9 @@ void GOA_DFPlayerMini::playSongInFolder(uint8_t file, uint8_t folder)
 	}
 	sendCommand(0x0F, folder, file); // play (0x0F) file "005.mp3" or "005.wav" from folder "01"
 									 // [DH]=Folder, [DL]=File - Specify folder and file to playback
-#if DEBUG
+/*#if DEBUG
 	_debug("Play: " + String(folder) + "/" + String(file) + ".mp3\n");
-#endif
+#endif*/
 }
 
 void GOA_DFPlayerMini::playRandomSongInFolder(uint8_t folder)
