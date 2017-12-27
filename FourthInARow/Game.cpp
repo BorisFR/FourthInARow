@@ -622,24 +622,24 @@ int32_t Game::computeValue(int32_t me, int32_t other)
 	if (me == 3)
 	{
 		if (other == 0)
-			value += 100;
+			value += 150;
 	}
 	if (me == 2)
 	{
 		if (other == 0)
-			value += 60;
+			value += 70;
 	}
 	if (me == 1)
 	{
 		if (other == 0)
-			value += 20;
+			value += 30;
 	}
 	if (other == 4)
 		value += 1000;
 	if (other == 3)
 	{
 		if (me == 0)
-			value += 90;
+			value += 110;
 	}
 	if (other == 2)
 	{
@@ -840,7 +840,7 @@ uint8_t Game::getIndexPlayingForPlayerIA(Player player)
 		return bestColumnToPlay;
 	}
 	bestColumnToPlay = NO_VALUE;
-	uint8_t deepThinking = 2;
+	uint8_t deepThinking = 6;
 	// on devient idiot à partir du tour n°#
 	uint8_t turnToStartBeingStupid = 50;// 10; max 42 tours
 	// avec une probability d'être mauvais de #%
