@@ -1,24 +1,51 @@
 include <parametre.scad>
 use <bouton_arcade.scad>
 
+translate([0, -profondeur_dessus / 2, 0])
 dessus();
 
 module dessus() {
     color([0, 0, 0]) {
         difference() {
+			// une belle dalle
             cube(size=[largeur_mur, profondeur_dessus, epaisseur_tole_dessus]);
+			// on fait les trous pour les 7 colonnes
             pose_trous_bouton();
-            translate([-1, deport_glissiere, profondeur_glissiere])
-                cube(size=[largeur_mur + 2, glissiere_mur_plexi, profondeur_glissiere + 2]);
-            translate([-1, profondeur_dessus - deport_glissiere - glissiere_mur_plexi, profondeur_glissiere])
-                cube(size=[largeur_mur + 2, glissiere_mur_plexi, profondeur_glissiere + 2]);
+			
+			
+			// rainure pour grille de LEDs
+            translate([- difference_objet_marge / 2, 
+					profondeur_dessus / 2 - largeur_rainure_grille_led - espace_vide_milieu / 2, 
+					epaisseur_tole_dessus - profondeur_rainure_grille_led])
+                cube(size=[largeur_mur + difference_objet_marge, largeur_rainure_grille_led, profondeur_rainure_grille_led + difference_objet_marge]);
+
+			// rainure pour grille de LEDs
+            translate([- difference_objet_marge / 2, 
+					profondeur_dessus / 2 + espace_vide_milieu / 2, 
+					epaisseur_tole_dessus - profondeur_rainure_grille_led])
+                cube(size=[largeur_mur + difference_objet_marge, largeur_rainure_grille_led, profondeur_rainure_grille_led + difference_objet_marge]);
+
+			
+			// rainure pour plexi blanc et mur star wars
+            translate([- difference_objet_marge / 2, 
+					profondeur_dessus / 2 - largeur_rainure_mur_plexi - espace_vide_milieu / 2 - epaisseur_tole_grille_led - profondeur_separateur_led,
+					epaisseur_tole_dessus - profondeur_rainure_mur_plexi])
+                cube(size=[largeur_mur + difference_objet_marge, largeur_rainure_mur_plexi, profondeur_rainure_mur_plexi + difference_objet_marge]);
+				
+			// rainure pour plexi blanc et mur star wars
+            translate([- difference_objet_marge / 2, 
+					profondeur_dessus / 2 + espace_vide_milieu / 2 + epaisseur_tole_grille_led + profondeur_separateur_led, 
+					epaisseur_tole_dessus - profondeur_rainure_mur_plexi])
+                cube(size=[largeur_mur + difference_objet_marge, largeur_rainure_mur_plexi, profondeur_rainure_mur_plexi + difference_objet_marge]);
+		
         }
     }
 }
 
 module pose_trous_bouton() {
     for(colonne = [1 : nombre_colonnes]) {
-        translate([marge_largeur_dessus + (diametre_bouton_arcade - rayon_bouton_arcade) / 2 + (colonne - 1) * (diametre_bouton_arcade + ecart_entre_fenetre), marge_profondeur_dessus + (diametre_bouton_arcade - rayon_bouton_arcade) / 2, 0]) 
-            trou_bouton_arcade(epaisseur_tole_dessus);
+        translate([marge_largeur_dessus + (diametre_bouton_arcade - rayon_bouton_arcade) / 2 + (colonne - 1) * (diametre_bouton_arcade + ecart_entre_fenetre), 
+				profondeur_dessus / 2 - rayon_trou_bouton_arcade, - difference_objet_marge / 2]) 
+            trou_bouton_arcade(epaisseur_tole_dessus + difference_objet_marge);
     }
 }
