@@ -8,6 +8,10 @@ module dessus() {
         difference() {
             cube(size=[largeur_mur, profondeur_dessus, epaisseur_tole_dessus]);
             pose_trous_bouton();
+            translate([-1, deport_glissiere, profondeur_glissiere])
+                cube(size=[largeur_mur + 2, glissiere_mur_plexi, profondeur_glissiere + 2]);
+            translate([-1, profondeur_dessus - deport_glissiere - glissiere_mur_plexi, profondeur_glissiere])
+                cube(size=[largeur_mur + 2, glissiere_mur_plexi, profondeur_glissiere + 2]);
         }
     }
 }

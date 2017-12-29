@@ -38,12 +38,22 @@ epaisseur_plexi_blanc = 2;
 epaisseur_jeu = espace_vide_milieu + 2 * epaisseur_tole_mur + 2 * epaisseur_plexi_blanc + 2 * hauteur_separateur_led;
 
 // la plaque du dessus avec les boutons de choix de colonne
-epaisseur_tole_dessus = 2;
+epaisseur_tole_dessus = 4;
 glissiere_mur_plexi = epaisseur_tole_mur + epaisseur_plexi_blanc + 0.5;
 deport_glissiere = 2;
-debord_dessus =  + 2 * glissiere_mur_plexi + 2 * deport_glissiere;
+profondeur_glissiere = 2;
+debord_dessus = 2 * glissiere_mur_plexi + 2 * deport_glissiere;
 profondeur_dessus = epaisseur_jeu + debord_dessus;
 marge_profondeur_dessus = (profondeur_dessus - diametre_bouton_arcade) / 2;
 echo("marge_profondeur_dessus=", marge_profondeur_dessus);
 marge_largeur_dessus = (largeur_mur - (nombre_colonnes * diametre_bouton_arcade) - ((nombre_colonnes - 1) * ecart_entre_fenetre)) / 2;
 echo("marge_largeur_dessus=", marge_largeur_dessus);
+
+// la plaque de dessous
+epaisseur_tole_dessous = 4;
+debord_dessous = 2 * glissiere_mur_plexi + 2 * deport_glissiere;
+deport_glissiere_dessous = 2;
+profondeur_glissiere_dessous = 2;
+profondeur_dessous = epaisseur_jeu + debord_dessous;
+
+
