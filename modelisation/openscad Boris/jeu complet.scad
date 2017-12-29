@@ -3,12 +3,13 @@ use <mur.scad>
 use <plexi blanc mur.scad>
 use <dessus.scad>
 
-mur();
-translate([0, 0, epaisseur_jeu - epaisseur_tole_mur])
+translate([0, 0, deport_glissiere])
     mur();
-translate([0, 0, epaisseur_tole_mur])
+translate([0, 0, profondeur_dessus - deport_glissiere - epaisseur_tole_mur])
+    mur();
+translate([0, 0, deport_glissiere + epaisseur_tole_mur])
     plexi_blanc();
-translate([0, 0, epaisseur_jeu - epaisseur_tole_mur - epaisseur_plexi_blanc])
+translate([0, 0, profondeur_dessus - deport_glissiere - epaisseur_tole_mur - epaisseur_plexi_blanc])
     plexi_blanc();
 
 rotate([90, 0, 0])

@@ -6,7 +6,7 @@ dessus();
 module dessus() {
     color([0, 0, 0]) {
         difference() {
-            cube(size=[largeur_mur, epaisseur_jeu, epaisseur_tole_dessus]);
+            cube(size=[largeur_mur, profondeur_dessus, epaisseur_tole_dessus]);
             pose_trous_bouton();
         }
     }
