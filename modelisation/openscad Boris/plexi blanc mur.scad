@@ -1,5 +1,6 @@
 include <parametre.scad>
 
+// aucun intérêt à exporter ça !
 plexi_blanc();
 
 // plexi blanc

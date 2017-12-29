@@ -1,6 +1,7 @@
 include <parametre.scad>
 
-//projection(cut = false) mur();
+// pour exporter en .dxf
+//projection(cut = false)
 mur();
 
 // plaque mur déco

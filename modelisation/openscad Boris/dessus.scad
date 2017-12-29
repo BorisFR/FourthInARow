@@ -1,6 +1,9 @@
 include <parametre.scad>
 use <bouton_arcade.scad>
 
+// pour exporter en .dxf
+//projection(cut = false) dessus();
+
 translate([0, -profondeur_dessus / 2, 0])
 dessus();
 
