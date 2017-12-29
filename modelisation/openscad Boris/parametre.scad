@@ -95,7 +95,14 @@ echo("profondeur_dessus=", profondeur_dessus);
 // la plaque de dessous
 ///////////////////////
 epaisseur_tole_dessous = 4; // ce socle sera rainurée pour tenir les plaques !
-dessous_debord_rainure = 100;
+dessous_debord_rainure = 50;
 profondeur_dessous = epaisseur_jeu + 2 * dessous_debord_rainure;
 echo("profondeur_dessous=", profondeur_dessous);
 
+
+hauteur_cote = epaisseur_tole_dessous + hauteur_mur + epaisseur_tole_dessus - 2 * profondeur_rainure_grille_led;
+largeur_cote = profondeur_dessus;
+
+// côté gauche
+//////////////
+epaisseur_tole_gauche = 2;

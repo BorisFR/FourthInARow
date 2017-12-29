@@ -4,6 +4,7 @@ use <plexi blanc mur.scad>
 use <grille_led.scad>
 use <dessus.scad>
 use <dessous.scad>
+use <cote_gauche.scad>
 
 // pour se mettre sur le plancher :)
 translate([0, epaisseur_tole_dessous, 0]) {
@@ -57,3 +58,9 @@ translate([0, epaisseur_tole_dessous, 0]) {
 	}
 
 }
+
+	
+// on installe le côté gauche
+rotate([0, 270, 0])
+	translate([dessous_debord_rainure - debord_rainure, 0, 0])
+		#cote_gauche();
