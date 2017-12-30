@@ -5,6 +5,8 @@ use <grille_led.scad>
 use <dessus.scad>
 use <dessous.scad>
 use <cote_gauche.scad>
+use <cote_droit.scad>
+use <haut_parleur_HP8R.scad>
 
 // pour se mettre sur le plancher :)
 translate([0, epaisseur_tole_dessous, 0]) {
@@ -61,6 +63,19 @@ translate([0, epaisseur_tole_dessous, 0]) {
 
 	
 // on installe le côté gauche
-rotate([0, 270, 0])
-	translate([dessous_debord_rainure - debord_rainure, 0, 0])
-		#cote_gauche();
+rotate([0, 270, 0]) {
+	translate([dessous_debord_rainure - debord_rainure, 0, 0]) {
+		cote_gauche();
+		translate([(largeur_cote - HP8R_largeur) / 2, (hauteur_cote - HP8R_hauteur) / 2, 0])
+				mirror([0, 0, 1])
+					haut_parleur_HP8R();
+	}
+}
+
+rotate([0, 270, 0]) {
+	translate([dessous_debord_rainure - debord_rainure, 0, -largeur_mur - epaisseur_tole_droit]) {
+		#cote_droit();
+		%translate([(largeur_cote - HP8R_largeur) / 2, (hauteur_cote - HP8R_hauteur) / 2, epaisseur_tole_droit])
+			haut_parleur_HP8R();
+	}
+}

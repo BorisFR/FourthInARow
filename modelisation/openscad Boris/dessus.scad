@@ -47,8 +47,8 @@ module dessus() {
 
 module pose_trous_bouton() {
     for(colonne = [1 : nombre_colonnes]) {
-        translate([marge_largeur_dessus + (diametre_bouton_arcade - rayon_bouton_arcade) / 2 + (colonne - 1) * (diametre_bouton_arcade + ecart_entre_fenetre), 
-				profondeur_dessus / 2 - rayon_trou_bouton_arcade, - difference_objet_marge / 2]) 
+        translate([marge_mur + diametre_bouton_arcade / 2 + (colonne - 1) * (diametre_bouton_arcade + ecart_entre_fenetre), 
+				profondeur_dessus / 2 , - difference_objet_marge / 2]) 
             trou_bouton_arcade(epaisseur_tole_dessus + difference_objet_marge);
     }
 }

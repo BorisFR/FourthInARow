@@ -6,7 +6,7 @@ grille_led();
 
 // plaque mur déco
 module grille_led() {
-    color([0, 0.9, 1]) {
+    color([0, 1, 1]) {
         difference() {
 			// une belle dalle
             cube(size=[largeur_mur, hauteur_mur, epaisseur_tole_grille_led]);

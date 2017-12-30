@@ -41,6 +41,22 @@ diametre_trou_bouton_arcade = 20; // TODO: à valider !
 rayon_trou_bouton_arcade = diametre_trou_bouton_arcade / 2;
 
 
+// haut-parleur HP8R
+////////////////////
+HP8R_epaisseur_totale = 16.25;
+HP8R_largeur = 36.24;
+HP8R_hauteur = 75;
+HP8R_epaisseur_tole = 1.63;
+HP8R_hauteur_caisson = 71;
+//HP8R_epaisseur_caisson = 16.25 - HP8R_epaisseur_tole;
+HP8R_decalage_hauteur_trou = 12.3;
+HP8R_largeur_trou = 27.1;
+HP8R_hauteur_trou = 38.3;
+HP8R_epaisseur_trou = HP8R_epaisseur_totale - 2;
+HP8R_diametre_creuse_coins = 10;
+HP8R_diametre_creuse_fixation = 3;
+
+
 // cadrillage autour des LEDs
 /////////////////////////////
 profondeur_separateur_led = 15; // TODO: à valider !
@@ -62,6 +78,7 @@ espace_vide_milieu = 40; // TODO: à valider !
 // le plexi blanc derrière le mur, pour faire les fenêtres
 //////////////////////////////////////////////////////////
 epaisseur_plexi_blanc = 2;
+transparence_plexi = 1;
 
 
 // le mur Star Wars fenetré
@@ -103,6 +120,12 @@ echo("profondeur_dessous=", profondeur_dessous);
 hauteur_cote = epaisseur_tole_dessous + hauteur_mur + epaisseur_tole_dessus - 2 * profondeur_rainure_grille_led;
 largeur_cote = profondeur_dessus;
 
+
 // côté gauche
 //////////////
 epaisseur_tole_gauche = 2;
+
+
+// côté droit
+/////////////
+epaisseur_tole_droit = 2;
