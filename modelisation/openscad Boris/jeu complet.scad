@@ -66,16 +66,16 @@ translate([0, epaisseur_tole_dessous, 0]) {
 rotate([0, 270, 0]) {
 	translate([dessous_debord_rainure - debord_rainure, 0, 0]) {
 		cote_gauche();
-		translate([(largeur_cote - HP8R_largeur) / 2, (hauteur_cote - HP8R_hauteur) / 2, 0])
+		/*translate([(largeur_cote - HP8R_largeur) / 2, (hauteur_cote - HP8R_hauteur) / 2, 0])
 				mirror([0, 0, 1])
-					haut_parleur_HP8R();
+					haut_parleur_HP8R();*/
 	}
 }
 
 rotate([0, 270, 0]) {
 	translate([dessous_debord_rainure - debord_rainure, 0, -largeur_mur - epaisseur_tole_droit]) {
-		#cote_droit();
-		%translate([(largeur_cote - HP8R_largeur) / 2, (hauteur_cote - HP8R_hauteur) / 2, epaisseur_tole_droit])
-			haut_parleur_HP8R();
+		cote_droit();
+		/*translate([(largeur_cote - HP8R_largeur) / 2, (hauteur_cote - HP8R_hauteur) / 2, epaisseur_tole_droit])
+			haut_parleur_HP8R();*/
 	}
 }

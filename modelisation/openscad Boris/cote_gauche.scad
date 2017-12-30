@@ -13,8 +13,16 @@ module cote_gauche() {
             cube(size=[largeur_cote, hauteur_cote, epaisseur_tole_gauche]);
 			
 			// trou haut-parleur
-			translate([(largeur_cote - HP8R_largeur) / 2, (hauteur_cote - HP8R_hauteur) / 2, 0])
+			translate([(largeur_cote - HP8R_largeur) / 2, position_haut_parleur_HP8R, 0])
 				haut_parleur_HP8R_trous();
 		}
+	
+		if(show_accessoires == 1) {
+		
+		translate([(largeur_cote - HP8R_largeur) / 2, position_haut_parleur_HP8R, 0])
+				mirror([0, 0, 1])
+					haut_parleur_HP8R();
+		}
+
 	}
 }

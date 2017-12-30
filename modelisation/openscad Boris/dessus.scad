@@ -42,7 +42,17 @@ module dessus() {
                 cube(size=[largeur_mur + difference_objet_marge, largeur_rainure_mur_plexi, profondeur_rainure_mur_plexi + difference_objet_marge]);
 		
         }
-    }
+	}
+		
+	if(show_accessoires == 1) {
+		
+		for(colonne = [1 : nombre_colonnes]) {
+			translate([marge_mur + diametre_bouton_arcade / 2 + (colonne - 1) * (diametre_bouton_arcade + ecart_entre_fenetre), 
+					profondeur_dessus / 2 , -hauteur_bague_bouton_arcade]) 
+				color([1, 1, 1]) bouton_arcade();
+		}
+		
+	}
 }
 
 module pose_trous_bouton() {
