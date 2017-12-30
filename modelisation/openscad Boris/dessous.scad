@@ -1,5 +1,6 @@
 include <parametre.scad>
 use <bouton_arcade.scad>
+use <embase.scad>
 
 // pour exporter en .dxf
 //projection(cut = false) dessous();
@@ -37,6 +38,18 @@ module dessous() {
 					profondeur_dessous / 2 + espace_vide_milieu / 2 + epaisseur_tole_grille_led + profondeur_separateur_led, 
 					-difference_objet_marge])
                 cube(size=[largeur_mur + difference_objet_marge, largeur_rainure_mur_plexi, profondeur_rainure_mur_plexi + difference_objet_marge]);
+
+
+			// fixation de la platine de l'embase
+			rotate([90, 180, 270])
+				translate([profondeur_dessous / 2 - embase_platine_largeur / 2, 0, -1*padding_percage -largeur_mur - embase_externe_profondeur + epaisseur_tole_droit])
+				embase_fixation(); 
+
         }
     }
+
+			// fixation de la platine de l'embase
+			/*rotate([90, 180, 270])
+				translate([profondeur_dessous / 2 - embase_platine_largeur / 2, 0, -1*padding_percage -largeur_mur - embase_externe_profondeur + epaisseur_tole_droit])
+				embase(); */
 }

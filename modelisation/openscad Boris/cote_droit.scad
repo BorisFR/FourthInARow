@@ -2,6 +2,7 @@ include <parametre.scad>
 use <bouton_arcade.scad>
 use <haut_parleur_HP8R.scad>
 use <ec11.scad>
+use <embase.scad>
 
 // pour exporter en .dxf
 //projection(cut = false) cote_droit();
@@ -26,6 +27,9 @@ module cote_droit() {
 			translate([largeur_cote / 2, position_ec11, epaisseur_tole_droit])
 				trous_ec11(epaisseur_tole_droit);
 			
+			// embase
+			translate([largeur_cote / 2 - embase_platine_largeur / 2, epaisseur_tole_dessous, 0])
+				embase_trou(); 
 		}
 	}
 	
@@ -51,6 +55,10 @@ module cote_droit() {
 		translate([largeur_cote / 2, position_ec11, epaisseur_tole_droit])
 			mirror([0, 0, 1])
 				ec11();
+
+		// embase
+		translate([largeur_cote / 2 - embase_platine_largeur / 2, epaisseur_tole_dessous, 0])
+			embase(); 
 	}
 
 }
