@@ -7,7 +7,7 @@ module embase() {
 	// embase en elle-même
 	translate([embase_decallage, embase_platine_epaisseur, 0]) union() {
 		difference() {
-			color([0.5, 0.5, 0]) union() {
+			color([0, 0, 0]) union() {
 				// connecteur externe
 				cube(size=[embase_externe_largeur, embase_externe_hauteur, embase_externe_profondeur]);
 				// partie basse intérieure

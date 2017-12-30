@@ -7,7 +7,7 @@ cote_gauche();
 
 // plaque mur déco
 module cote_gauche() {
-    color([0, 0, 0]) {
+    color("Silver") {
         difference() {
 			// une belle dalle
             cube(size=[largeur_cote, hauteur_cote, epaisseur_tole_gauche]);

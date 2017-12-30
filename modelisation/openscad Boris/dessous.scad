@@ -9,7 +9,7 @@ translate([0, -profondeur_dessous / 2, 0])
 	dessous();
 
 module dessous() {
-    color([0, 0, 0]) {
+    color("Silver") {
         difference() {
             cube(size=[largeur_mur, profondeur_dessous, epaisseur_tole_dessous]);
 			

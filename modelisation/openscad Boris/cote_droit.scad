@@ -11,7 +11,7 @@ translate([-largeur_cote / 2, 0, 0])
 
 // plaque mur déco
 module cote_droit() {
-    color([0, 0, 0]) {
+    color("Silver") {
         difference() {
 			// une belle dalle
             cube(size=[largeur_cote, hauteur_cote, epaisseur_tole_droit]);

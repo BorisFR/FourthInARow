@@ -43,6 +43,7 @@ rayon_trou_bouton_arcade = diametre_trou_bouton_arcade / 2;
 hauteur_bague_bouton_arcade = 3;
 hauteur_bouton_arcade = 1;
 diametre_push_bouton_arcade = diametre_bouton_arcade - 4;
+profondeur_interne_bouton_arcade = 20; // TODO: à valider !
 
 
 // bouton EC11
@@ -94,6 +95,19 @@ embase_marge_fixation = 1.5;
 embase_diametre_fixation = 3;
 
 
+// led type1 : LED étanche avec électronique carré
+////////////
+profondeur_chapeau_led = 7.5;
+diametre_trou_led = 7.9; // TODO: à valider !
+diametre_interne_led = 13;
+profondeur_interne_led = 7;
+boitier_largeur_led = 22.5;
+boitier_hauteur_led = 18.5;
+boitier_epaisseur_led = 8;
+
+
+
+
 // cadrillage autour des LEDs
 /////////////////////////////
 profondeur_separateur_led = 15; // TODO: à valider !
@@ -101,7 +115,7 @@ profondeur_separateur_led = 15; // TODO: à valider !
 
 // pour stocker les cables et l'électronique
 ////////////////////////////////////////////
-espace_vide_milieu = 40; // TODO: à valider !
+espace_vide_milieu = 50; // TODO: à valider !   40 => conflit entre bouton et led en haut !!!
 
 
 // le mur Star Wars fenetré
@@ -109,7 +123,7 @@ espace_vide_milieu = 40; // TODO: à valider !
 epaisseur_tole_mur = 2;
 taille_fenetre = diametre_bouton_arcade; // valeur à fixer si bouton plus petit, ici je m'adapte à cette taille de bouton
 ecart_entre_fenetre = 5; // au jugé ;)
-marge_mur = 10; // pour aérer le tour
+marge_mur = 15; // pour aérer le tour   10 => haut parleur touche led et conflit bouton dans le coin !
 
 // on peut maintenant calculer la surface du jeu !
 largeur_mur = marge_mur + (nombre_colonnes * taille_fenetre) + ((nombre_colonnes - 1) * ecart_entre_fenetre) + marge_mur;
@@ -120,7 +134,6 @@ echo(str("** PLAQUE MUR (x2) : ", largeur_mur , " x ", hauteur_mur, " x ", epais
 // la grille de LEDS
 ////////////////////
 epaisseur_tole_grille_led = 3;
-diametre_trou_led = 10; // TODO: à valider !
 largeur_rainure_grille_led = epaisseur_tole_grille_led + padding_rainure;
 profondeur_rainure_grille_led = profondeur_rainure; // moins que epaisseur_tole_grille_led !!!
 echo(str("** PLAQUE GRILLE LED (x2) : ", largeur_mur , " x ", hauteur_mur, " x ", epaisseur_tole_grille_led));

@@ -7,6 +7,8 @@ module bouton_arcade() {
 		cylinder(hauteur_bague_bouton_arcade, d=diametre_bouton_arcade, $fn=resolution);
 		translate([0, 0, -hauteur_bouton_arcade])
 			cylinder(hauteur_bouton_arcade, d=diametre_push_bouton_arcade, $fn=resolution);
+		translate([0, 0, hauteur_bague_bouton_arcade])
+			cylinder(profondeur_interne_bouton_arcade, d=diametre_trou_bouton_arcade, $fn=resolution);
 	}
 }
 

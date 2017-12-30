@@ -8,7 +8,7 @@ translate([0, -profondeur_dessus / 2, 0])
 dessus();
 
 module dessus() {
-    color([0, 0, 0]) {
+    color("Silver") {
         difference() {
 			// une belle dalle
             cube(size=[largeur_mur, profondeur_dessus, epaisseur_tole_dessus]);
