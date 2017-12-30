@@ -73,6 +73,7 @@ HP8R_hauteur_trou = 38.3;
 HP8R_epaisseur_trou = HP8R_epaisseur_totale - 2;
 HP8R_diametre_creuse_coins = 10;
 HP8R_diametre_creuse_fixation = 3;
+HP8R_marge_creuse_fixation = 1.6 + padding_percage;
 
 
 // cadrillage autour des LEDs
