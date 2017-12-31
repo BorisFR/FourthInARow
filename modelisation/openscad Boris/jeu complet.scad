@@ -8,6 +8,9 @@ use <cote_gauche.scad>
 use <cote_droit.scad>
 use <haut_parleur_HP8R.scad>
 
+// mettre à 1 pour enlever la moitié de la construction et voir l'intérieur
+demi_ouvert = 0;
+
 translate([-largeur_mur / 2, 0, -profondeur_dessous / 2]) {
 	// pour se mettre sur le plancher :)
 	translate([0, epaisseur_tole_dessous, 0]) {
@@ -26,32 +29,36 @@ translate([-largeur_mur / 2, 0, -profondeur_dessous / 2]) {
 			translate([0, -profondeur_rainure, profondeur_dessus / 2 - epaisseur_tole_mur - espace_vide_milieu / 2 - epaisseur_tole_grille_led - profondeur_separateur_led - epaisseur_plexi_blanc - (largeur_rainure_mur_plexi - epaisseur_tole_mur - epaisseur_plexi_blanc) / 2])
 				mur();
 			
-			// mur du haut
-			translate([0, -profondeur_rainure, profondeur_dessus / 2 + espace_vide_milieu / 2 + epaisseur_tole_grille_led + profondeur_separateur_led + epaisseur_plexi_blanc + (largeur_rainure_mur_plexi - epaisseur_tole_mur - epaisseur_plexi_blanc) / 2])
-				mur();
-			
-			if(show_accessoires == 1) {
+			if(demi_ouvert == 0) {
 				
-				// plexi du bas
-				translate([0, -profondeur_rainure, profondeur_dessus / 2 - epaisseur_plexi_blanc - espace_vide_milieu / 2 - epaisseur_tole_grille_led - profondeur_separateur_led - (largeur_rainure_mur_plexi - epaisseur_tole_mur - epaisseur_plexi_blanc) / 2])
-					plexi_blanc();
+				// mur du haut
+				translate([0, -profondeur_rainure, profondeur_dessus / 2 + espace_vide_milieu / 2 + epaisseur_tole_grille_led + profondeur_separateur_led + epaisseur_plexi_blanc + (largeur_rainure_mur_plexi - epaisseur_tole_mur - epaisseur_plexi_blanc) / 2])
+					mur();
 				
-				// plexi du haut
-				translate([0, -profondeur_rainure, profondeur_dessus / 2 + espace_vide_milieu / 2 + epaisseur_tole_grille_led + profondeur_separateur_led + (largeur_rainure_mur_plexi - epaisseur_tole_mur - epaisseur_plexi_blanc) / 2])
-					plexi_blanc();
-				
-			}
+				if(show_accessoires == 1) {
+					
+					// plexi du bas
+					translate([0, -profondeur_rainure, profondeur_dessus / 2 - epaisseur_plexi_blanc - espace_vide_milieu / 2 - epaisseur_tole_grille_led - profondeur_separateur_led - (largeur_rainure_mur_plexi - epaisseur_tole_mur - epaisseur_plexi_blanc) / 2])
+						plexi_blanc();
+					
+					// plexi du haut
+					translate([0, -profondeur_rainure, profondeur_dessus / 2 + espace_vide_milieu / 2 + epaisseur_tole_grille_led + profondeur_separateur_led + (largeur_rainure_mur_plexi - epaisseur_tole_mur - epaisseur_plexi_blanc) / 2])
+						plexi_blanc();
+					
+				}
 
+				// plaque de LEDs du haut
+				translate([0, -profondeur_rainure, profondeur_dessus / 2 + espace_vide_milieu / 2  + (largeur_rainure_grille_led - epaisseur_tole_grille_led) / 2])
+					grille_led();
+
+
+			}
+			
 			// plaque de LEDs du bas
 			rotate([0, 180, 0])
 				translate([-largeur_mur, -profondeur_rainure, 
 						-( profondeur_dessus / 2 - espace_vide_milieu / 2 - (largeur_rainure_grille_led - epaisseur_tole_grille_led) / 2)])
 					grille_led(); 
-
-			// plaque de LEDs du haut
-			translate([0, -profondeur_rainure, profondeur_dessus / 2 + espace_vide_milieu / 2  + (largeur_rainure_grille_led - epaisseur_tole_grille_led) / 2])
-				grille_led();
-
 
 			// et on ferme avec la plaque du dessus
 			rotate([90, 0, 0])
@@ -62,12 +69,15 @@ translate([-largeur_mur / 2, 0, -profondeur_dessous / 2]) {
 
 	}
 
+if(demi_ouvert == 0) {
+	
 	// on installe le côté gauche
 	rotate([0, 270, 0]) {
 		translate([dessous_debord_rainure - debord_rainure, 0, 0]) {
 			cote_gauche();
 		}
 	}
+}
 
 	rotate([0, 270, 0]) {
 		translate([dessous_debord_rainure - debord_rainure, 0, -largeur_mur - epaisseur_tole_droit]) {
