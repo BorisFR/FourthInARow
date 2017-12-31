@@ -106,8 +106,6 @@ boitier_hauteur_led = 18.5;
 boitier_epaisseur_led = 8;
 
 
-
-
 // cadrillage autour des LEDs
 /////////////////////////////
 profondeur_separateur_led = 15; // TODO: à valider !
@@ -120,7 +118,7 @@ espace_vide_milieu = 50; // TODO: à valider !   40 => conflit entre bouton et l
 
 // le mur Star Wars fenetré
 ///////////////////////////
-epaisseur_tole_mur = 2;
+epaisseur_tole_mur = 4;
 taille_fenetre = diametre_bouton_arcade; // valeur à fixer si bouton plus petit, ici je m'adapte à cette taille de bouton
 ecart_entre_fenetre = 5; // au jugé ;)
 marge_mur = 15; // pour aérer le tour   10 => haut parleur touche led et conflit bouton dans le coin !
@@ -133,7 +131,7 @@ echo(str("** PLAQUE MUR (x2) : ", largeur_mur , " x ", hauteur_mur, " x ", epais
 
 // la grille de LEDS
 ////////////////////
-epaisseur_tole_grille_led = 3;
+epaisseur_tole_grille_led = 4;
 largeur_rainure_grille_led = epaisseur_tole_grille_led + padding_rainure;
 profondeur_rainure_grille_led = profondeur_rainure; // moins que epaisseur_tole_grille_led !!!
 echo(str("** PLAQUE GRILLE LED (x2) : ", largeur_mur , " x ", hauteur_mur, " x ", epaisseur_tole_grille_led));
@@ -172,15 +170,16 @@ echo(str("** PLAQUE SOCLE : ", largeur_mur , " x ", profondeur_dessous, " x ", e
 hauteur_cote = epaisseur_tole_dessous + hauteur_mur + epaisseur_tole_dessus - 2 * profondeur_rainure_grille_led;
 largeur_cote = profondeur_dessus;
 
+
 // côté gauche
 //////////////
-epaisseur_tole_gauche = 2;
+epaisseur_tole_gauche = 4;
 echo(str("** PLAQUE COTE GAUCHE : ", largeur_cote , " x ", hauteur_cote, " x ", epaisseur_tole_gauche));
 
 
 // côté droit
 /////////////
-epaisseur_tole_droit = 2;
+epaisseur_tole_droit = 4;
 position_ec11 = epaisseur_tole_dessous + embase_platine_epaisseur + embase_externe_hauteur + 15 + hauteur_platine_ec11 / 2; // 15 = taille d'une pinouille arduino connectée sur l'embase
 echo(str("** PLAQUE COTE DROIT : ", largeur_cote , " x ", hauteur_cote, " x ", epaisseur_tole_droit));
 
