@@ -58,7 +58,7 @@ module cote_droit() {
 				translate([largeur_cote - 3, epaisseur_tole_dessous + embase_decallage, epaisseur_tole_droit - 2 - 0])
 					rotate([180, 0, 180])
 						linear_extrude(height = 2 + padding_percage)
-							text("2018 by Boris", halign = "left", size = 3, font = "Aurabesh");
+							text("Version 1.0", halign = "left", size = 3, font = "Aurabesh");
 				
 			}
 			
