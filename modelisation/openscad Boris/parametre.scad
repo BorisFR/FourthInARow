@@ -2,15 +2,15 @@
 
 // pour la finesse de rendu
 // plus c'est élevé, mieux c'est... mais ça prend plus de temps et de ressource
-resolution = 10;
+resolution = 100;
 
 // pour enlever de la matière des objets dans openscad et être certain qu'il ne reste pas un bout de face
 difference_objet_marge = 20;
 
 // pour afficher (1) ou pas (0) les accessoires installés
-show_accessoires = 1;
+show_accessoires = 0;
 
-show_logo_r2builders = 0;
+show_logo_r2builders = 1;
 
 
 
