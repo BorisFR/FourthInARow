@@ -840,7 +840,7 @@ uint8_t Game::getIndexPlayingForPlayerIA(Player player)
 		return bestColumnToPlay;
 	}
 	bestColumnToPlay = NO_VALUE;
-	uint8_t deepThinking = 6;
+	uint8_t deepThinking = 2; //6;
 	// on devient idiot à partir du tour n°#
 	uint8_t turnToStartBeingStupid = 50;// 10; max 42 tours
 	// avec une probability d'être mauvais de #%

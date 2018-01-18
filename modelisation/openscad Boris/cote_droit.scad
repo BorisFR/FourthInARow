@@ -35,7 +35,7 @@ module cote_droit() {
 				embase_trou(); 
 			
 			// Dessins sur la plaque
-			
+			if(show_incrustations == 1)
 			translate([0, 0, 0]) {
 				
 				// player 1

@@ -78,9 +78,20 @@ X A12/I13 (+red led), X A10/I27, X A9/I33, X A8/I15, X A7/I32, X A6/I14
 X SCK/5, X MOSI/18, MISO/19, X SCL/22, X SDA/23
 
 WS2801 de LightBerry : +5V / GND / DATA / CLOCK
-Lib FastLED
-plaftorms/esp/32/led_sysdefs_esp32.h
-mettre la ligne 27 en commentaire (#define NEED_CXX_BITS)
+encoche au dessus en haut
+ clock /  data /  gnd   /  5V
+orange / jaune / marron / rouge
+
+ws2813
+rouge : 5V
+blanc : GND
+vert : signal
+bleu : doublon du vert, pas obligatoire
+
+
+Lib FastLED, mas celle-ci : (pour ESP32 et WS2813)
+https://github.com/samguyer/FastLED
+
 
 Dossier sons carte SD pour DFPlayer Mini
 folder					#files

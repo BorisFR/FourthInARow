@@ -1,6 +1,7 @@
 include <parametre.scad>
 
 embase();
+//embase_trou();
 
 module embase() {
 	
@@ -39,7 +40,7 @@ module embase() {
 }
 
 module embase_trou() {
-	translate([embase_decallage - padding_percage, embase_platine_epaisseur - padding_percage, -difference_objet_marge])
+	translate([embase_decallage - padding_percage, embase_platine_epaisseur - padding_percage, -difference_objet_marge + padding_percage + embase_externe_profondeur / 2])
 		// connecteur externe
 		cube(size=[embase_externe_largeur + 2 * padding_percage, embase_externe_hauteur + 2 * padding_percage, embase_externe_profondeur + difference_objet_marge]);
 	embase_fixation();

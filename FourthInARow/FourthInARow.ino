@@ -72,6 +72,10 @@ void doInitHelper()
 	#include "GO_ws2801.hpp"
 	GO_ws2801 gameOutput;
 #endif
+#if GAME_OUPUT_WS2813
+	#include "GO_ws2813.hpp"
+	GO_ws2813 gameOutput;
+#endif
 #if GAME_OUTPUT_FEATHER_OLED
 	#include "GO_FeatherOled.hpp"
 	GOFeatherOled gameOutput;

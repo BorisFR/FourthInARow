@@ -181,10 +181,17 @@
 #define LED_POSITIONS 36, 37, 38, 39, 40, 41, 35, 34, 33, 32, 31, 30, 24, 25, 26, 27, 28, 29, 23, 22, 21, 20, 19, 18, 12, 13, 14, 15, 16, 17, 11, 10, 9, 8, 7, 6, 0, 1, 2, 3, 4, 5
 
 // le plateau de jeu est visualisé par 42 LEDs RGB type WS2801
-#define GAME_OUPUT_WS2801 1
+#define GAME_OUPUT_WS2801 0
 #define WS2801_DATA_PIN 18
 #define WS2801_CLOCK_PIN 5
 #define WS2801_NUMBER_LEDS 56
+
+// le plateau de jeu est visualisé par 42 LEDs RGB type WS2813
+#define GAME_OUPUT_WS2813 1
+#define WS2813_DATA_PIN 18
+#define WS2813_NUMBER_LEDS 100
+#define WS2813_COLOR_ORDER GRB
+#define WS2813_BRIGHTNESS 96
 
 // les buttons d'actions ont des leds blanches
 #define GAME_OUTPUT_9BUTTONS_INPUT_WHITE_LED 0

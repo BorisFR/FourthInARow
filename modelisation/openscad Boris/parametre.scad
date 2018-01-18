@@ -10,7 +10,9 @@ difference_objet_marge = 20;
 // pour afficher (1) ou pas (0) les accessoires installés
 show_accessoires = 0;
 
-show_logo_r2builders = 1;
+show_incrustations = 0;
+
+show_logo_r2builders = 0;
 
 
 
