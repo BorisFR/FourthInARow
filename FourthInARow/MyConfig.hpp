@@ -179,6 +179,10 @@
 //				      colonne 1				 colonne 2				 colonne 3				 colonne 4				 colonne 5				 colonne 6				 colonne 7
 //					  bas ...			haut/bas ...			haut/bas ...			haut/bas ...			haut/bas ...			haut/bas ...		haut/bas ...
 #define LED_POSITIONS 36, 37, 38, 39, 40, 41, 35, 34, 33, 32, 31, 30, 24, 25, 26, 27, 28, 29, 23, 22, 21, 20, 19, 18, 12, 13, 14, 15, 16, 17, 11, 10, 9, 8, 7, 6, 0, 1, 2, 3, 4, 5
+#define LED_POSITIONS_PLAYER_2 36, 37, 38, 39, 40, 41, 35, 34, 33, 32, 31, 30, 24, 25, 26, 27, 28, 29, 23, 22, 21, 20, 19, 18, 12, 13, 14, 15, 16, 17, 11, 10, 9, 8, 7, 6, 0, 1, 2, 3, 4, 5
+// LEDs for player 1 and 2 are on the same physical line, it is only one strip!
+// LEDs for player 1 and 2 are the same, but player 2 start at index :
+#define LED_PLAYER_2_OFFSET 50
 
 // le plateau de jeu est visualisé par 42 LEDs RGB type WS2801
 #define GAME_OUPUT_WS2801 0

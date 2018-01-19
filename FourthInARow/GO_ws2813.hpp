@@ -16,14 +16,16 @@ class GO_ws2813 : public GameOutput
 		CRGB myGreen;
 		CRGB myBlue;
 
+		void setLed(uint8_t number, CRGB color);
+
 	public:
-	  void setup();
-	  void endLoop();
+		void setup();
+		void endLoop();
 
-	  void showHints(LocationAlert winAlert, LocationAlert looseAlert);
-	  void showWinningCases(WinningPositions winningCases);
+		void showHints(LocationAlert winAlert, LocationAlert looseAlert);
+		void showWinningCases(WinningPositions winningCases);
 
-	  void drawBoard(Board board);
+		void drawBoard(Board board);
 };
 
 #endif

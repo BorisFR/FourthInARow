@@ -15,8 +15,9 @@ class GameOutput
 			void (*_debug)(String text);
 		#endif
 			uint8_t leds_positions[42] = { LED_POSITIONS };
+			uint8_t leds_positions_Player_2[42] = { LED_POSITIONS_PLAYER_2 };
 
-		  public:
+  public:
 		#if DEBUG
 					void doInit(void (*)(String));
 		#else

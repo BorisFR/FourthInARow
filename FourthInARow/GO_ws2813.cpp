@@ -39,6 +39,13 @@ void FastLEDshowTask(void *pvParameters)
     }
 }
 
+void GO_ws2813::setLed(uint8_t number, CRGB color)
+{
+	uint8_t led = leds_positions[number];
+	leds[led] = color;
+	led = leds_positions_Player_2[number + LED_PLAYER_2_OFFSET];
+	leds[led] = color;
+}
 
 void GO_ws2813::setup()
 {
@@ -80,16 +87,14 @@ void GO_ws2813::showHints(LocationAlert winAlert, LocationAlert looseAlert)
 	{
 		if (winAlert.row[index] != NO_VALUE)
 		{
-			uint8_t led = leds_positions[index * COLUMN_TILES + winAlert.row[index]];
-			leds[led] = myBlue;
+			setLed(index * COLUMN_TILES + winAlert.row[index], myBlue);
 #if DEBUG
 			_debug("Hint: " + String(index) + "/" + String(winAlert.row[index]) + "\n");
 #endif
 		}
 		if (looseAlert.row[index] != NO_VALUE)
 		{
-			uint8_t led = leds_positions[index * COLUMN_TILES + looseAlert.row[index]];
-			leds[led] = myBlue;
+			setLed(index * COLUMN_TILES + looseAlert.row[index], myBlue);
 #if DEBUG
 			_debug("Hint: " + String(index) + "/" + String(winAlert.row[index]) + "\n");
 #endif
@@ -113,8 +118,7 @@ void GO_ws2813::showWinningCases(WinningPositions winningCases)
 #if DEBUG
 					_debug(String(winningCases.winning[win].location[index].index) + "/" + String(winningCases.winning[win].location[index].row) + " - ");
 #endif
-					uint8_t led = leds_positions[winningCases.winning[win].location[index].index * COLUMN_TILES + winningCases.winning[win].location[index].row];
-					leds[led] = myBlue;
+					setLed(winningCases.winning[win].location[index].index * COLUMN_TILES + winningCases.winning[win].location[index].row, myBlue);
 				}
 			}
 #if DEBUG
@@ -134,17 +138,16 @@ void GO_ws2813::drawBoard(Board board)
 		for (int8_t row = 0; row < COLUMN_TILES; row++)
 		{
 			uint8_t index = column * COLUMN_TILES + row;
-			uint8_t led = leds_positions[index];
 			switch (board.column[column].getToken(row))
 			{
 			case noPlayer:
-				leds[led] = myWhite;
+				setLed(index, myWhite);
 				break;
 			case player1:
-				leds[led] = myGreen;
+				setLed(index, myGreen);
 				break;
 			case player2:
-				leds[led] = myRed;
+				setLed(index, myRed);
 				break;
 			}
 		}
