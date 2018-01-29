@@ -9,3 +9,4 @@
 .vscode/launch.json
 .clang_complete
 .gcc-flags.json
+.DS_Store
