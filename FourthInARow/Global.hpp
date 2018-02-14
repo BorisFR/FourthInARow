@@ -13,6 +13,9 @@
 #define VOLUME_MAX 100
 #define VOLUME_MIN 0
 
+#define BLINK_DELAY 300
+
+
 enum Player : uint8_t
 {
 	noPlayer,

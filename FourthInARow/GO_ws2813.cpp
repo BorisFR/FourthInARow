@@ -1,6 +1,7 @@
 #include "GO_ws2813.hpp"
 
 
+#if ESP32
 #define FASTLED_SHOW_CORE 1
 // -- Task handles for use in the notifications
 static TaskHandle_t FastLEDshowTaskHandle = 0;
@@ -38,6 +39,7 @@ void FastLEDshowTask(void *pvParameters)
         xTaskNotifyGive(userTaskHandle);
     }
 }
+#endif
 
 void GO_ws2813::setLed(uint8_t number, CRGB color)
 {
@@ -60,15 +62,20 @@ void GO_ws2813::setup()
 	myGreen = CRGB::Green; // CHSV( HUE_GREEN, 255, 255)
 	myBlue = CRGB::Blue;
 
+#if ESP32
     // -- Create the FastLED show task
     xTaskCreatePinnedToCore(FastLEDshowTask, "FastLEDshowTask", 2048, NULL, 2, &FastLEDshowTaskHandle, FASTLED_SHOW_CORE);
+#endif
 
 	for(uint8_t i = 0; i < WS2801_NUMBER_LEDS; i++)
 	{
 		leds[i] = myBlack;
 	}
+#if ESP32	
 	FastLEDshowESP32();
-	//FastLED.show();
+#else
+	FastLED.show();
+#endif
 
 #if DEBUG
 	_debug(F("ready\n"));
@@ -77,8 +84,11 @@ void GO_ws2813::setup()
 
 void GO_ws2813::endLoop()
 {
+#if ESP32	
 	FastLEDshowESP32();
-	//FastLED.show();
+#else
+	FastLED.show();
+#endif
 }
 
 void GO_ws2813::showHints(LocationAlert winAlert, LocationAlert looseAlert)
@@ -153,4 +163,19 @@ void GO_ws2813::drawBoard(Board board)
 		}
 	}
 	endLoop();
+}
+
+void GO_ws2813::lightFullWall(bool on)
+{
+	for (uint8_t column = 0; column < BOARD_COLUMNS; column++)
+		lightColumn(column, on);
+}
+
+void GO_ws2813::lightColumn(uint8_t index, bool on)
+{
+	for (int8_t row = 0; row < COLUMN_TILES; row++)
+		if(on)
+			setLed(index, myWhite);
+		else
+			setLed(index, myBlack);
 }

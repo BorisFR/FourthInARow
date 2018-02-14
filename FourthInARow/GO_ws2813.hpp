@@ -26,6 +26,10 @@ class GO_ws2813 : public GameOutput
 		void showWinningCases(WinningPositions winningCases);
 
 		void drawBoard(Board board);
+
+		void lightFullWall(bool on);
+		void lightColumn(uint8_t index, bool on);
+
 };
 
 #endif

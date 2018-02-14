@@ -61,10 +61,10 @@
 #define GAME_INPUT_DUMMY 0
 
 // utilisation de la console Série du PC/Mac/Linux /!\ #define DEBUG doit être à 1
-#define GAME_INPUT_SERIAL 1
+#define GAME_INPUT_SERIAL 0
 
 // dispositif à base de 7 boutons (1 par colonne) + 2 boutons choix du nombre de joueurs
-#define GAME_INPUT_9BUTTONS 0
+#define GAME_INPUT_9BUTTONS 1
 #if !GAME_INPUT_9BUTTONS
 	#define BUTTON_COLUMN_1 0
 	#define BUTTON_COLUMN_2 0
@@ -76,6 +76,11 @@
 	#define BUTTON_COLUMN_PLAYER_1 0
 	#define BUTTON_COLUMN_PLAYER_2 0
 #else
+	// les boutons d'arcade sont-ils lumineux ? (avec une led)
+	#define BUTTONS_LED 1
+	// n° de la led 
+	#define LED_PLAYER_1 7
+	#define LED_PLAYER_2 8
 	#if ESP32
 		// SDA/SCL/A6/A7/A8/A9/A10/A12/21
 		#define BUTTON_COLUMN_1 23
@@ -87,6 +92,18 @@
 		#define BUTTON_COLUMN_7 27
 		#define BUTTON_COLUMN_PLAYER_1 13
 		#define BUTTON_COLUMN_PLAYER_2 21
+		#if BUTTONS_LED
+			// 
+			#define BUTTON_LED_1 0
+			#define BUTTON_LED_2 0
+			#define BUTTON_LED_3 0
+			#define BUTTON_LED_4 0
+			#define BUTTON_LED_5 0
+			#define BUTTON_LED_6 0
+			#define BUTTON_LED_7 0
+			#define BUTTON_LED_PLAYER_1 0
+			#define BUTTON_LED_PLAYER_2 0
+		#endif
 	#endif
 	#if TEENSY35
 		#define BUTTON_COLUMN_1 0
@@ -98,6 +115,17 @@
 		#define BUTTON_COLUMN_7 0
 		#define BUTTON_COLUMN_PLAYER_1 0
 		#define BUTTON_COLUMN_PLAYER_2 0
+		#if BUTTONS_LED
+			#define BUTTON_LED_1 0
+			#define BUTTON_LED_2 0
+			#define BUTTON_LED_3 0
+			#define BUTTON_LED_4 0
+			#define BUTTON_LED_5 0
+			#define BUTTON_LED_6 0
+			#define BUTTON_LED_7 0
+			#define BUTTON_LED_PLAYER_1 0
+			#define BUTTON_LED_PLAYER_2 0
+		#endif
 	#endif
 	#if MEGA2560
 		#define BUTTON_COLUMN_1 0
@@ -109,6 +137,17 @@
 		#define BUTTON_COLUMN_7 0
 		#define BUTTON_COLUMN_PLAYER_1 0
 		#define BUTTON_COLUMN_PLAYER_2 0
+		#if BUTTONS_LED
+			#define BUTTON_LED_1 0
+			#define BUTTON_LED_2 0
+			#define BUTTON_LED_3 0
+			#define BUTTON_LED_4 0
+			#define BUTTON_LED_5 0
+			#define BUTTON_LED_6 0
+			#define BUTTON_LED_7 0
+			#define BUTTON_LED_PLAYER_1 0
+			#define BUTTON_LED_PLAYER_2 0
+		#endif
 	#endif
 	#if UNO
 		#define BUTTON_COLUMN_1 0
@@ -120,6 +159,17 @@
 		#define BUTTON_COLUMN_7 0
 		#define BUTTON_COLUMN_PLAYER_1 0
 		#define BUTTON_COLUMN_PLAYER_2 0
+		#if BUTTONS_LED
+			#define BUTTON_LED_1 0
+			#define BUTTON_LED_2 0
+			#define BUTTON_LED_3 0
+			#define BUTTON_LED_4 0
+			#define BUTTON_LED_5 0
+			#define BUTTON_LED_6 0
+			#define BUTTON_LED_7 0
+			#define BUTTON_LED_PLAYER_1 0
+			#define BUTTON_LED_PLAYER_2 0
+		#endif
 	#endif
 #endif
 

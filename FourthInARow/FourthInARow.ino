@@ -55,6 +55,10 @@ void doInitHelper()
 #if GAME_INPUT_9BUTTONS
 	#include "GI_9buttons.hpp"
 	GI9buttons gameInput;
+	#if BUTTONS_LED
+		#include "ButtonsLed.hpp"
+		ButtonsLed buttonsLed;
+	#endif
 #endif
 
 // OUTPUT
@@ -113,17 +117,24 @@ void doInitGame()
 	gameInputAudio.doInit(debug);
 	gameOutputAudio.doInit(debug);
 	game.doInit(debug);
+	#if BUTTONS_LED
+		buttonsLed.doInit(debug);
+	#endif
 #else
 	gameInput.doInit();
 	gameOutput.doInit();
 	gameInputAudio.doInit();
 	gameOutputAudio.doInit();
 	game.doInit();
+	#if BUTTONS_LED
+		buttonsLed.doInit();
+	#endif
 #endif
 	gameOutput.setup();
 	gameOutput.drawGrid();
 	gameInputAudio.setup();
 	gameOutputAudio.setup();
+	startAnimWaitingPlayers();
 }
 
 // set gamestate at who is playing now
@@ -145,6 +156,24 @@ void gameTurn()
 		break;
 	default: break;
 	}
+}
+
+void startAnimWaitingPlayers()
+{
+	#if BUTTONS_LED
+		buttonsLed.doBlinkPlayers(true);
+		buttonsLed.doChaseInputs(true);
+	#endif
+	gameOutput.lightFullWall(true);
+}
+
+void stopAnimWaitingPlayers()
+{
+	#if BUTTONS_LED
+		buttonsLed.doBlinkPlayers(false);
+		buttonsLed.doChaseInputs(false);
+	#endif
+	gameOutput.lightFullWall(false);
 }
 
 
@@ -195,6 +224,10 @@ void loop()
 			game.gameState = choosingPlayersNumber;
 			gameOutput.clearTiles();
 			gameOutput.showChoosePlayersNumber();
+			stopAnimWaitingPlayers();
+			#if BUTTONS_LED
+				buttonsLed.doBlinkPlayers(true);
+			#endif
 		}
 		break;
 
@@ -211,6 +244,9 @@ void loop()
 				player2IsIA = true;
 				game.gameState = startingNewGame;
 				gameOutput.showIaVsIa();
+				#if BUTTONS_LED
+					buttonsLed.doBlinkPlayers(false);
+				#endif
 				break;
 			case actionPlayer1:
 			case actionColumn1:
@@ -219,6 +255,9 @@ void loop()
 				player2IsIA = true;
 				game.gameState = startingNewGame;
 				gameOutput.showPlayerVsIa();
+				#if BUTTONS_LED
+					buttonsLed.doBlinkPlayers(false);
+				#endif
 				break;
 			case actionPlayer2:
 			case actionColumn2:
@@ -227,6 +266,9 @@ void loop()
 				player2IsIA = false;
 				game.gameState = startingNewGame;
 				gameOutput.showPlayerVsPlayer();
+				#if BUTTONS_LED
+					buttonsLed.doBlinkPlayers(false);
+				#endif
 				break;
 			default: 
 				gameOutputAudio.playBadChoice();
@@ -251,11 +293,18 @@ void loop()
 		// determining which player is starting the game
 		//**********************************************
 	case choosingWhoStart:
-	// TODO: randomize!
-#if DEBUG
-		debug(F("Player 1 is starting\n"));
-#endif
-		game.setCurrentPlayer(player1);
+		if(random(2) == 1)
+		{
+			#if DEBUG
+				debug(F("Player 1 is starting\n"));
+			#endif
+			game.setCurrentPlayer(player1);
+		} else {
+			#if DEBUG
+				debug(F("Player 2 is starting\n"));
+			#endif
+			game.setCurrentPlayer(player2);
+		}
 		gameTurn();
 		gameOutputAudio.playStartGame();
 		break;
@@ -264,12 +313,18 @@ void loop()
 		// ******************************************
 	case playingPlayer1:
 		game.gameState = choosingColumn;
+		#if BUTTONS_LED
+			buttonsLed.doBlinkOneLed(LED_PLAYER_1, true);
+		#endif
 		break;
 
 		// Player 2 must choose where he put his token
 		// ******************************************
 	case playingPlayer2:
 		game.gameState = choosingColumn;
+		#if BUTTONS_LED
+			buttonsLed.doBlinkOneLed(LED_PLAYER_2, true);
+		#endif
 		break;
 
 		// Waiting for the current player to choose a column for his token
@@ -352,6 +407,10 @@ void loop()
 			debug(String(playColumn).c_str());
 			debug(F("\n"));
 #endif
+			#if BUTTONS_LED
+				buttonsLed.doBlinkOneLed(LED_PLAYER_1, false);
+				buttonsLed.doBlinkOneLed(LED_PLAYER_2, false);
+			#endif
 			game.gameState = tokenAnimation;
 			CaseLocation location;
 			location.index = playColumn;
@@ -410,10 +469,16 @@ void loop()
 			{
 				game.gameState = matchDraw;
 				gameOutput.showMatchDraw();
+				#if BUTTONS_LED
+					buttonsLed.doChaseInputs(true);
+				#endif
 			}
 		}
 		else
 		{
+			#if BUTTONS_LED
+				buttonsLed.doBlinkInputs(true);
+			#endif
 			switch (game.getWhoWin())
 			{
 				case player1:

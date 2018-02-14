@@ -19,9 +19,9 @@ class GameOutput
 
   public:
 		#if DEBUG
-					void doInit(void (*)(String));
+			void doInit(void (*)(String));
 		#else
-			  void doInit();
+			void doInit();
 		#endif
 		void setup();
 		void loop();
@@ -46,6 +46,9 @@ class GameOutput
 		void drawBoard(Board board);
 		void clearTiles();
 		void setTiles(CaseLocation location, Player token);
+
+		void lightFullWall(bool on);
+		void lightColumn(uint8_t index, bool on);
 };
 
 #endif

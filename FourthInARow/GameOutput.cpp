@@ -42,3 +42,6 @@ void GameOutput::drawGrid() {}
 void GameOutput::drawBoard(Board board) {}
 void GameOutput::clearTiles() {}
 void GameOutput::setTiles(CaseLocation location, Player token) {}
+
+void GameOutput::lightFullWall(bool on) {}
+void GameOutput::lightColumn(uint8_t index, bool on) {}

@@ -14,7 +14,7 @@ void Game::tab(uint8_t space)
 		_debug(".");
 }
 #else
-‡void Game::doInit()
+void Game::doInit()
 {
 	doRealInit();
 };
@@ -406,6 +406,7 @@ void Game::calculateHints()
 				// for each possibility, we have 4 tokens
 				for (uint8_t pos = 0; pos < 4; pos++)
 				{
+					yield();
 					Player possible = board[winPossibilities[index][COLUMN] + pos * winPossibilities[index][COLUMN_CHANGE]].getToken(winPossibilities[index][ROW] + pos * winPossibilities[index][ROW_CHANGE]);
 					if (possible == currentPlayer) {
 						meInLine++;
@@ -473,6 +474,7 @@ void Game::calculateHints()
 					_debug(String(index) + " => " + String(column) + "/" + String(row) + " = WIN: ");
 					for (uint8_t pos = 0; pos < 4; pos++)
 					{
+						yield();
 						uint8_t rowTotest = winPossibilities[index][ROW] + pos * winPossibilities[index][ROW_CHANGE];
 						_debug(String(winPossibilities[index][COLUMN] + pos * winPossibilities[index][COLUMN_CHANGE]) + "/" + String(rowTotest) + " ");
 						Player possible = board[winPossibilities[index][COLUMN] + pos * winPossibilities[index][COLUMN_CHANGE]].getToken(rowTotest);
@@ -665,6 +667,7 @@ int32_t Game::getTileValue(Player player, Player other, uint8_t column, uint8_t 
 		// for each possibility, we have 4 tokens
 		for (uint8_t pos = 0; pos < 4; pos++)
 		{
+			yield();
 			uint8_t c = winPossibilities[index][COLUMN] + pos * winPossibilities[index][COLUMN_CHANGE];
 			uint8_t r = winPossibilities[index][ROW] + pos * winPossibilities[index][ROW_CHANGE];
 			if(column == c && row == r)
@@ -700,6 +703,7 @@ int32_t Game::getBoardValue(Player player)
 		// for each possibility, we have 4 tokens
 		for (uint8_t pos = 0; pos < 4; pos++)
 		{
+			yield();
 			Player possible = board[winPossibilities[index][COLUMN] + pos * winPossibilities[index][COLUMN_CHANGE]].getToken(winPossibilities[index][ROW] + pos * winPossibilities[index][ROW_CHANGE]);
 			if (possible == player)
 				meInLine++;
@@ -727,9 +731,11 @@ int32_t Game::getMinimalMove(Player player, uint8_t deepness, int32_t alpha)
 	//_debug("-- MIN " + String(deepness) + " DEEPNESS: " + String(deepness) + " ALPHA: " + String(alpha) + "\n");
 	for (uint8_t column = 0; column < BOARD_COLUMNS; column++)
 	{
+		yield();
 		uint8_t row = board[column].getFreeRow();
 		if (row != NO_VALUE)
 		{
+			yield();
 			tab(deepness);
 			_debug(String(column) + "/" + String(row));
 			// play the tile with OPPOSITE currentPlayer
@@ -781,6 +787,7 @@ int32_t Game::getMaximalMove(Player player, uint8_t deepness, int32_t beta)
 	//_debug("** MAX " + String(deepness) + " DEEPNESS: " + String(deepness) + " BETA: " + String(beta) + "\n");
 	for (uint8_t column = 0; column < BOARD_COLUMNS; column++)
 	{
+		yield();
 		uint8_t row = board[column].getFreeRow();
 		if (row != NO_VALUE)
 		{
