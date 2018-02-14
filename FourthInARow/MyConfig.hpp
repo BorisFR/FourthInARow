@@ -33,15 +33,18 @@
 // dans le fichier platformio.ini du projet
 
 // 1 si carte ESP32, sinon mettre 0
+// impossible à utiliser car ça manque de pinouilles !
 //#define ESP32 0
 
 // 1 si carte TEENSY35, sinon mettre 0
-//#define TEENSY35 0
+#define TEENSY35 1
 
 // 1 si carte ARDUINO MEGA 2560, sinon mettre 0
-//#define MEGA2560 0
+// impossible à utiliser avec l'IA
+//#define MEGA2560 1
 
 // 1 si carte ARDUINO UNO, sinon mettre 0
+// impossible à compiler sur UNO : pas assez de mémoire !
 //#define UNO 1
 
 ////////////////////////////////////////////////////////////////////////////////
