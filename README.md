@@ -88,7 +88,7 @@ On affiche l'information et on passe à l'état ***i***.
 On retourne à l'état ***a***.
 
 ### **2. Matériel**
-
+![Schéma](https://raw.githubusercontent.com/BorisFR/FourthInARow/master/imagesgithub/fourth-in-a-row_bb.png)
 #### 1. Composant principal
 
 Le cerveau de cette version électronique. On pourra utiliser divers matériels, voici ce que les membres ont utilisés / testés. Le programme fonctionne sur :
