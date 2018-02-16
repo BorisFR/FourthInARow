@@ -2,7 +2,7 @@ include <parametre.scad>
 use <led_rgb_type1.scad>
 
 // pour exporter en .dxf
-//projection(cut = false)
+projection(cut = false)
 grille_led();
 
 // plaque mur déco

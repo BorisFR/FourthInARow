@@ -28,10 +28,10 @@ show_logo_r2builders = 0;
 padding_percage = 0.2;
 
 // espace supplémentaire pour la largeur de rainure
-padding_rainure = 1;
+padding_rainure = 0; // 1
 
 // profondeur standard pour une rainure
-profondeur_rainure = 2; // moins que epaisseur_tole_grille_led et que epaisseur_tole_grille_led ! Il faut qu'il reste de la matière !
+profondeur_rainure = 0; // 2 // moins que epaisseur_tole_grille_led et que epaisseur_tole_grille_led ! Il faut qu'il reste de la matière !
 
 // définition de base du jeu
 nombre_colonnes = 7;

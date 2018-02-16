@@ -8,9 +8,8 @@ use <logo_man.scad>
 
 
 // pour exporter en .dxf
-//projection(cut = false) cote_droit();
-translate([-largeur_cote / 2, 0, 0])
-	cote_droit();
+projection(cut = false) cote_droit();
+//translate([-largeur_cote / 2, 0, 0]) cote_droit();
 
 // plaque mur déco
 module cote_droit() {

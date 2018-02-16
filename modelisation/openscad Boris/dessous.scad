@@ -5,10 +5,9 @@ use <embase.scad>
 use <logo_club_forme.scad>
 
 // pour exporter en .dxf
-//projection(cut = false) dessous();
+projection(cut = false) dessous();
 
-translate([0, -profondeur_dessous / 2, 0])
-	dessous();
+//translate([0, -profondeur_dessous / 2, 0]) dessous();
 
 module dessous() {
     color("Silver") {
@@ -48,7 +47,7 @@ module dessous() {
 				embase_fixation(); 
 				
 			// Dessins sur la plaque
-			
+			if(show_incrustations == 1)
 			translate([0, 0, 0]) {
 			
 				translate([largeur_mur / 2, profondeur_dessous / 2 + 5, epaisseur_tole_dessous - 2 - 0])

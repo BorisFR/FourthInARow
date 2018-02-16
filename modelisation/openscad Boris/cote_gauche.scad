@@ -4,7 +4,7 @@ use <haut_parleur_HP8R.scad>
 use <logo_ia.scad>
 
 // pour exporter en .dxf
-//projection(cut = false)
+projection(cut = false)
 cote_gauche();
 
 // plaque mur déco
@@ -22,7 +22,7 @@ module cote_gauche() {
 			
 			
 			// Dessin gravé
-			
+			if(show_incrustations == 1)
 			translate([0, 0, 0]) {
 			
 				translate([largeur_cote / 2, hauteur_cote - 30, epaisseur_tole_gauche - 1 + padding_percage])
