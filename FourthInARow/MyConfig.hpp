@@ -109,25 +109,25 @@
 		#endif
 	#endif
 	#if TEENSY35
-		#define BUTTON_COLUMN_1 0
-		#define BUTTON_COLUMN_2 0
-		#define BUTTON_COLUMN_3 0
-		#define BUTTON_COLUMN_4 0
-		#define BUTTON_COLUMN_5 0
-		#define BUTTON_COLUMN_6 0
-		#define BUTTON_COLUMN_7 0
-		#define BUTTON_COLUMN_PLAYER_1 0
-		#define BUTTON_COLUMN_PLAYER_2 0
+		#define BUTTON_COLUMN_1 24
+		#define BUTTON_COLUMN_2 25
+		#define BUTTON_COLUMN_3 26
+		#define BUTTON_COLUMN_4 27
+		#define BUTTON_COLUMN_5 28
+		#define BUTTON_COLUMN_6 29
+		#define BUTTON_COLUMN_7 30
+		#define BUTTON_COLUMN_PLAYER_1 31
+		#define BUTTON_COLUMN_PLAYER_2 32
 		#if BUTTONS_LED
 			#define BUTTON_LED_1 0
-			#define BUTTON_LED_2 0
-			#define BUTTON_LED_3 0
-			#define BUTTON_LED_4 0
-			#define BUTTON_LED_5 0
-			#define BUTTON_LED_6 0
-			#define BUTTON_LED_7 0
-			#define BUTTON_LED_PLAYER_1 0
-			#define BUTTON_LED_PLAYER_2 0
+			#define BUTTON_LED_2 1
+			#define BUTTON_LED_3 2
+			#define BUTTON_LED_4 3
+			#define BUTTON_LED_5 4
+			#define BUTTON_LED_6 5
+			#define BUTTON_LED_7 6
+			#define BUTTON_LED_PLAYER_1 7
+			#define BUTTON_LED_PLAYER_2 8
 		#endif
 	#endif
 	#if MEGA2560
@@ -199,9 +199,9 @@
 		#define EC11_BUTTON_PIN 36
 	#endif
 	#if TEENSY35
-		#define EC11_ENCODER_PIN_A 0
-		#define EC11_ENCODER_PIN_B 0
-		#define EC11_BUTTON_PIN 0
+		#define EC11_ENCODER_PIN_A 23
+		#define EC11_ENCODER_PIN_B 22
+		#define EC11_BUTTON_PIN 21
 	#endif
 	#if MEGA2560
 		#define EC11_ENCODER_PIN_A 0
@@ -245,13 +245,10 @@
 
 // le plateau de jeu est visualisé par 42 LEDs RGB type WS2813
 #define GAME_OUPUT_WS2813 1
-#define WS2813_DATA_PIN 18
+#define WS2813_DATA_PIN 14
 #define WS2813_NUMBER_LEDS 100
 #define WS2813_COLOR_ORDER GRB
 #define WS2813_BRIGHTNESS 96
-
-// les buttons d'actions ont des leds blanches
-#define GAME_OUTPUT_9BUTTONS_INPUT_WHITE_LED 0
 
 // un rendu sur écran OLED Featherwing
 #define GAME_OUTPUT_FEATHER_OLED 0
@@ -273,8 +270,8 @@
 		#define DFPLAYER_MINI_SERIAL Serial1
 	#endif
 	#if TEENSY35
-		#define DFPLAYER_MINI_BUSY 0
-		#define DFPLAYER_MINI_SERIAL Serial
+		#define DFPLAYER_MINI_BUSY 35
+		#define DFPLAYER_MINI_SERIAL Serial5 // TX = 33, RX = 34
 	#endif
 	#if MEGA2560
 		#define DFPLAYER_MINI_BUSY 0
