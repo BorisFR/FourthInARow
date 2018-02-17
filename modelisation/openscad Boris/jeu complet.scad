@@ -9,7 +9,7 @@ use <cote_droit.scad>
 use <haut_parleur_HP8R.scad>
 
 // mettre à 1 pour enlever la moitié de la construction et voir l'intérieur
-demi_ouvert = 0;
+demi_ouvert = 1;
 
 translate([-largeur_mur / 2, 0, -profondeur_dessous / 2]) {
 	// pour se mettre sur le plancher :)

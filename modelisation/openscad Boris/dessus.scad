@@ -2,12 +2,14 @@ include <parametre.scad>
 use <bouton_arcade.scad>
 
 // pour exporter en .dxf
+if(show_mode_projection == 1)
 projection(cut = false) dessus();
 
-//translate([0, -profondeur_dessus / 2, 0]) dessus();
+if(show_mode_projection == 0)
+translate([0, -profondeur_dessus / 2, 0]) dessus();
 
 module dessus() {
-    color("Silver") {
+    color("Blue") {
         difference() {
 			// une belle dalle
             cube(size=[largeur_mur, profondeur_dessus, epaisseur_tole_dessus]);

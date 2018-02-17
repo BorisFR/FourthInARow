@@ -4,8 +4,12 @@ use <haut_parleur_HP8R.scad>
 use <logo_ia.scad>
 
 // pour exporter en .dxf
-projection(cut = false)
-cote_gauche();
+if(show_mode_projection == 1)
+	projection(cut = false) cote_gauche();
+
+if(show_mode_projection == 0)
+	cote_gauche();
+	
 
 // plaque mur déco
 module cote_gauche() {

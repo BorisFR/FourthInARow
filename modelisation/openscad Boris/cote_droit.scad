@@ -8,8 +8,11 @@ use <logo_man.scad>
 
 
 // pour exporter en .dxf
-projection(cut = false) cote_droit();
-//translate([-largeur_cote / 2, 0, 0]) cote_droit();
+if(show_mode_projection == 1)
+	projection(cut = false) cote_droit();
+
+if(show_mode_projection == 0)
+	translate([-largeur_cote / 2, 0, 0]) cote_droit();
 
 // plaque mur déco
 module cote_droit() {
@@ -68,13 +71,13 @@ module cote_droit() {
 		
 		// bouton player 1
 		translate([largeur_cote / 2, 
-				hauteur_cote - rayon_bouton_arcade - epaisseur_tole_dessus - marge_mur, 
+				hauteur_cote - epaisseur_tole_dessus - marge_mur - profondeur_interne_bouton_arcade, 
 				-hauteur_bague_bouton_arcade]) 
 			color([1, 1, 1]) bouton_arcade();
 		
 		// bouton player 2
 		translate([largeur_cote / 2, 
-				hauteur_cote- rayon_bouton_arcade - epaisseur_tole_dessus - marge_mur - taille_fenetre - ecart_entre_fenetre, 
+				hauteur_cote - epaisseur_tole_dessus - marge_mur - profondeur_interne_bouton_arcade - taille_fenetre - ecart_entre_fenetre, 
 				-hauteur_bague_bouton_arcade]) 
 			color([1, 1, 1]) bouton_arcade();
 	
@@ -96,12 +99,12 @@ module cote_droit() {
 
 module pose_trous_bouton() {
 	translate([largeur_cote / 2, 
-			hauteur_cote - rayon_bouton_arcade - epaisseur_tole_dessus - marge_mur, 
+			hauteur_cote - epaisseur_tole_dessus - marge_mur - profondeur_interne_bouton_arcade, 
 			- difference_objet_marge / 2]) 
 		trou_bouton_arcade(epaisseur_tole_droit + difference_objet_marge);
 
 	translate([largeur_cote / 2, 
-			hauteur_cote- rayon_bouton_arcade - epaisseur_tole_dessus - marge_mur - taille_fenetre - ecart_entre_fenetre, 
+			hauteur_cote - epaisseur_tole_dessus - marge_mur - profondeur_interne_bouton_arcade - taille_fenetre - ecart_entre_fenetre, 
 			- difference_objet_marge / 2]) 
 		trou_bouton_arcade(epaisseur_tole_droit + difference_objet_marge);
 }

@@ -5,9 +5,11 @@ use <embase.scad>
 use <logo_club_forme.scad>
 
 // pour exporter en .dxf
-projection(cut = false) dessous();
+if(show_mode_projection == 1)
+	projection(cut = false) dessous();
 
-//translate([0, -profondeur_dessous / 2, 0]) dessous();
+if(show_mode_projection == 0)
+	translate([0, -profondeur_dessous / 2, 0]) dessous();
 
 module dessous() {
     color("Silver") {
@@ -42,9 +44,13 @@ module dessous() {
 
 
 			// fixation de la platine de l'embase
-			rotate([90, 180, 270])
-				translate([profondeur_dessous / 2 - embase_platine_largeur / 2, 0, -1*padding_percage -largeur_mur - embase_externe_profondeur + epaisseur_tole_droit])
+			rotate([90, 180, 270]) {
+				translate([profondeur_dessous / 2 - embase_platine_largeur / 2, 0,
+				 //-1*padding_percage -largeur_mur - embase_externe_profondeur - epaisseur_tole_droit + embase_platine_decallage
+				 -largeur_mur - epaisseur_tole_droit
+				 ])
 				embase_fixation(); 
+			}
 				
 			// Dessins sur la plaque
 			if(show_incrustations == 1)
@@ -92,6 +98,6 @@ module dessous() {
 
 			// fixation de la platine de l'embase
 			/*rotate([90, 180, 270])
-				translate([profondeur_dessous / 2 - embase_platine_largeur / 2, 0, -1*padding_percage -largeur_mur - embase_externe_profondeur + epaisseur_tole_droit])
+				translate([profondeur_dessous / 2 - embase_platine_largeur / 2, 0, -1*padding_percage -largeur_mur - embase_externe_profondeur])
 				embase(); */
 }

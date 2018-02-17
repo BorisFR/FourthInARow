@@ -2,13 +2,16 @@
 
 // pour la finesse de rendu
 // plus c'est élevé, mieux c'est... mais ça prend plus de temps et de ressource
-resolution = 100;
+resolution = 10;
+
+// pour export DXF
+show_mode_projection = 0;
 
 // pour enlever de la matière des objets dans openscad et être certain qu'il ne reste pas un bout de face
 difference_objet_marge = 20;
 
 // pour afficher (1) ou pas (0) les accessoires installés
-show_accessoires = 0;
+show_accessoires = 1;
 
 show_incrustations = 0;
 
@@ -40,14 +43,14 @@ nombre_lignes = 6;
 
 // les boutons de sélection de colonne et du nombre de joueurs
 //////////////////////////////////////////////////////////////
-diametre_bouton_arcade = 30;
+diametre_bouton_arcade = 33.3;
 rayon_bouton_arcade = diametre_bouton_arcade / 2;
-diametre_trou_bouton_arcade = 20; // TODO: à valider !
+diametre_trou_bouton_arcade = 27.8;
 rayon_trou_bouton_arcade = diametre_trou_bouton_arcade / 2;
-hauteur_bague_bouton_arcade = 3;
-hauteur_bouton_arcade = 1;
+hauteur_bague_bouton_arcade = 4.7;
+hauteur_bouton_arcade = 4.85;
 diametre_push_bouton_arcade = diametre_bouton_arcade - 4;
-profondeur_interne_bouton_arcade = 20; // TODO: à valider !
+profondeur_interne_bouton_arcade = 33.5;
 
 
 // bouton EC11
@@ -102,12 +105,12 @@ embase_diametre_fixation = 3;
 // led type1 : LED étanche avec électronique carré
 ////////////
 profondeur_chapeau_led = 7.5;
-diametre_trou_led = 7.9; // TODO: à valider !
-diametre_interne_led = 13;
-profondeur_interne_led = 7;
-boitier_largeur_led = 22.5;
-boitier_hauteur_led = 18.5;
-boitier_epaisseur_led = 8;
+diametre_trou_led = 9;
+diametre_interne_led = 9;
+profondeur_interne_led = 0;
+boitier_largeur_led = 17.2;
+boitier_hauteur_led = 11.2;
+boitier_epaisseur_led = 5;
 
 
 // cadrillage autour des LEDs
@@ -117,7 +120,7 @@ profondeur_separateur_led = 15; // TODO: à valider !
 
 // pour stocker les cables et l'électronique
 ////////////////////////////////////////////
-espace_vide_milieu = 50; // TODO: à valider !   40 => conflit entre bouton et led en haut !!!
+espace_vide_milieu = 40; // TODO: à valider !   vérifier qu'il n'y a pas de conflit entre bouton et led en haut !!!
 
 
 // le mur Star Wars fenetré
@@ -143,7 +146,7 @@ echo(str("** PLAQUE GRILLE LED (x2) : ", largeur_mur , " x ", hauteur_mur, " x "
 
 // le plexi blanc derrière le mur, pour faire les fenêtres
 //////////////////////////////////////////////////////////
-epaisseur_plexi_blanc = 2;
+epaisseur_plexi_blanc = 2.5;
 transparence_plexi = 1;
 echo(str("** PLAQUE PLEXI BLANC (x2) : ", largeur_mur , " x ", hauteur_mur, " x ", epaisseur_plexi_blanc));
 

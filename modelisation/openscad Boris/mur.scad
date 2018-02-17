@@ -1,8 +1,11 @@
 include <parametre.scad>
 
 // pour exporter en .dxf
-projection(cut = false)
-mur();
+if(show_mode_projection == 1)
+	projection(cut = false) mur();
+
+if(show_mode_projection == 0)
+	mur();
 
 // plaque mur déco
 module mur() {
