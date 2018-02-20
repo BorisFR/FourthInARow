@@ -113,11 +113,6 @@ boitier_hauteur_led = 11.2;
 boitier_epaisseur_led = 5;
 
 
-// cadrillage autour des LEDs
-/////////////////////////////
-profondeur_separateur_led = 15; // TODO: à valider !
-
-
 // pour stocker les cables et l'électronique
 ////////////////////////////////////////////
 espace_vide_milieu = 40; // TODO: à valider !   vérifier qu'il n'y a pas de conflit entre bouton et led en haut !!!
@@ -129,6 +124,14 @@ epaisseur_tole_mur = 4;
 taille_fenetre = diametre_bouton_arcade; // valeur à fixer si bouton plus petit, ici je m'adapte à cette taille de bouton
 ecart_entre_fenetre = 5; // au jugé ;)
 marge_mur = 15; // pour aérer le tour   10 => haut parleur touche led et conflit bouton dans le coin !
+
+
+// cadrillage autour des LEDs
+/////////////////////////////
+profondeur_separateur_led = 15; // TODO: à valider !
+epaisseur_separateur_led = 3;
+decallage_separateur_led = (ecart_entre_fenetre - epaisseur_separateur_led) / 2;
+
 
 // on peut maintenant calculer la surface du jeu !
 largeur_mur = marge_mur + (nombre_colonnes * taille_fenetre) + ((nombre_colonnes - 1) * ecart_entre_fenetre) + marge_mur;

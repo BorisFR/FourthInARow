@@ -2,6 +2,7 @@ include <parametre.scad>
 use <mur.scad>
 use <plexi blanc mur.scad>
 use <grille_led.scad>
+use <spacer.scad>
 use <dessus.scad>
 use <dessous.scad>
 use <cote_gauche.scad>

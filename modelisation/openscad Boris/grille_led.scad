@@ -1,5 +1,6 @@
 include <parametre.scad>
 use <led_rgb_type1.scad>
+use <spacer.scad>
 
 // pour exporter en .dxf
 if(show_mode_projection == 1)
@@ -18,7 +19,23 @@ module grille_led() {
             pose_trous_led();
         }
     }
+    
 	if(show_accessoires == 1) {
+
+        for(ligne = [1 : nombre_lignes + 1]) {
+            rotate([90, 0, 0])
+                translate([0, epaisseur_tole_grille_led, 
+                        -marge_mur - (ligne - 1) * (taille_fenetre + ecart_entre_fenetre) + decallage_separateur_led])
+                    spacerHorizontal();
+        }
+
+        for(colonne = [1 : nombre_colonnes + 1]) {
+            rotate([0, 90, 0])
+                translate([-epaisseur_tole_grille_led, 0,
+            marge_mur + (colonne - 1) * (taille_fenetre + ecart_entre_fenetre) - epaisseur_separateur_led])
+                    spacerVertical();
+        }
+
 		for(colonne = [1 : nombre_colonnes]) {
 			for(ligne = [1 : nombre_lignes]) {
 				translate([marge_mur + (colonne - 1) * (taille_fenetre + ecart_entre_fenetre) + (taille_fenetre - 0) / 2, 
