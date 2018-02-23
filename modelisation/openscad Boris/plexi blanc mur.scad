@@ -1,6 +1,7 @@
 include <parametre.scad>
 
-// aucun intérêt à exporter ça !
+if(show_mode_projection == 1)
+	projection(cut = false)
 plexi_blanc();
 
 // plexi blanc

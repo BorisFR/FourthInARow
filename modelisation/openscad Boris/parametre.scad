@@ -2,16 +2,16 @@
 
 // pour la finesse de rendu
 // plus c'est élevé, mieux c'est... mais ça prend plus de temps et de ressource
-resolution = 10;
+resolution = 100;
 
 // pour export DXF
-show_mode_projection = 0;
+show_mode_projection = 1;
 
 // pour enlever de la matière des objets dans openscad et être certain qu'il ne reste pas un bout de face
 difference_objet_marge = 20;
 
 // pour afficher (1) ou pas (0) les accessoires installés
-show_accessoires = 1;
+show_accessoires = 0;
 
 show_incrustations = 1;
 
@@ -31,10 +31,10 @@ show_logo_r2builders = 0;
 padding_percage = 0.2;
 
 // espace supplémentaire pour la largeur de rainure
-padding_rainure = 1; // 1
+padding_rainure = 0; // 1
 
 // profondeur standard pour une rainure
-profondeur_rainure = 2; // 2 // moins que epaisseur_tole_grille_led et que epaisseur_tole_grille_led ! Il faut qu'il reste de la matière !
+profondeur_rainure = 0; // 2 // moins que epaisseur_tole_grille_led et que epaisseur_tole_grille_led ! Il faut qu'il reste de la matière !
 
 // définition de base du jeu
 nombre_colonnes = 7;
@@ -120,7 +120,7 @@ espace_vide_milieu = 40; // TODO: à valider !   vérifier qu'il n'y a pas de co
 
 // le mur Star Wars fenetré
 ///////////////////////////
-epaisseur_tole_mur = 4;
+epaisseur_tole_mur = 3;
 taille_fenetre = diametre_bouton_arcade; // valeur à fixer si bouton plus petit, ici je m'adapte à cette taille de bouton
 ecart_entre_fenetre = 5; // au jugé ;)
 marge_mur = 15; // pour aérer le tour   10 => haut parleur touche led et conflit bouton dans le coin !
@@ -141,7 +141,7 @@ echo(str("** PLAQUE MUR (x2) : ", largeur_mur , " x ", hauteur_mur, " x ", epais
 
 // la grille de LEDS
 ////////////////////
-epaisseur_tole_grille_led = 4;
+epaisseur_tole_grille_led = 3;
 largeur_rainure_grille_led = epaisseur_tole_grille_led + padding_rainure;
 profondeur_rainure_grille_led = profondeur_rainure; // moins que epaisseur_tole_grille_led !!!
 echo(str("** PLAQUE GRILLE LED (x2) : ", largeur_mur , " x ", hauteur_mur, " x ", epaisseur_tole_grille_led));
@@ -149,7 +149,7 @@ echo(str("** PLAQUE GRILLE LED (x2) : ", largeur_mur , " x ", hauteur_mur, " x "
 
 // le plexi blanc derrière le mur, pour faire les fenêtres
 //////////////////////////////////////////////////////////
-epaisseur_plexi_blanc = 2.5;
+epaisseur_plexi_blanc = 3;
 transparence_plexi = 1;
 echo(str("** PLAQUE PLEXI BLANC (x2) : ", largeur_mur , " x ", hauteur_mur, " x ", epaisseur_plexi_blanc));
 
@@ -160,7 +160,7 @@ epaisseur_jeu = espace_vide_milieu + 2 * epaisseur_tole_mur + 2 * epaisseur_plex
 
 // la plaque du dessus avec les boutons de choix de colonne
 ///////////////////////////////////////////////////////////
-epaisseur_tole_dessus = 4; // ce "chapeau" sera rainurée pour tenir les plaques !
+epaisseur_tole_dessus = 3; // ce "chapeau" sera rainurée pour tenir les plaques !
 debord_rainure = 5; // qui dépasse de devant et derrière 
 profondeur_dessus = epaisseur_jeu + 2 * debord_rainure;
 marge_largeur_dessus = (largeur_mur - (nombre_colonnes * diametre_bouton_arcade) - ((nombre_colonnes - 1) * ecart_entre_fenetre)) / 2;
@@ -171,7 +171,7 @@ echo(str("** PLAQUE DESSUS : ", largeur_mur , " x ", profondeur_dessus, " x ", e
 
 // la plaque de dessous
 ///////////////////////
-epaisseur_tole_dessous = 4; // ce socle sera rainurée pour tenir les plaques !
+epaisseur_tole_dessous = 3; // ce socle sera rainurée pour tenir les plaques !
 dessous_debord_rainure = 50;
 profondeur_dessous = epaisseur_jeu + 2 * dessous_debord_rainure;
 echo(str("** PLAQUE SOCLE : ", largeur_mur , " x ", profondeur_dessous, " x ", epaisseur_tole_dessous));
@@ -183,13 +183,13 @@ largeur_cote = profondeur_dessus;
 
 // côté gauche
 //////////////
-epaisseur_tole_gauche = 4;
+epaisseur_tole_gauche = 3;
 echo(str("** PLAQUE COTE GAUCHE : ", largeur_cote , " x ", hauteur_cote, " x ", epaisseur_tole_gauche));
 
 
 // côté droit
 /////////////
-epaisseur_tole_droit = 4;
+epaisseur_tole_droit = 3;
 position_ec11 = epaisseur_tole_dessous + embase_platine_epaisseur + embase_externe_hauteur + 15 + hauteur_platine_ec11 / 2; // 15 = taille d'une pinouille arduino connectée sur l'embase
 echo(str("** PLAQUE COTE DROIT : ", largeur_cote , " x ", hauteur_cote, " x ", epaisseur_tole_droit));
 

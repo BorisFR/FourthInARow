@@ -2,7 +2,7 @@ include <parametre.scad>
 
 // pour exporter en .dxf
 if(show_mode_projection == 1)
-	projection(cut = false) spacerHorizontal();
+	projection(cut = false) spacerVertical();
 
 if(show_mode_projection == 0)
 	spacerHorizontal();
