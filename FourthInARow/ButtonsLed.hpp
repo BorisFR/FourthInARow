@@ -15,8 +15,10 @@ class ButtonsLed
 		#endif
 		void doRealInit();
 
+		#if BUTTONS_LED
 		uint8_t pinButtonsLed[9] = {BUTTON_LED_1, BUTTON_LED_2, BUTTON_LED_3, BUTTON_LED_4, BUTTON_LED_5, BUTTON_LED_6, BUTTON_LED_7,
 									BUTTON_LED_PLAYER_1, BUTTON_LED_PLAYER_2};
+		#endif
 		bool ledOn[9];
 		bool blinkPlayers;
 		ElapsedMillis delayBlinkPlayers;

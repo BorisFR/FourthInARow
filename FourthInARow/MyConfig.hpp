@@ -64,10 +64,10 @@
 #define GAME_INPUT_DUMMY 0
 
 // utilisation de la console Série du PC/Mac/Linux /!\ #define DEBUG doit être à 1
-#define GAME_INPUT_SERIAL 0
+#define GAME_INPUT_SERIAL 1
 
 // dispositif à base de 7 boutons (1 par colonne) + 2 boutons choix du nombre de joueurs
-#define GAME_INPUT_9BUTTONS 1
+#define GAME_INPUT_9BUTTONS 0
 #if !GAME_INPUT_9BUTTONS
 	#define BUTTON_COLUMN_1 0
 	#define BUTTON_COLUMN_2 0
@@ -181,10 +181,10 @@
 ///////////////////////
 
 // pas de gestion audio
-#define GAME_INPUT_AUDIO_DUMMY 0
+#define GAME_INPUT_AUDIO_DUMMY 1
 
 // gestion du volume par un encodeur type ec11
-#define GAME_INPUT_AUDIO_EC11 1
+#define GAME_INPUT_AUDIO_EC11 0
 // comment est connecté cet encodeur
 // PIN_A doit être sur une pin avec interruption
 #if !GAME_INPUT_AUDIO_EC11
@@ -225,7 +225,7 @@
 #define GAME_OUTPUT_DUMMY 0
 
 // utilisation de la console Série du PC/Mac/Linux /!\ #define DEBUG doit être à 1
-#define GAME_OUTPUT_SERIAL 0
+#define GAME_OUTPUT_SERIAL 1
 
 // la localisation des 42 leds
 // pour le programme, ça va de bas en haut et de gauche à droite
@@ -244,7 +244,7 @@
 #define WS2801_NUMBER_LEDS 56
 
 // le plateau de jeu est visualisé par 42 LEDs RGB type WS2813
-#define GAME_OUPUT_WS2813 1
+#define GAME_OUPUT_WS2813 0
 #define WS2813_DATA_PIN 14
 #define WS2813_NUMBER_LEDS 100
 #define WS2813_COLOR_ORDER GRB
@@ -257,9 +257,9 @@
 ////////////
 
 // une carte son n'est pas présente
-#define GAME_OUTPUT_AUDIO_DUMMY 0
+#define GAME_OUTPUT_AUDIO_DUMMY 1
 
-#define GAME_OUTPUT_AUDIO_DFPLAYER_MINI 1
+#define GAME_OUTPUT_AUDIO_DFPLAYER_MINI 0
 #if !GAME_OUTPUT_AUDIO_DFPLAYER_MINI
 	#define DFPLAYER_MINI_BUSY 0
 	#define DFPLAYER_MINI_SERIAL Serial

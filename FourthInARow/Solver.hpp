@@ -20,7 +20,8 @@
 #define SOLVER_HPP
 
 #include "position.hpp"
-#include "TranspositionTable.hpp"
+//#include "TranspositionTable.hpp"
+#include "arduino.h"
 
 namespace GameSolver { namespace Connect4 {
 
@@ -30,10 +31,10 @@ namespace GameSolver { namespace Connect4 {
 
     int columnOrder[Position::WIDTH]; // column exploration order
 
-    TranspositionTable<Position::WIDTH*(Position::HEIGHT+1),                    // nb bits key
+/*    TranspositionTable<Position::WIDTH*(Position::HEIGHT+1),                    // nb bits key
                       log2(Position::MAX_SCORE - Position::MIN_SCORE + 1) + 2,  // nb bits value
                       23> transTable;                                           // log2 of size of transposition table
-
+*/
     /**
      * Reccursively score connect 4 position using negamax variant of alpha-beta algorithm.
      * @param: position to evaluate, this function assumes nobody already won and 
@@ -45,7 +46,7 @@ namespace GameSolver { namespace Connect4 {
      * - if actual score of position >= beta then beta <= return value <= actual score
      * - if alpha <= actual score <= beta then return value = actual score
      */
-    int negamax(const Position &P, int alpha, int beta);
+    int negamax(const Position &P, int alpha, int beta, int level);
 
   public:
 
@@ -59,7 +60,7 @@ namespace GameSolver { namespace Connect4 {
     void reset() 
     {
       nodeCount = 0;
-      transTable.reset();
+      //transTable.reset();
     }
 
     // Constructor

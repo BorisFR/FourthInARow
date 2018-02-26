@@ -1,13 +1,5 @@
 #include "Global.hpp"
 
-#if ESP32
-//#include <HardwareSerial.h>
-//HardwareSerial Serial1(2);
-#endif
-
-#if TEENSY35
-#endif
-
 uint8_t playLine;
 uint8_t playColumn;
 bool winner;
@@ -180,6 +172,8 @@ void stopAnimWaitingPlayers()
 ////////////////////////////////////////////////////////////////////////////////
 // Program starting...
 ////////////////////////////////////////////////////////////////////////////////
+#include "Solver.hpp"
+GameSolver::Connect4::Solver solver;
 
 void setup()
 {
@@ -190,6 +184,37 @@ void setup()
 	doInitGame();
 	gameOutputAudio.playPowerOn();
 	gameOutput.showTouchSomething();
+
+
+
+	GameSolver::Connect4::Position P;
+	String thegame = "445354445524252";
+	int res = P.play("445354445524252");
+	if(res != thegame.length())
+	{
+		debug("Solve error:" + String(res) + "\n");
+	} else {
+		solver.reset();
+		debug("GO!\n");
+		unsigned long start = millis();
+		int score = solver.solve(P, false);
+		unsigned long stop = millis();
+		debug("Time: " + String(stop-start) + "\n");
+		debug("Score: " + String(score) + " Nodes: " + String((unsigned long)(solver.getNodeCount())) + "\n");
+		if(score == 0)
+		{
+			debug("nobody can win\n");
+		}
+		if(score > 0)
+		{
+			debug("Win in " + String(22 - score) + " moves\n");
+		}
+		if(score < 0)
+		{
+			debug("Loose in " + String(-score) + " moves\n");
+		}
+	}
+	Serial.send_now();
 }
 
 ////////////////////////////////////////////////////////////////////////////////

@@ -23,7 +23,7 @@ class GOserial : public GameOutput
 		void showWinPlayer1();
 		void showWinPlayer2();
 
-		void drawBoard(Column board[BOARD_COLUMNS]);
+		void drawBoard(Board board); //Column board[BOARD_COLUMNS]);
 
 };
 

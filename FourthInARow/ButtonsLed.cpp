@@ -20,8 +20,10 @@ void ButtonsLed::doRealInit()
 {
 	blinkPlayers = false;
 	blinkInputs = false;
+	#if BUTTONS_LED
 	for(uint8_t index = 0; index < 9; index++)
 		pinMode(pinButtonsLed[index], OUTPUT);
+	#endif
 	allLightsOff();
 }
 
@@ -39,9 +41,11 @@ void ButtonsLed::loop()
 	{
 		if(delayBlinkPlayers > BLINK_DELAY)
 		{
+			#if BUTTONS_LED
 			invertLight(LED_PLAYER_1);
 			invertLight(LED_PLAYER_2);
 			delayBlinkPlayers = 0;
+			#endif
 		}
 	}
 	if(blinkInputs)
@@ -120,8 +124,10 @@ void ButtonsLed::doBlinkPlayers(bool value)
 	blinkPlayers = value;
 	if(blinkPlayers)
 	{
+		#if BUTTONS_LED
 		lightOff(LED_PLAYER_1);
 		lightOn(LED_PLAYER_2);
+		#endif
 		delayBlinkPlayers = BLINK_DELAY / 2;
 	}
 }

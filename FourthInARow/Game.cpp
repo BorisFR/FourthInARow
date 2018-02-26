@@ -880,26 +880,32 @@ uint8_t Game::getIndexPlayingForPlayerIA(Player player)
 */
 
 	GameSolver::Connect4::Position P;
-	P.play("1234567");
-	solver.reset();
-	unsigned long start = millis();
-	int score = solver.solve(P, true);
-	unsigned long stop = millis();
-	_debug("Score: " + String(score) + "Nodes: " + String((unsigned long)(solver.getNodeCount())));
-	_debug("Time: " + String(stop-start));
-	if(score == 0)
+	String thegame = "4453";
+	int res = P.play("4453");
+	if(res != thegame.length())
 	{
-		_debug("nobody can win");
+			_debug("Solve error:" + String(res) + "\n");
+	} else {
+		solver.reset();
+		unsigned long start = millis();
+		int score = solver.solve(P, true);
+		unsigned long stop = millis();
+		_debug("Score: " + String(score) + " Nodes: " + String((unsigned long)(solver.getNodeCount())) + "\n");
+		_debug("Time: " + String(stop-start) + "\n");
+		if(score == 0)
+		{
+			_debug("nobody can win\n");
+		}
+		if(score > 0)
+		{
+			_debug("Win in " + String(22 - score) + " moves\n");
+		}
+		if(score < 0)
+		{
+			_debug("Loose in " + String(-score) + " moves\n");
+		}
 	}
-	if(score > 0)
-	{
-		_debug("Win in " + String(22 - score) + " moves");
-	}
-	if(score < 0)
-	{
-		_debug("Loose in " + String(-score) + " moves");
-	}
-	
+
 	// MaxMove(player, Levels, Number.MAX_VALUE, "Col");
 	// on calcule le meilleur coup
 	int8_t dummy = getMaximalMove(player, deepThinking, WIN_VALUE * 10);

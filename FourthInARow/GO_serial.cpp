@@ -66,15 +66,17 @@ void GOserial::traceLine()
 	Serial.print("\n");
 }
 
-void GOserial::drawBoard(Column board[BOARD_COLUMNS])
+void GOserial::drawBoard(Board board) //Column board[BOARD_COLUMNS])
 {
 	traceLine();
-	for (int8_t row = (COLUMN_TILES - 1); row >= 0; row--)
+	//for (int8_t row = (COLUMN_TILES - 1); row >= 0; row--)
+	for (int8_t row = 0; row < COLUMN_TILES; row++)
 	{
 		Serial.print("|");
+		//for (uint8_t column = 0; column < BOARD_COLUMNS; column++)
 		for (uint8_t column = 0; column < BOARD_COLUMNS; column++)
 		{
-			switch (board[column].getToken(row))
+			switch (board.column[column].getToken(row)) //board[column].getToken(row))
 			{
 			case noPlayer:
 				Serial.print(" ");

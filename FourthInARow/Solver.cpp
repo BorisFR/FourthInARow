@@ -35,7 +35,7 @@ namespace GameSolver { namespace Connect4 {
      * - if actual score of position >= beta then beta <= return value <= actual score
      * - if alpha <= actual score <= beta then return value = actual score
      */
-    int Solver::negamax(const Position &P, int alpha, int beta) {
+    int Solver::negamax(const Position &P, int alpha, int beta, int level) {
       assert(alpha < beta);
       assert(!P.canWinNext());
 
@@ -60,8 +60,12 @@ namespace GameSolver { namespace Connect4 {
         if(alpha >= beta) return beta;  // prune the exploration if the [alpha;beta] window is empty.
       }
 
-      const uint64_t key = P.key();
-      if(int val = transTable.get(key)) {
+      if(level < 0)
+        return 666;
+
+      /*const uint64_t key = P.key();
+      if(int val = transTable.get(key)) 
+      {
         if(val > Position::MAX_SCORE - Position::MIN_SCORE + 1) { // we have an lower bound
           min = val + 2*Position::MIN_SCORE - Position::MAX_SCORE - 2;
           if(alpha < min) {
@@ -76,7 +80,7 @@ namespace GameSolver { namespace Connect4 {
             if(alpha >= beta) return beta;  // prune the exploration if the [alpha;beta] window is empty.
           }
         }
-      }
+      }*/
 
       MoveSorter moves;
 
@@ -87,19 +91,24 @@ namespace GameSolver { namespace Connect4 {
       while(uint64_t next = moves.getNext()) {
           Position P2(P);
           P2.play(next);  // It's opponent turn in P2 position after current player plays x column.
-          int score = -negamax(P2, -beta, -alpha); // explore opponent's score within [-beta;-alpha] windows:
+          int score = -negamax(P2, -beta, -alpha, level - 1); // explore opponent's score within [-beta;-alpha] windows:
           // no need to have good precision for score better than beta (opponent's score worse than -beta)
           // no need to check for score worse than alpha (opponent's score worse better than -alpha)
+          if(score == 666)
+          {
+            Serial.print(".");
+            return alpha;
+          }
 
           if(score >= beta) {
-            transTable.put(key, score + Position::MAX_SCORE - 2*Position::MIN_SCORE + 2); // save the lower bound of the position
+            //transTable.put(key, score + Position::MAX_SCORE - 2*Position::MIN_SCORE + 2); // save the lower bound of the position
             return score;  // prune the exploration if we find a possible move better than what we were looking for.
           }
           if(score > alpha) alpha = score; // reduce the [alpha;beta] window for next exploration, as we only 
           // need to search for a position that is better than the best so far.
         }
 
-      transTable.put(key, alpha - Position::MIN_SCORE + 1); // save the upper bound of the position
+      //transTable.put(key, alpha - Position::MIN_SCORE + 1); // save the upper bound of the position
       return alpha;
     }
 
@@ -118,10 +127,11 @@ namespace GameSolver { namespace Connect4 {
       }
 
       while(min < max) {                    // iteratively narrow the min-max exploration window
+        Serial.println("Min: " + String(min) + ", Max: " + String(max));
         int med = min + (max - min)/2;
         if(med <= 0 && min/2 < med) med = min/2;
         else if(med >= 0 && max/2 > med) med = max/2;
-        int r = negamax(P, med, med + 1);   // use a null depth window to know if the actual score is greater or smaller than med
+        int r = negamax(P, med, med + 1, 12);   // use a null depth window to know if the actual score is greater or smaller than med
         if(r <= med) max = r;
         else min = r;
       }
