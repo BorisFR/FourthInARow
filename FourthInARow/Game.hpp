@@ -4,6 +4,7 @@
 #include "Global.hpp"
 #include "Column.hpp"
 #include "CaseLocation.hpp"
+#include "Solver.hpp"
 
 #define WIN_VALUE 100000
 #define MAX_POSSIBILITIES 69
@@ -65,6 +66,8 @@ class Game {
 		uint8_t bestColumnToPlay;
 		uint8_t playPossibilities[BOARD_COLUMNS];
 		HintStatus hintsState;
+
+		GameSolver::Connect4::Solver solver;
 
 	public :
 		#if DEBUG
