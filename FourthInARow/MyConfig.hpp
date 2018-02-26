@@ -225,14 +225,15 @@
 #define GAME_OUTPUT_DUMMY 0
 
 // utilisation de la console Série du PC/Mac/Linux /!\ #define DEBUG doit être à 1
-#define GAME_OUTPUT_SERIAL 1
+#define GAME_OUTPUT_SERIAL 0
 
 // la localisation des 42 leds
 // pour le programme, ça va de bas en haut et de gauche à droite
-//				      colonne 1				 colonne 2				 colonne 3				 colonne 4				 colonne 5				 colonne 6				 colonne 7
-//					  bas ...			haut/bas ...			haut/bas ...			haut/bas ...			haut/bas ...			haut/bas ...		haut/bas ...
-#define LED_POSITIONS 36, 37, 38, 39, 40, 41, 35, 34, 33, 32, 31, 30, 24, 25, 26, 27, 28, 29, 23, 22, 21, 20, 19, 18, 12, 13, 14, 15, 16, 17, 11, 10, 9, 8, 7, 6, 0, 1, 2, 3, 4, 5
-#define LED_POSITIONS_PLAYER_2 36, 37, 38, 39, 40, 41, 35, 34, 33, 32, 31, 30, 24, 25, 26, 27, 28, 29, 23, 22, 21, 20, 19, 18, 12, 13, 14, 15, 16, 17, 11, 10, 9, 8, 7, 6, 0, 1, 2, 3, 4, 5
+//				      colonne 1				colonne 2			 colonne 3			     colonne 4				colonne 5			   colonne 6			  colonne 7
+//					  bas ...		   haut/bas ...	        haut/bas ...		    haut/bas ...		   haut/bas ...	    	  haut/bas ...		     haut/bas ...
+#define LED_POSITIONS 7, 8, 21, 22, 35, 36, 6, 9, 20, 23, 34, 37, 5, 10, 19, 24, 33, 38, 4, 11, 18, 25, 32, 39, 3, 12, 17, 26, 31, 40, 2, 13, 16, 27, 30, 41, 1, 14, 15, 28, 29, 42
+#define LED_POSITIONS_PLAYER_2 7, 8, 21, 22, 35, 36, 6, 9, 20, 23, 34, 37, 5, 10, 19, 24, 33, 38, 4, 11, 18, 25, 32, 39, 3, 12, 17, 26, 31, 40, 2, 13, 16, 27, 30, 41, 1, 14, 15, 28, 29, 42
+//#define LED_POSITIONS_PLAYER_2 36, 37, 38, 39, 40, 41, 35, 34, 33, 32, 31, 30, 24, 25, 26, 27, 28, 29, 23, 22, 21, 20, 19, 18, 12, 13, 14, 15, 16, 17, 11, 10, 9, 8, 7, 6, 0, 1, 2, 3, 4, 5
 // LEDs for player 1 and 2 are on the same physical line, it is only one strip!
 // LEDs for player 1 and 2 are the same, but player 2 start at index :
 #define LED_PLAYER_2_OFFSET 50
@@ -244,11 +245,11 @@
 #define WS2801_NUMBER_LEDS 56
 
 // le plateau de jeu est visualisé par 42 LEDs RGB type WS2813
-#define GAME_OUPUT_WS2813 0
+#define GAME_OUPUT_WS2813 1
 #define WS2813_DATA_PIN 14
 #define WS2813_NUMBER_LEDS 100
 #define WS2813_COLOR_ORDER GRB
-#define WS2813_BRIGHTNESS 96
+#define WS2813_BRIGHTNESS 100
 
 // un rendu sur écran OLED Featherwing
 #define GAME_OUTPUT_FEATHER_OLED 0

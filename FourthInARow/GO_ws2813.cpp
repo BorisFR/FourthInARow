@@ -54,9 +54,10 @@ void GO_ws2813::setup()
 #if DEBUG
 	_debug(F("WS2813: "));
 #endif
-	FastLED.addLeds<WS2813, WS2813_DATA_PIN, WS2813_COLOR_ORDER>(leds, WS2801_NUMBER_LEDS).setCorrection(TypicalLEDStrip);
+	FastLED.addLeds<WS2813, WS2813_DATA_PIN, WS2813_COLOR_ORDER>(leds, WS2813_NUMBER_LEDS).setCorrection(TypicalLEDStrip);
 	FastLED.setBrightness(WS2813_BRIGHTNESS);
 	myBlack = CRGB::Black;
+	//myBlack = CRGB::White;
 	myWhite = CRGB::White;
 	myRed = CRGB::Red;
 	myGreen = CRGB::Green; // CHSV( HUE_GREEN, 255, 255)
@@ -75,6 +76,7 @@ void GO_ws2813::setup()
 	FastLEDshowESP32();
 #else
 	FastLED.show();
+	FastLED.delay(10);
 #endif
 
 #if DEBUG
@@ -88,6 +90,7 @@ void GO_ws2813::endLoop()
 	FastLEDshowESP32();
 #else
 	FastLED.show();
+	FastLED.delay(10);
 #endif
 }
 

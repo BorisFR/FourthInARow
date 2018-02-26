@@ -879,6 +879,7 @@ uint8_t Game::getIndexPlayingForPlayerIA(Player player)
 		probabilityToBeStupid = 0;
 */
 
+/*
 	GameSolver::Connect4::Position P;
 	String thegame = "4453";
 	int res = P.play("4453");
@@ -905,6 +906,7 @@ uint8_t Game::getIndexPlayingForPlayerIA(Player player)
 			_debug("Loose in " + String(-score) + " moves\n");
 		}
 	}
+	*/
 
 	// MaxMove(player, Levels, Number.MAX_VALUE, "Col");
 	// on calcule le meilleur coup
