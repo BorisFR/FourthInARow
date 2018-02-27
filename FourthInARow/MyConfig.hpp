@@ -231,8 +231,8 @@
 // pour le programme, ça va de bas en haut et de gauche à droite
 //				      colonne 1				colonne 2			 colonne 3			     colonne 4				colonne 5			   colonne 6			  colonne 7
 //					  bas ...		   haut/bas ...	        haut/bas ...		    haut/bas ...		   haut/bas ...	    	  haut/bas ...		     haut/bas ...
-#define LED_POSITIONS 7, 8, 21, 22, 35, 36, 6, 9, 20, 23, 34, 37, 5, 10, 19, 24, 33, 38, 4, 11, 18, 25, 32, 39, 3, 12, 17, 26, 31, 40, 2, 13, 16, 27, 30, 41, 1, 14, 15, 28, 29, 42
-#define LED_POSITIONS_PLAYER_2 7, 8, 21, 22, 35, 36, 6, 9, 20, 23, 34, 37, 5, 10, 19, 24, 33, 38, 4, 11, 18, 25, 32, 39, 3, 12, 17, 26, 31, 40, 2, 13, 16, 27, 30, 41, 1, 14, 15, 28, 29, 42
+#define LED_POSITIONS 6, 7, 20, 21, 34, 35, 5, 8, 19, 22, 33, 36, 4, 9, 18, 23, 32, 37, 3, 10, 17, 24, 31, 38, 2, 11, 16, 25, 30, 39, 1, 12, 15, 26, 29, 40, 0, 13, 14, 27, 28, 41
+#define LED_POSITIONS_PLAYER_2 6, 7, 20, 21, 34, 35, 5, 8, 19, 22, 33, 36, 4, 9, 18, 23, 32, 37, 3, 10, 17, 24, 31, 38, 2, 11, 16, 25, 30, 39, 1, 12, 15, 26, 29, 40, 0, 13, 14, 27, 28, 41
 //#define LED_POSITIONS_PLAYER_2 36, 37, 38, 39, 40, 41, 35, 34, 33, 32, 31, 30, 24, 25, 26, 27, 28, 29, 23, 22, 21, 20, 19, 18, 12, 13, 14, 15, 16, 17, 11, 10, 9, 8, 7, 6, 0, 1, 2, 3, 4, 5
 // LEDs for player 1 and 2 are on the same physical line, it is only one strip!
 // LEDs for player 1 and 2 are the same, but player 2 start at index :
@@ -249,7 +249,7 @@
 #define WS2813_DATA_PIN 14
 #define WS2813_NUMBER_LEDS 100
 #define WS2813_COLOR_ORDER GRB
-#define WS2813_BRIGHTNESS 100
+#define WS2813_BRIGHTNESS 255
 
 // un rendu sur écran OLED Featherwing
 #define GAME_OUTPUT_FEATHER_OLED 0
