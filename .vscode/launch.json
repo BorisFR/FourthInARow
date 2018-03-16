@@ -6,7 +6,7 @@
             "request": "launch",
             "cwd": "${workspaceRoot}",
             "name": "PlatformIO Debugger",
-            "target": "/Users/sfardoux/Documents/GitHub/FourthInARow/.pioenvs/teensy36/firmware.elf",
+            "target": "/Users/sfardoux/OneDrive/PROJETS/FourthInARow/.pioenvs/teensy36/firmware.elf",
             "gdbpath": "/Users/sfardoux/.platformio/penv/bin/piodebuggdb",
             "autorun": [ "source .pioinit" ],
             "preLaunchTask": "PlatformIO: Pre-Debug",
