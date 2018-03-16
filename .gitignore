@@ -11,3 +11,4 @@
 .gcc-flags.json
 .DS_Store
 .vscode/*.db
+.vscode/.browse.c_cpp.db*
