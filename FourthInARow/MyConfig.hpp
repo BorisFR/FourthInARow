@@ -36,8 +36,8 @@
 // impossible à utiliser car ça manque de pinouilles !
 //#define ESP32 0
 
-// 1 si carte TEENSY35, sinon mettre 0
-#define TEENSY35 1
+// 1 si carte TEENSY35 / TEENSY36, sinon mettre 0
+#define TEENSY3x 1
 
 // 1 si carte ARDUINO MEGA 2560, sinon mettre 0
 // impossible à utiliser avec l'IA
@@ -108,7 +108,7 @@
 			#define BUTTON_LED_PLAYER_2 0
 		#endif
 	#endif
-	#if TEENSY35
+	#if TEENSY3x
 		#define BUTTON_COLUMN_1 24
 		#define BUTTON_COLUMN_2 25
 		#define BUTTON_COLUMN_3 26
@@ -198,7 +198,7 @@
 		#define EC11_ENCODER_PIN_B 39
 		#define EC11_BUTTON_PIN 36
 	#endif
-	#if TEENSY35
+	#if TEENSY3x
 		#define EC11_ENCODER_PIN_A 23
 		#define EC11_ENCODER_PIN_B 22
 		#define EC11_BUTTON_PIN 21
@@ -270,7 +270,7 @@
 		#define DFPLAYER_MINI_BUSY 4
 		#define DFPLAYER_MINI_SERIAL Serial1
 	#endif
-	#if TEENSY35
+	#if TEENSY3x
 		#define DFPLAYER_MINI_BUSY 35
 		#define DFPLAYER_MINI_SERIAL Serial5 // TX = 33, RX = 34
 	#endif
