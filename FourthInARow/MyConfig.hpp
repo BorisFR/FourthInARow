@@ -80,7 +80,7 @@
 	#define BUTTON_COLUMN_PLAYER_2 0
 #else
 	// les boutons d'arcade sont-ils lumineux ? (avec une led)
-	#define BUTTONS_LED 1
+	#define BUTTONS_LED 0
 	// n° de la led 
 	#define LED_PLAYER_1 7
 	#define LED_PLAYER_2 8

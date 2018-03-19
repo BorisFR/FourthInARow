@@ -154,7 +154,7 @@ void GO_ws2813::drawBoard(Board board)
 			switch (board.column[column].getToken(row))
 			{
 			case noPlayer:
-				setLed(index, myWhite);
+				setLed(index, myBlack);
 				break;
 			case player1:
 				setLed(index, myGreen);
